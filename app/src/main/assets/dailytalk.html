@@ -216,60 +216,134 @@ input{font-family:inherit}
 button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px}
 
 /* ── 응원단 (딸들) ── */
-.cheer{position:fixed;right:14px;bottom:172px;z-index:35;display:flex;align-items:flex-end;gap:9px;pointer-events:none;opacity:0;transform:translateY(14px);transition:opacity .22s,transform .25s cubic-bezier(.22,1,.36,1)}
+.cheer{position:fixed;right:8px;bottom:146px;z-index:35;display:flex;align-items:flex-end;gap:6px;pointer-events:none;opacity:0;transform:translateY(14px);transition:opacity .22s,transform .25s cubic-bezier(.22,1,.36,1)}
 .cheer.show{opacity:1;transform:none}
 .ch-col{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
 .ch-face{width:76px;height:76px;border-radius:50%;border:3.5px solid #fff;box-shadow:0 6px 16px rgba(16,24,40,.25);overflow:hidden;background:var(--blue-bg);flex-shrink:0}
 .ch-face img,.ch-face svg{width:100%;height:100%;object-fit:cover;display:block}
 .ch-face img{filter:saturate(1.05)}
 .ch-name{font-size:11.5px;font-weight:800;color:#fff;background:var(--blue);padding:2px 10px;border-radius:10px;white-space:nowrap}
-.ch-char{width:100px;height:auto;display:block;filter:drop-shadow(0 6px 12px rgba(16,24,40,.22))}
-.ch-bub{max-width:190px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px 16px 3px 16px;padding:10px 13px;font-size:14.5px;font-weight:700;box-shadow:var(--sh);margin-bottom:26px}
-/* 정답 7종 */
-.a-jump{animation:chJump .5s cubic-bezier(.3,1.4,.5,1) 2}
-.a-spin{animation:chSpin .8s cubic-bezier(.4,.1,.3,1.2)}
-@keyframes chSpin{from{transform:rotate(0) scale(.9)}60%{transform:rotate(330deg) scale(1.12)}to{transform:rotate(360deg) scale(1)}}
-.a-flash{animation:chFlash .75s ease}
-@keyframes chFlash{0%,100%{filter:brightness(1)}15%,45%,75%{filter:brightness(1.9) saturate(1.5)}30%,60%{filter:brightness(1)}25%{transform:translateX(-3px)}55%{transform:translateX(3px)}}
-.a-dance{animation:chDance .45s ease 2}
-@keyframes chDance{0%,100%{transform:rotate(0) translateX(0)}25%{transform:rotate(-10deg) translateX(-7px)}75%{transform:rotate(10deg) translateX(7px)}}
-.a-pop{animation:chPopBig .55s cubic-bezier(.3,1.6,.4,1) 2}
-@keyframes chPopBig{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-.a-tada{animation:chTada .8s ease}
-@keyframes chTada{0%{transform:scale(1)}10%,20%{transform:scale(.92) rotate(-4deg)}30%,50%,70%{transform:scale(1.12) rotate(4deg)}40%,60%{transform:scale(1.12) rotate(-4deg)}100%{transform:scale(1)}}
-.a-hearts{animation:chWiggle .5s ease 2}
-@keyframes chWiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-6deg) translateY(-4px)}70%{transform:rotate(6deg) translateY(-4px)}}
-.cheer.happy .ch-bub,.cheer.sad .ch-bub{animation:chPop .28s cubic-bezier(.3,1.6,.5,1)}
-@keyframes chJump{0%,100%{transform:translateY(0) scale(1,1)}35%{transform:translateY(-18px) scale(.94,1.06)}70%{transform:translateY(0) scale(1.08,.92)}}
+.ch-char{width:150px;height:auto;display:block;transform-origin:50% 62%;filter:drop-shadow(0 6px 12px rgba(16,24,40,.22))}
+.ch-bub{max-width:215px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px 16px 3px 16px;padding:10px 13px;font-size:14.5px;font-weight:700;box-shadow:var(--sh);margin-bottom:26px}
+/* ── 캐릭터 파츠 상시 애니메이션 ── */
+#q-area{padding-bottom:205px}
+.ch-char .pt,.ch-char .cg-all{transform-box:view-box}
+.cg-armL{transform-origin:40px 84px}
+.cg-armR{transform-origin:80px 84px}
+.cg-head{transform-origin:60px 60px}
+.cg-legL{transform-origin:48px 112px}
+.cg-legR{transform-origin:72px 112px}
+.cg-all{transform-origin:60px 105px}
+.cheer .ch-bub{animation:chPop .28s cubic-bezier(.3,1.6,.5,1)}
 @keyframes chPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
-/* 오답 7종 */
-.a-sulk{animation:chSulk .9s ease forwards}
-.a-no{animation:chNo .5s ease 2}
-@keyframes chNo{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px) rotate(-4deg)}75%{transform:translateX(8px) rotate(4deg)}}
-.a-dizzy{animation:chDizzy 1.1s ease-in-out;filter:saturate(.75)}
-@keyframes chDizzy{0%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(6deg) translateY(3px)}100%{transform:rotate(-2deg) translateY(4px)}}
-.a-rain{animation:chGloom 1s ease forwards}
-@keyframes chGloom{to{filter:grayscale(.55) brightness(.85);transform:translateY(6px)}}
-.a-faint{animation:chFaint .9s cubic-bezier(.5,0,.7,.4) forwards}
-@keyframes chFaint{0%{transform:rotate(0)}55%{transform:rotate(78deg) translateY(4px)}70%{transform:rotate(70deg) translateY(10px)}100%{transform:rotate(75deg) translateY(12px)}}
-.a-deflate{animation:chDeflate .9s ease forwards}
-@keyframes chDeflate{0%{transform:scale(1,1)}40%{transform:scale(1.08,.9)}100%{transform:scale(1.12,.62) translateY(14px)}}
-.a-sweat{animation:chNo .4s ease 2}
-/* 이펙트 오버레이 */
+@keyframes chJump{0%,100%{transform:translateY(0) scale(1,1)}35%{transform:translateY(-20px) scale(.94,1.06)}70%{transform:translateY(0) scale(1.07,.93)}}
+/* 대기 — 항상 꼼지락 */
+.ch-idle .cg-all{animation:iBob 1.4s ease-in-out infinite}
+@keyframes iBob{0%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(-6px) scale(.99,1.01)}}
+.ch-idle .cg-armL{animation:iArmL 1.4s ease-in-out infinite}
+.ch-idle .cg-armR{animation:iArmR 1.4s ease-in-out infinite}
+@keyframes iArmL{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(16deg)}}
+@keyframes iArmR{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-16deg)}}
+.ch-idle .cg-head{animation:iHead 3.4s ease-in-out infinite}
+@keyframes iHead{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.ch-idle .cg-legL{animation:iLeg 1.4s ease-in-out infinite}
+.ch-idle .cg-legR{animation:iLeg 1.4s ease-in-out infinite .7s}
+@keyframes iLeg{0%,100%{transform:rotate(0)}50%{transform:rotate(-6deg)}}
+/* 재롱 (5초마다 랜덤) */
+.f-jump .cg-all{animation:chJump .45s ease 2}
+.f-jump .cg-armL{animation:aUpL .45s ease 2}
+.f-jump .cg-armR{animation:aUpR .45s ease 2}
+.f-spin .cg-all{animation:rSpin .9s cubic-bezier(.4,.1,.3,1.15)}
+.f-wave .cg-armR{animation:aWaveR .3s ease-in-out 4}
+.f-wiggle .cg-all{animation:rHips .3s ease-in-out 4}
+/* 공용 파츠 키프레임 */
+@keyframes aUpL{0%,100%{transform:rotate(0)}50%{transform:rotate(-150deg)}}
+@keyframes aUpR{0%,100%{transform:rotate(0)}50%{transform:rotate(150deg)}}
+@keyframes aHoldL{to{transform:rotate(-145deg)}}
+@keyframes aHoldR{to{transform:rotate(145deg)}}
+@keyframes aWaveL{0%,100%{transform:rotate(-115deg)}50%{transform:rotate(-165deg)}}
+@keyframes aWaveR{0%,100%{transform:rotate(115deg)}50%{transform:rotate(165deg)}}
+@keyframes aDroopL{to{transform:rotate(22deg)}}
+@keyframes aDroopR{to{transform:rotate(-22deg)}}
+@keyframes rSpin{from{transform:rotate(0) scale(.92)}60%{transform:rotate(680deg) scale(1.12)}to{transform:rotate(720deg) scale(1)}}
+@keyframes rHips{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+/* 정답 리액션 7 */
+.r-jump .cg-all{animation:chJump .48s ease 3}
+.r-jump .cg-armL{animation:aWaveL .48s ease 3}
+.r-jump .cg-armR{animation:aWaveR .48s ease 3}
+.r-spin .cg-all{animation:rSpin 1s cubic-bezier(.4,.1,.3,1.15)}
+.r-spin .cg-armL{animation:aHoldL .3s forwards}
+.r-spin .cg-armR{animation:aHoldR .3s forwards}
+.r-flash{animation:rGlow .85s ease}
+.r-flash .cg-all{animation:rShake .12s linear 6}
+.r-flash .cg-armL{animation:aHoldL .25s forwards}
+.r-flash .cg-armR{animation:aHoldR .25s forwards}
+@keyframes rGlow{0%,100%{filter:brightness(1) drop-shadow(0 6px 12px rgba(16,24,40,.22))}20%,55%,85%{filter:brightness(1.85) saturate(1.5) drop-shadow(0 0 18px rgba(245,158,11,.8))}}
+@keyframes rShake{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.r-dance .cg-all{animation:rHips .32s ease-in-out 6}
+.r-dance .cg-armL{animation:aUpL .64s ease 3}
+.r-dance .cg-armR{animation:aUpR .64s ease 3 .32s}
+.r-dance .cg-legL{animation:iLeg .32s ease 6}
+.r-dance .cg-legR{animation:iLeg .32s ease 6 .16s}
+.r-pop .cg-all{animation:rPop .5s cubic-bezier(.3,1.7,.4,1) 2}
+@keyframes rPop{0%,100%{transform:scale(1)}50%{transform:scale(1.32)}}
+.r-pop .cg-armL{animation:aHoldL .3s forwards}
+.r-pop .cg-armR{animation:aHoldR .3s forwards}
+.r-clap .cg-armL{animation:aClapL .22s ease-in-out 6}
+.r-clap .cg-armR{animation:aClapR .22s ease-in-out 6}
+@keyframes aClapL{0%,100%{transform:rotate(-40deg)}50%{transform:rotate(-84deg)}}
+@keyframes aClapR{0%,100%{transform:rotate(40deg)}50%{transform:rotate(84deg)}}
+.r-clap .cg-all{animation:iBob .44s ease 3}
+.r-run .cg-legL{animation:rRunL .18s linear 9}
+.r-run .cg-legR{animation:rRunR .18s linear 9 .09s}
+@keyframes rRunL{0%,100%{transform:rotate(-24deg)}50%{transform:rotate(24deg)}}
+@keyframes rRunR{0%,100%{transform:rotate(24deg)}50%{transform:rotate(-24deg)}}
+.r-run .cg-armL{animation:rRunR .18s linear 9}
+.r-run .cg-armR{animation:rRunL .18s linear 9 .09s}
+.r-run .cg-all{animation:rLean 1.7s ease forwards}
+@keyframes rLean{0%{transform:rotate(0)}15%,85%{transform:rotate(7deg) translateY(-3px)}100%{transform:rotate(0)}}
+/* 오답 리액션 7 */
+.r-sulk .cg-all{animation:rDroop .8s ease forwards}
+@keyframes rDroop{to{transform:translateY(9px) rotate(-3deg)}}
+.r-sulk .cg-armL{animation:aDroopL .6s ease forwards}
+.r-sulk .cg-armR{animation:aDroopR .6s ease forwards}
+.r-sulk .cg-head{animation:hDown .7s ease forwards}
+@keyframes hDown{to{transform:rotate(-7deg) translateY(4px)}}
+.r-no .cg-head{animation:hShake .22s linear 6}
+@keyframes hShake{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
+.r-no .cg-armL{animation:aDroopL .5s forwards}
+.r-no .cg-armR{animation:aDroopR .5s forwards}
+.r-dizzy .cg-all{animation:rWobble 1.2s ease-in-out}
+@keyframes rWobble{0%{transform:rotate(0)}25%{transform:rotate(-11deg)}50%{transform:rotate(9deg)}75%{transform:rotate(-6deg) translateY(3px)}100%{transform:rotate(-2deg) translateY(5px)}}
+.r-dizzy .cg-head{animation:hShake .3s linear 4}
+.r-rain{animation:rGray 1s ease forwards}
+@keyframes rGray{to{filter:grayscale(.6) brightness(.85) drop-shadow(0 6px 12px rgba(16,24,40,.22))}}
+.r-rain .cg-all{animation:rDroop .9s ease forwards}
+.r-rain .cg-armL{animation:aDroopL .7s forwards}
+.r-rain .cg-armR{animation:aDroopR .7s forwards}
+.r-faint .cg-all{animation:rFall .9s cubic-bezier(.55,0,.7,.4) forwards}
+@keyframes rFall{0%{transform:rotate(0)}55%{transform:rotate(80deg) translateY(2px)}70%{transform:rotate(72deg) translateY(9px)}100%{transform:rotate(76deg) translateY(11px)}}
+.r-faint .cg-legL{animation:iLeg .3s ease 3 .6s}
+.r-deflate .cg-all{animation:rFlat .9s ease forwards}
+@keyframes rFlat{0%{transform:scale(1,1)}40%{transform:scale(1.06,.9)}100%{transform:scale(1.14,.6) translateY(17px)}}
+.r-cry .cg-head{animation:hShake .3s linear 4}
+.r-cry .cg-armL{animation:aCryL .5s ease-in-out 3}
+@keyframes aCryL{0%,100%{transform:rotate(-55deg)}50%{transform:rotate(-95deg)}}
+.r-cry .cg-armR{animation:aDroopR .5s forwards}
+/* 이펙트 */
 .fx{position:absolute;pointer-events:none;font-weight:800;z-index:2}
-.fx-bolt{top:-16px;font-size:21px;color:#F59E0B;animation:fxBlink .16s ease 5 alternate;text-shadow:0 0 9px rgba(245,158,11,.85)}
+.fx-bolt{top:-14px;font-size:24px;color:#F59E0B;animation:fxBlink .16s ease 5 alternate;text-shadow:0 0 10px rgba(245,158,11,.85)}
 @keyframes fxBlink{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1.3)}}
-.fx-star{left:50%;top:30%;font-size:15px;color:#FBBF24;animation:fxOrbit 1.05s linear;text-shadow:0 1px 2px rgba(0,0,0,.15)}
-@keyframes fxOrbit{from{transform:rotate(0) translateX(30px) rotate(0)}to{transform:rotate(360deg) translateX(30px) rotate(-360deg)}}
-.fx-drop{top:10px;right:8px;width:9px;height:13px;background:#60A5FA;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;animation:fxDrop .8s ease-in forwards}
-@keyframes fxDrop{from{transform:translateY(0);opacity:1}to{transform:translateY(36px);opacity:0}}
-.fx-rain{top:-18px;width:2.5px;height:12px;background:#60A5FA;border-radius:2px;animation:fxRain .5s linear 2}
-@keyframes fxRain{from{transform:translateY(0);opacity:.9}to{transform:translateY(54px);opacity:0}}
-@keyframes chSulk{0%{transform:none}35%{transform:rotate(-9deg) translateY(5px)}65%{transform:rotate(6deg) translateY(7px)}100%{transform:rotate(-3deg) translateY(7px)}}
+.fx-star{left:50%;top:26%;font-size:17px;color:#FBBF24;animation:fxOrbit 1.05s linear;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+@keyframes fxOrbit{from{transform:rotate(0) translateX(44px) rotate(0)}to{transform:rotate(360deg) translateX(44px) rotate(-360deg)}}
+.fx-drop{top:52px;right:40px;width:10px;height:14px;background:#60A5FA;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;animation:fxDrop .8s ease-in 2}
+@keyframes fxDrop{from{transform:translateY(0);opacity:1}to{transform:translateY(40px);opacity:0}}
+.fx-rain{top:-16px;width:3px;height:13px;background:#60A5FA;border-radius:2px;animation:fxRain .5s linear 3}
+@keyframes fxRain{from{transform:translateY(0);opacity:.9}to{transform:translateY(70px);opacity:0}}
 .ch-h{position:absolute;top:-6px;font-size:15px;color:#F472B6;animation:hFly 1s ease-out forwards}
 @keyframes hFly{from{transform:translateY(0) scale(.7);opacity:1}to{transform:translateY(-48px) scale(1.25);opacity:0}}
 .dgirls{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin-top:20px}
-.dgirls .ch-char{width:88px;animation:chJump .55s ease 3}
+.dgirls .ch-char{width:112px}
 </style>
 </head>
 <body>
@@ -835,7 +909,7 @@ function startReview(){
   L={steps,i:0,ok:0,no:0,combo:0,best:0,xp:0,redoDone:{},review:true};
   go("lesson");renderStep();
 }
-function quitLesson(){if(window.AndroidTTS)try{AndroidTTS.stop()}catch(e){};if(window.speechSynthesis)speechSynthesis.cancel();FX.bgmStop();L=null;hideSheet();go("home")}
+function quitLesson(){if(window.AndroidTTS)try{AndroidTTS.stop()}catch(e){};if(window.speechSynthesis)speechSynthesis.cancel();FX.bgmStop();L=null;hideSheet();chHide();go("home")}
 
 function renderStep(){
   const st=L.steps[L.i];
@@ -847,6 +921,7 @@ function renderStep(){
   hideSheet();
   const R={flip:rFlip,q:rQ,match:rMatch,gram:rGram,gq:rGQ};
   R[st.k](st);
+  chEnsure();
 }
 function next(){L.i++;renderStep()}
 
@@ -1114,7 +1189,7 @@ function gradeG(ok){
 
 /* ───────── 레슨 완료 ───────── */
 function finishLesson(){
-  FX.bgmStop();hideSheet();
+  FX.bgmStop();hideSheet();chHide();
   $("#pbar").style.width="100%";
   const wasReview=L.review,acc=L.ok+L.no?Math.round(L.ok/(L.ok+L.no)*100):100;
   S.xp+=L.xp;
@@ -1171,6 +1246,7 @@ function confetti(){
 
 /* ───────── 화면: 홈 / 복습 / 나 ───────── */
 function go(t){
+  if(t!=="lesson")chHide();
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
   document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
   const lesson=t==="lesson";
@@ -1277,34 +1353,27 @@ const PRAISE=["아빠 잘했어!","사랑해 아빠 ♥","우리 아빠 최고!"
 const CHEERUP=["잘 좀 해봐 아빠~","아쉽네~ 한 번 더!","힘내 아빠!","괜찮아, 다시 하면 돼!","에이~ 아깝다!","집중집중!","아빠 파이팅!","천천히 다시 읽어봐~"];
 const COMBOP=["미쳤다 아빠! 연속 정답!","아빠 오늘 물올랐네!","막을 수가 없어!"];
 const DONEP=["오늘도 해냈다 아빠!","내일도 같이 하자!","아빠가 제일 자랑스러워!"];
-let CHT=0,LAST_AN="";
+let CHT=0,LAST_R="";
 function faceHTML(i){const g=S.girls[i];return g.img?'<img src="'+g.img+'" alt="">':DEF_FACE[i]}
-const HAPPY_AN=["a-jump","a-spin","a-flash","a-dance","a-pop","a-tada","a-hearts"];
-const SAD_AN=["a-sulk","a-no","a-dizzy","a-rain","a-faint","a-deflate","a-sweat"];
-function pickAn(list){let a;do{a=list[Math.floor(Math.random()*list.length)]}while(a===LAST_AN&&list.length>1);LAST_AN=a;return a}
-function fxHTML(an){
-  if(an==="a-hearts"||an==="a-jump")return [0,1,2,3].map(k=>'<span class="ch-h" style="right:'+(k*17)+'px;animation-delay:'+(k*.12)+'s">♥</span>').join("");
-  if(an==="a-flash")return '<span class="fx fx-bolt" style="left:-6px">⚡</span><span class="fx fx-bolt" style="right:-6px;animation-delay:.09s">⚡</span>';
-  if(an==="a-dizzy")return [0,1,2].map(k=>'<span class="fx fx-star" style="animation-delay:'+(k*.18)+'s">★</span>').join("");
-  if(an==="a-spin"||an==="a-tada"||an==="a-pop")return '<span class="fx fx-star">★</span><span class="fx fx-star" style="animation-delay:.3s;color:#F472B6">★</span>';
-  if(an==="a-sweat")return '<span class="fx fx-drop"></span><span class="fx fx-drop" style="right:24px;animation-delay:.22s"></span>';
-  if(an==="a-rain")return [0,1,2,3].map(k=>'<span class="fx fx-rain" style="left:'+(12+k*18)+'px;animation-delay:'+(k*.1)+'s"></span>').join("");
-  if(an==="a-dance")return '<span class="fx" style="top:-14px;left:-2px;font-size:14px;color:var(--blue)">♪</span><span class="fx" style="top:-10px;right:-2px;font-size:12px;color:#F472B6">♫</span>';
+const R_HAPPY=["r-jump","r-spin","r-flash","r-dance","r-pop","r-clap","r-run"];
+const R_SAD=["r-sulk","r-no","r-dizzy","r-rain","r-faint","r-deflate","r-cry"];
+const FLOURISH=["f-jump","f-spin","f-wave","f-wiggle"];
+function pickR(l){let a;do{a=l[Math.floor(Math.random()*l.length)]}while(a===LAST_R&&l.length>1);LAST_R=a;return a}
+function fxHTML(r){
+  if(r==="r-jump"||r==="r-clap")return [0,1,2,3].map(k=>'<span class="ch-h" style="right:'+(10+k*22)+'px;animation-delay:'+(k*.12)+'s">♥</span>').join("");
+  if(r==="r-flash")return '<span class="fx fx-bolt" style="left:2px">⚡</span><span class="fx fx-bolt" style="right:2px;animation-delay:.09s">⚡</span>';
+  if(r==="r-spin"||r==="r-pop")return '<span class="fx fx-star">★</span><span class="fx fx-star" style="animation-delay:.3s;color:#F472B6">★</span>';
+  if(r==="r-dance")return '<span class="fx" style="top:-14px;left:2px;font-size:16px;color:var(--blue)">♪</span><span class="fx" style="top:-9px;right:2px;font-size:14px;color:#F472B6">♫</span>';
+  if(r==="r-dizzy")return [0,1,2].map(k=>'<span class="fx fx-star" style="animation-delay:'+(k*.18)+'s">★</span>').join("");
+  if(r==="r-rain")return [0,1,2,3,4].map(k=>'<span class="fx fx-rain" style="left:'+(14+k*26)+'px;animation-delay:'+(k*.09)+'s"></span>').join("");
+  if(r==="r-cry")return '<span class="fx fx-drop"></span><span class="fx fx-drop" style="right:88px;animation-delay:.25s"></span>';
+  if(r==="r-faint")return '<span class="fx fx-drop" style="right:24px"></span>';
   return "";
 }
-const AN_POSE={"a-jump":"cheer","a-spin":"stand","a-flash":"cheer","a-dance":"dance","a-pop":"cheer","a-tada":"dance","a-hearts":"cheer","a-sulk":"sulk","a-no":"sulk","a-dizzy":"stand","a-rain":"sulk","a-faint":"stand","a-deflate":"sulk","a-sweat":"oops"};
-function charSVG(i,pose,cls){ // 이모티콘풍 전신 캐릭터 + 얼굴 사진 합성
+function charSVG(i,cls){ // 파츠(팔·다리·머리) 분리형 캐릭터 + 얼굴 사진 합성
   const g=S.girls[i],shirt=i?"#F472B6":"#3B82F6",dark=i?"#DB2777":"#1D4ED8",skin="#FFD9B8",oc="#2b2b2b";
-  const arm=(x1,y1,x2,y2,cx,cy)=>'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+oc+'" stroke-width="15" stroke-linecap="round"/>'
-    +'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+skin+'" stroke-width="10.5" stroke-linecap="round"/>';
+  const arm=(x1,y1,x2,y2,cx,cy)=>'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+oc+'" stroke-width="15" stroke-linecap="round"/><path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+skin+'" stroke-width="10.5" stroke-linecap="round"/>';
   const leg=x=>'<path d="M'+x+' 112 L'+x+' 141" stroke="'+oc+'" stroke-width="17" stroke-linecap="round"/><path d="M'+x+' 112 L'+x+' 141" stroke="'+dark+'" stroke-width="12" stroke-linecap="round"/>';
-  const AR={
-    cheer:arm(40,86,15,50,20,74)+arm(80,86,105,50,100,74),
-    dance:arm(40,86,14,52,20,76)+arm(80,86,110,100,106,86),
-    stand:arm(40,86,18,104,22,96)+arm(80,86,102,104,98,96),
-    sulk:arm(40,88,34,122,32,106)+arm(80,88,86,122,88,106),
-    oops:arm(40,86,32,32,8,58)+arm(80,86,88,32,112,58)
-  };
   let head;
   if(g.img){
     head='<clipPath id="hc'+i+'"><circle cx="60" cy="44" r="33"/></clipPath>'
@@ -1320,33 +1389,48 @@ function charSVG(i,pose,cls){ // 이모티콘풍 전신 캐릭터 + 얼굴 사�
       +'<circle cx="40" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/><circle cx="80" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/>';
   }
   return '<svg class="ch-char '+(cls||"")+'" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
-    +leg(48)+leg(72)
+    +'<g class="cg-all">'
+    +'<g class="pt cg-legL">'+leg(48)+'</g><g class="pt cg-legR">'+leg(72)+'</g>'
     +'<rect x="32" y="70" width="56" height="48" rx="21" fill="'+shirt+'" stroke="'+oc+'" stroke-width="3"/>'
     +'<path d="M60 93 C57 89 51 90 51 95 C51 99 60 105 60 105 C60 105 69 99 69 95 C69 90 63 89 60 93Z" fill="#fff" opacity=".92"/>'
-    +AR[pose]+head+'</svg>';
+    +'<g class="pt cg-armL">'+arm(40,86,20,108,24,100)+'</g>'
+    +'<g class="pt cg-armR">'+arm(80,86,100,108,96,100)+'</g>'
+    +'<g class="pt cg-head">'+head+'</g>'
+    +'</g></svg>';
 }
-function cheer(ok){
-  if(!S.set.cheer)return;
-  CHT^=1;const g=S.girls[CHT];
-  const pool=ok?((L&&L.combo>=5)?COMBOP:PRAISE):CHEERUP;
-  const msg=pool[Math.floor(Math.random()*pool.length)];
-  const an=pickAn(ok?HAPPY_AN:SAD_AN);
+function chShow(cls,msg,mood){
   const el=$("#cheer");
-  el.innerHTML='<div class="ch-bub">'+escH(msg)+'</div>'
-    +'<div class="ch-col">'+fxHTML(an)
-    +charSVG(CHT,AN_POSE[an]||"stand",an)+'<div class="ch-name">'+escH(g.n)+'</div></div>';
-  el.className="cheer show "+(ok?"happy":"sad");
-  clearTimeout(el._h);el._h=setTimeout(()=>{el.className="cheer"},2100);
+  el.innerHTML=(msg?'<div class="ch-bub">'+escH(msg)+'</div>':'')
+    +'<div class="ch-col">'+fxHTML(cls)+charSVG(CHT,cls)+'<div class="ch-name">'+escH(S.girls[CHT].n)+'</div></div>';
+  el.className="cheer show"+(mood?" "+mood:"");
 }
+function chIdle(){if(!S.set.cheer||!L){chHide();return}chShow("ch-idle","")}
+function chHide(){const el=$("#cheer");if(el){el.className="cheer";el.innerHTML=""}}
+function chEnsure(){const el=$("#cheer");if(S.set.cheer&&L&&el&&!el.firstChild)chIdle()}
+function cheer(ok){
+  if(!S.set.cheer||!L)return;
+  CHT^=1;
+  const pool=ok?((L.combo>=5)?COMBOP:PRAISE):CHEERUP;
+  const msg=pool[Math.floor(Math.random()*pool.length)];
+  chShow(pickR(ok?R_HAPPY:R_SAD),msg,ok?"happy":"sad");
+  clearTimeout(window._chT);window._chT=setTimeout(chIdle,2400);
+}
+setInterval(()=>{ // 5초마다 재롱
+  if(document.hidden||!L||!S.set.cheer)return;
+  const svg=document.querySelector("#cheer .ch-char.ch-idle");
+  if(!svg)return;
+  const f=FLOURISH[Math.floor(Math.random()*FLOURISH.length)];
+  svg.classList.add(f);setTimeout(()=>svg.classList.remove(f),1250);
+},5200);
 function cheerFinish(){
   if(!S.set.cheer)return;
   const w=document.querySelector(".doneWrap");if(!w)return;
   const s=w.querySelector(".done-s");
   if(s)s.textContent=DONEP[Math.floor(Math.random()*DONEP.length)];
   const d=document.createElement("div");d.className="dgirls";
-  d.innerHTML='<div class="ch-col">'+charSVG(0,"cheer","")+'<div class="ch-name">'+escH(S.girls[0].n)+'</div></div>'
-    +'<div class="ch-col">'+charSVG(1,"dance","")+'<div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
-  const st=w.querySelector(".dstats");w.insertBefore(d,st);
+  d.innerHTML='<div class="ch-col">'+charSVG(0,"ch-idle")+'<div class="ch-name">'+escH(S.girls[0].n)+'</div></div>'
+    +'<div class="ch-col">'+charSVG(1,"ch-idle")+'<div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
+  w.insertBefore(d,w.querySelector(".dstats"));
 }
 function boxBlur(p,w,h){ // 3x3 평균 블러 (피부 매끈)
   const o=new Uint8ClampedArray(p.length);
