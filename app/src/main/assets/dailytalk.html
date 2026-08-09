@@ -223,6 +223,7 @@ button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-o
 .ch-face img,.ch-face svg{width:100%;height:100%;object-fit:cover;display:block}
 .ch-face img{filter:saturate(1.05)}
 .ch-name{font-size:11.5px;font-weight:800;color:#fff;background:var(--blue);padding:2px 10px;border-radius:10px;white-space:nowrap}
+.ch-char{width:100px;height:auto;display:block;filter:drop-shadow(0 6px 12px rgba(16,24,40,.22))}
 .ch-bub{max-width:190px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px 16px 3px 16px;padding:10px 13px;font-size:14.5px;font-weight:700;box-shadow:var(--sh);margin-bottom:26px}
 /* 정답 7종 */
 .a-jump{animation:chJump .5s cubic-bezier(.3,1.4,.5,1) 2}
@@ -268,7 +269,7 @@ button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-o
 .ch-h{position:absolute;top:-6px;font-size:15px;color:#F472B6;animation:hFly 1s ease-out forwards}
 @keyframes hFly{from{transform:translateY(0) scale(.7);opacity:1}to{transform:translateY(-48px) scale(1.25);opacity:0}}
 .dgirls{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin-top:20px}
-.dgirls .ch-face{animation:chJump .55s ease 3}
+.dgirls .ch-char{width:88px;animation:chJump .55s ease 3}
 </style>
 </head>
 <body>
@@ -763,7 +764,7 @@ const ALL_IDS=[];DATA.forEach(dd=>dd.p.forEach((_,i)=>ALL_IDS.push(EID(dd.d,i)))
 /* ───────── 상태 ───────── */
 const DEF={day:1,xp:0,streak:0,lastDone:"",freeze:0,done:[],cards:{},revC:0,revW:0,
   today:{date:"",ans:0,total:0,comp:false},
-  set:{sfx:1,bgm:0,vib:1,rate:0.95,compact:0,srv:"",cheer:1},
+  set:{sfx:1,bgm:0,vib:1,rate:0.95,compact:0,srv:"",cheer:1,toon:0},
   girls:[{n:"큰딸",img:""},{n:"작은딸",img:""}],saved:0};
 let S=load();
 function load(){
@@ -1236,6 +1237,7 @@ function renderSettings(){
    +row("vib","진동","정답·오답 햅틱")
    +row("compact","5분 압축 모드","문항 수를 줄여 짧게")
    +row("cheer","응원단","정답·오답마다 딸들이 응원해요")
+   +row("toon","사진 만화풍 변환","기본은 원본 합성. 바꾼 뒤엔 사진 다시 선택")
    +girlRow(0)+girlRow(1)
    +'<div class="setrow"><div>발음 속도<div class="d">현재 '+s.rate.toFixed(2)+'배속</div></div><button class="pill" onclick="cycleRate()">변경</button></div>'
    +'<div class="setrow"><div>동기화 서버<div class="d">집 PC 주소 (예: http://192.168.x.x:8378)</div></div><input class="sinput" id="srv-in" value="'+escH(s.srv)+'" placeholder="자동" onchange="S.set.srv=this.value.trim();save()"></div>'
@@ -1290,6 +1292,39 @@ function fxHTML(an){
   if(an==="a-dance")return '<span class="fx" style="top:-14px;left:-2px;font-size:14px;color:var(--blue)">♪</span><span class="fx" style="top:-10px;right:-2px;font-size:12px;color:#F472B6">♫</span>';
   return "";
 }
+const AN_POSE={"a-jump":"cheer","a-spin":"stand","a-flash":"cheer","a-dance":"dance","a-pop":"cheer","a-tada":"dance","a-hearts":"cheer","a-sulk":"sulk","a-no":"sulk","a-dizzy":"stand","a-rain":"sulk","a-faint":"stand","a-deflate":"sulk","a-sweat":"oops"};
+function charSVG(i,pose,cls){ // 이모티콘풍 전신 캐릭터 + 얼굴 사진 합성
+  const g=S.girls[i],shirt=i?"#F472B6":"#3B82F6",dark=i?"#DB2777":"#1D4ED8",skin="#FFD9B8",oc="#2b2b2b";
+  const arm=(x1,y1,x2,y2,cx,cy)=>'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+oc+'" stroke-width="15" stroke-linecap="round"/>'
+    +'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+skin+'" stroke-width="10.5" stroke-linecap="round"/>';
+  const leg=x=>'<path d="M'+x+' 112 L'+x+' 141" stroke="'+oc+'" stroke-width="17" stroke-linecap="round"/><path d="M'+x+' 112 L'+x+' 141" stroke="'+dark+'" stroke-width="12" stroke-linecap="round"/>';
+  const AR={
+    cheer:arm(40,86,15,50,20,74)+arm(80,86,105,50,100,74),
+    dance:arm(40,86,14,52,20,76)+arm(80,86,110,100,106,86),
+    stand:arm(40,86,18,104,22,96)+arm(80,86,102,104,98,96),
+    sulk:arm(40,88,34,122,32,106)+arm(80,88,86,122,88,106),
+    oops:arm(40,86,32,32,8,58)+arm(80,86,88,32,112,58)
+  };
+  let head;
+  if(g.img){
+    head='<clipPath id="hc'+i+'"><circle cx="60" cy="44" r="33"/></clipPath>'
+      +'<circle cx="60" cy="44" r="36" fill="#fff"/>'
+      +'<image href="'+g.img+'" xlink:href="'+g.img+'" x="27" y="11" width="66" height="66" clip-path="url(#hc'+i+')" preserveAspectRatio="xMidYMid slice"/>'
+      +'<circle cx="60" cy="44" r="35" fill="none" stroke="'+oc+'" stroke-width="2.5"/>';
+  }else{
+    head='<circle cx="60" cy="44" r="35" fill="'+skin+'" stroke="'+oc+'" stroke-width="2.5"/>'
+      +(i?'<circle cx="25" cy="31" r="9" fill="#3B2C24"/><circle cx="95" cy="31" r="9" fill="#3B2C24"/><path d="M27 41 Q30 14 60 12 Q90 14 93 41 Q86 23 60 21 Q34 23 27 41Z" fill="#3B2C24"/>'
+          :'<path d="M26 43 Q28 12 60 11 Q92 12 94 43 Q88 23 60 20 Q32 23 26 43Z" fill="#4A382E"/>')
+      +'<circle cx="49" cy="47" r="4" fill="#2b2b2b"/><circle cx="71" cy="47" r="4" fill="#2b2b2b"/>'
+      +'<path d="M53 58 Q60 64 67 58" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="40" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/><circle cx="80" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/>';
+  }
+  return '<svg class="ch-char '+(cls||"")+'" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
+    +leg(48)+leg(72)
+    +'<rect x="32" y="70" width="56" height="48" rx="21" fill="'+shirt+'" stroke="'+oc+'" stroke-width="3"/>'
+    +'<path d="M60 93 C57 89 51 90 51 95 C51 99 60 105 60 105 C60 105 69 99 69 95 C69 90 63 89 60 93Z" fill="#fff" opacity=".92"/>'
+    +AR[pose]+head+'</svg>';
+}
 function cheer(ok){
   if(!S.set.cheer)return;
   CHT^=1;const g=S.girls[CHT];
@@ -1299,7 +1334,7 @@ function cheer(ok){
   const el=$("#cheer");
   el.innerHTML='<div class="ch-bub">'+escH(msg)+'</div>'
     +'<div class="ch-col">'+fxHTML(an)
-    +'<div class="ch-face '+an+'">'+faceHTML(CHT)+'</div><div class="ch-name">'+escH(g.n)+'</div></div>';
+    +charSVG(CHT,AN_POSE[an]||"stand",an)+'<div class="ch-name">'+escH(g.n)+'</div></div>';
   el.className="cheer show "+(ok?"happy":"sad");
   clearTimeout(el._h);el._h=setTimeout(()=>{el.className="cheer"},2100);
 }
@@ -1309,8 +1344,8 @@ function cheerFinish(){
   const s=w.querySelector(".done-s");
   if(s)s.textContent=DONEP[Math.floor(Math.random()*DONEP.length)];
   const d=document.createElement("div");d.className="dgirls";
-  d.innerHTML='<div class="ch-col"><div class="ch-face">'+faceHTML(0)+'</div><div class="ch-name">'+escH(S.girls[0].n)+'</div></div>'
-    +'<div class="ch-col"><div class="ch-face">'+faceHTML(1)+'</div><div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
+  d.innerHTML='<div class="ch-col">'+charSVG(0,"cheer","")+'<div class="ch-name">'+escH(S.girls[0].n)+'</div></div>'
+    +'<div class="ch-col">'+charSVG(1,"dance","")+'<div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
   const st=w.querySelector(".dstats");w.insertBefore(d,st);
 }
 function boxBlur(p,w,h){ // 3x3 평균 블러 (피부 매끈)
@@ -1358,8 +1393,8 @@ function onPhoto(i,inp){
       const s=Math.min(img.width,img.height);
       const ctx=c.getContext("2d");
       ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,220,220);
-      try{toonify(ctx,220,220)}catch(e){}
-      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast("사진 등록 완료 — 만화풍으로 변신!");
+      if(S.set.toon)try{toonify(ctx,220,220)}catch(e){}
+      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast(S.set.toon?"사진 등록 완료 — 만화풍 변환!":"사진 등록 완료!");
     };
     img.src=r.result;};
   r.readAsDataURL(f);inp.value="";
