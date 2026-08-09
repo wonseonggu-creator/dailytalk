@@ -221,14 +221,49 @@ button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-o
 .ch-col{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
 .ch-face{width:76px;height:76px;border-radius:50%;border:3.5px solid #fff;box-shadow:0 6px 16px rgba(16,24,40,.25);overflow:hidden;background:var(--blue-bg);flex-shrink:0}
 .ch-face img,.ch-face svg{width:100%;height:100%;object-fit:cover;display:block}
-.ch-face img{filter:saturate(1.35) contrast(1.06)}
+.ch-face img{filter:saturate(1.05)}
 .ch-name{font-size:11.5px;font-weight:800;color:#fff;background:var(--blue);padding:2px 10px;border-radius:10px;white-space:nowrap}
 .ch-bub{max-width:190px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px 16px 3px 16px;padding:10px 13px;font-size:14.5px;font-weight:700;box-shadow:var(--sh);margin-bottom:26px}
-.cheer.happy .ch-face{animation:chJump .5s cubic-bezier(.3,1.4,.5,1) 2}
+/* 정답 7종 */
+.a-jump{animation:chJump .5s cubic-bezier(.3,1.4,.5,1) 2}
+.a-spin{animation:chSpin .8s cubic-bezier(.4,.1,.3,1.2)}
+@keyframes chSpin{from{transform:rotate(0) scale(.9)}60%{transform:rotate(330deg) scale(1.12)}to{transform:rotate(360deg) scale(1)}}
+.a-flash{animation:chFlash .75s ease}
+@keyframes chFlash{0%,100%{filter:brightness(1)}15%,45%,75%{filter:brightness(1.9) saturate(1.5)}30%,60%{filter:brightness(1)}25%{transform:translateX(-3px)}55%{transform:translateX(3px)}}
+.a-dance{animation:chDance .45s ease 2}
+@keyframes chDance{0%,100%{transform:rotate(0) translateX(0)}25%{transform:rotate(-10deg) translateX(-7px)}75%{transform:rotate(10deg) translateX(7px)}}
+.a-pop{animation:chPopBig .55s cubic-bezier(.3,1.6,.4,1) 2}
+@keyframes chPopBig{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+.a-tada{animation:chTada .8s ease}
+@keyframes chTada{0%{transform:scale(1)}10%,20%{transform:scale(.92) rotate(-4deg)}30%,50%,70%{transform:scale(1.12) rotate(4deg)}40%,60%{transform:scale(1.12) rotate(-4deg)}100%{transform:scale(1)}}
+.a-hearts{animation:chWiggle .5s ease 2}
+@keyframes chWiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-6deg) translateY(-4px)}70%{transform:rotate(6deg) translateY(-4px)}}
 .cheer.happy .ch-bub,.cheer.sad .ch-bub{animation:chPop .28s cubic-bezier(.3,1.6,.5,1)}
 @keyframes chJump{0%,100%{transform:translateY(0) scale(1,1)}35%{transform:translateY(-18px) scale(.94,1.06)}70%{transform:translateY(0) scale(1.08,.92)}}
 @keyframes chPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
-.cheer.sad .ch-face{animation:chSulk .9s ease forwards}
+/* 오답 7종 */
+.a-sulk{animation:chSulk .9s ease forwards}
+.a-no{animation:chNo .5s ease 2}
+@keyframes chNo{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px) rotate(-4deg)}75%{transform:translateX(8px) rotate(4deg)}}
+.a-dizzy{animation:chDizzy 1.1s ease-in-out;filter:saturate(.75)}
+@keyframes chDizzy{0%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(6deg) translateY(3px)}100%{transform:rotate(-2deg) translateY(4px)}}
+.a-rain{animation:chGloom 1s ease forwards}
+@keyframes chGloom{to{filter:grayscale(.55) brightness(.85);transform:translateY(6px)}}
+.a-faint{animation:chFaint .9s cubic-bezier(.5,0,.7,.4) forwards}
+@keyframes chFaint{0%{transform:rotate(0)}55%{transform:rotate(78deg) translateY(4px)}70%{transform:rotate(70deg) translateY(10px)}100%{transform:rotate(75deg) translateY(12px)}}
+.a-deflate{animation:chDeflate .9s ease forwards}
+@keyframes chDeflate{0%{transform:scale(1,1)}40%{transform:scale(1.08,.9)}100%{transform:scale(1.12,.62) translateY(14px)}}
+.a-sweat{animation:chNo .4s ease 2}
+/* 이펙트 오버레이 */
+.fx{position:absolute;pointer-events:none;font-weight:800;z-index:2}
+.fx-bolt{top:-16px;font-size:21px;color:#F59E0B;animation:fxBlink .16s ease 5 alternate;text-shadow:0 0 9px rgba(245,158,11,.85)}
+@keyframes fxBlink{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1.3)}}
+.fx-star{left:50%;top:30%;font-size:15px;color:#FBBF24;animation:fxOrbit 1.05s linear;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+@keyframes fxOrbit{from{transform:rotate(0) translateX(30px) rotate(0)}to{transform:rotate(360deg) translateX(30px) rotate(-360deg)}}
+.fx-drop{top:10px;right:8px;width:9px;height:13px;background:#60A5FA;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;animation:fxDrop .8s ease-in forwards}
+@keyframes fxDrop{from{transform:translateY(0);opacity:1}to{transform:translateY(36px);opacity:0}}
+.fx-rain{top:-18px;width:2.5px;height:12px;background:#60A5FA;border-radius:2px;animation:fxRain .5s linear 2}
+@keyframes fxRain{from{transform:translateY(0);opacity:.9}to{transform:translateY(54px);opacity:0}}
 @keyframes chSulk{0%{transform:none}35%{transform:rotate(-9deg) translateY(5px)}65%{transform:rotate(6deg) translateY(7px)}100%{transform:rotate(-3deg) translateY(7px)}}
 .ch-h{position:absolute;top:-6px;font-size:15px;color:#F472B6;animation:hFly 1s ease-out forwards}
 @keyframes hFly{from{transform:translateY(0) scale(.7);opacity:1}to{transform:translateY(-48px) scale(1.25);opacity:0}}
@@ -1240,20 +1275,33 @@ const PRAISE=["아빠 잘했어!","사랑해 아빠 ♥","우리 아빠 최고!"
 const CHEERUP=["잘 좀 해봐 아빠~","아쉽네~ 한 번 더!","힘내 아빠!","괜찮아, 다시 하면 돼!","에이~ 아깝다!","집중집중!","아빠 파이팅!","천천히 다시 읽어봐~"];
 const COMBOP=["미쳤다 아빠! 연속 정답!","아빠 오늘 물올랐네!","막을 수가 없어!"];
 const DONEP=["오늘도 해냈다 아빠!","내일도 같이 하자!","아빠가 제일 자랑스러워!"];
-let CHT=0;
+let CHT=0,LAST_AN="";
 function faceHTML(i){const g=S.girls[i];return g.img?'<img src="'+g.img+'" alt="">':DEF_FACE[i]}
+const HAPPY_AN=["a-jump","a-spin","a-flash","a-dance","a-pop","a-tada","a-hearts"];
+const SAD_AN=["a-sulk","a-no","a-dizzy","a-rain","a-faint","a-deflate","a-sweat"];
+function pickAn(list){let a;do{a=list[Math.floor(Math.random()*list.length)]}while(a===LAST_AN&&list.length>1);LAST_AN=a;return a}
+function fxHTML(an){
+  if(an==="a-hearts"||an==="a-jump")return [0,1,2,3].map(k=>'<span class="ch-h" style="right:'+(k*17)+'px;animation-delay:'+(k*.12)+'s">♥</span>').join("");
+  if(an==="a-flash")return '<span class="fx fx-bolt" style="left:-6px">⚡</span><span class="fx fx-bolt" style="right:-6px;animation-delay:.09s">⚡</span>';
+  if(an==="a-dizzy")return [0,1,2].map(k=>'<span class="fx fx-star" style="animation-delay:'+(k*.18)+'s">★</span>').join("");
+  if(an==="a-spin"||an==="a-tada"||an==="a-pop")return '<span class="fx fx-star">★</span><span class="fx fx-star" style="animation-delay:.3s;color:#F472B6">★</span>';
+  if(an==="a-sweat")return '<span class="fx fx-drop"></span><span class="fx fx-drop" style="right:24px;animation-delay:.22s"></span>';
+  if(an==="a-rain")return [0,1,2,3].map(k=>'<span class="fx fx-rain" style="left:'+(12+k*18)+'px;animation-delay:'+(k*.1)+'s"></span>').join("");
+  if(an==="a-dance")return '<span class="fx" style="top:-14px;left:-2px;font-size:14px;color:var(--blue)">♪</span><span class="fx" style="top:-10px;right:-2px;font-size:12px;color:#F472B6">♫</span>';
+  return "";
+}
 function cheer(ok){
   if(!S.set.cheer)return;
   CHT^=1;const g=S.girls[CHT];
   const pool=ok?((L&&L.combo>=5)?COMBOP:PRAISE):CHEERUP;
   const msg=pool[Math.floor(Math.random()*pool.length)];
+  const an=pickAn(ok?HAPPY_AN:SAD_AN);
   const el=$("#cheer");
   el.innerHTML='<div class="ch-bub">'+escH(msg)+'</div>'
-    +'<div class="ch-col">'
-    +(ok?[0,1,2].map(k=>'<span class="ch-h" style="right:'+(6+k*18)+'px;animation-delay:'+(k*0.13)+'s">♥</span>').join(""):"")
-    +'<div class="ch-face">'+faceHTML(CHT)+'</div><div class="ch-name">'+escH(g.n)+'</div></div>';
+    +'<div class="ch-col">'+fxHTML(an)
+    +'<div class="ch-face '+an+'">'+faceHTML(CHT)+'</div><div class="ch-name">'+escH(g.n)+'</div></div>';
   el.className="cheer show "+(ok?"happy":"sad");
-  clearTimeout(el._h);el._h=setTimeout(()=>{el.className="cheer"},2000);
+  clearTimeout(el._h);el._h=setTimeout(()=>{el.className="cheer"},2100);
 }
 function cheerFinish(){
   if(!S.set.cheer)return;
@@ -1265,6 +1313,42 @@ function cheerFinish(){
     +'<div class="ch-col"><div class="ch-face">'+faceHTML(1)+'</div><div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
   const st=w.querySelector(".dstats");w.insertBefore(d,st);
 }
+function boxBlur(p,w,h){ // 3x3 평균 블러 (피부 매끈)
+  const o=new Uint8ClampedArray(p.length);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    let r=0,g=0,b=0,n=0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      const yy=y+dy,xx=x+dx;
+      if(yy<0||yy>=h||xx<0||xx>=w)continue;
+      const j=(yy*w+xx)*4;r+=p[j];g+=p[j+1];b+=p[j+2];n++;
+    }
+    const k=(y*w+x)*4;o[k]=r/n;o[k+1]=g/n;o[k+2]=b/n;o[k+3]=255;
+  }
+  return o;
+}
+function toonify(ctx,w,h){ // 만화풍: 색 단순화 + 검은 외곽선
+  const im=ctx.getImageData(0,0,w,h);
+  let p=boxBlur(im.data,w,h);p=boxBlur(p,w,h);
+  const lum=new Float32Array(w*h);
+  const LV=6,step=255/(LV-1);
+  for(let i=0;i<p.length;i+=4){
+    let r=p[i],g=p[i+1],b=p[i+2];
+    const l=0.299*r+0.587*g+0.114*b;lum[i/4]=l;
+    r=l+(r-l)*1.5;g=l+(g-l)*1.5;b=l+(b-l)*1.5;        // 채도 올리기
+    r=(r-128)*1.08+130;g=(g-128)*1.08+130;b=(b-128)*1.08+130; // 살짝 밝고 진하게
+    p[i]=Math.round(Math.min(255,Math.max(0,r))/step)*step;   // 색 단계 단순화
+    p[i+1]=Math.round(Math.min(255,Math.max(0,g))/step)*step;
+    p[i+2]=Math.round(Math.min(255,Math.max(0,b))/step)*step;
+  }
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){        // 소벨 외곽선
+    const i=y*w+x;
+    const gx=-lum[i-w-1]-2*lum[i-1]-lum[i+w-1]+lum[i-w+1]+2*lum[i+1]+lum[i+w+1];
+    const gy=-lum[i-w-1]-2*lum[i-w]-lum[i-w+1]+lum[i+w-1]+2*lum[i+w]+lum[i+w+1];
+    const m=Math.abs(gx)+Math.abs(gy);
+    if(m>58){const f=Math.max(0.2,1-(m-58)/150),k=i*4;p[k]*=f;p[k+1]*=f;p[k+2]*=f;}
+  }
+  im.data.set(p);ctx.putImageData(im,0,0);
+}
 function onPhoto(i,inp){
   const f=inp.files&&inp.files[0];if(!f)return;
   const r=new FileReader();
@@ -1272,8 +1356,10 @@ function onPhoto(i,inp){
     img.onload=()=>{
       const c=document.createElement("canvas");c.width=c.height=220;
       const s=Math.min(img.width,img.height);
-      c.getContext("2d").drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,220,220);
-      S.girls[i].img=c.toDataURL("image/jpeg",0.85);save();renderSettings();toast("사진 등록 완료 — 스티커로 변신!");
+      const ctx=c.getContext("2d");
+      ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,220,220);
+      try{toonify(ctx,220,220)}catch(e){}
+      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast("사진 등록 완료 — 만화풍으로 변신!");
     };
     img.src=r.result;};
   r.readAsDataURL(f);inp.value="";
