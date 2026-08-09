@@ -2,12 +2,16 @@ package com.dailytalk.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.webkit.JavascriptInterface
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
@@ -21,6 +25,7 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
     private lateinit var web: WebView
     private var tts: TextToSpeech? = null
     private var ttsReady = false
+    private var fileCb: ValueCallback<Array<Uri>>? = null
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +37,7 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
         s.javaScriptEnabled = true
         s.domStorageEnabled = true                       // localStorage 진행 저장
         s.mediaPlaybackRequiresUserGesture = false
+        s.allowFileAccess = true
         s.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW // 앱(https 오리진) -> 집 서버(http) 동기화 허용
         s.textZoom = 100
 
@@ -44,10 +50,38 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
             ): WebResourceResponse? = loader.shouldInterceptRequest(request.url)
         }
 
+        // 사진 선택 (<input type="file">) 지원 — 응원단 딸 사진 등록용
+        web.webChromeClient = object : WebChromeClient() {
+            override fun onShowFileChooser(
+                view: WebView?,
+                filePathCallback: ValueCallback<Array<Uri>>,
+                fileChooserParams: FileChooserParams
+            ): Boolean {
+                fileCb?.onReceiveValue(null)
+                fileCb = filePathCallback
+                return try {
+                    startActivityForResult(fileChooserParams.createIntent(), REQ_FILE)
+                    true
+                } catch (e: Exception) {
+                    fileCb = null
+                    false
+                }
+            }
+        }
+
         web.addJavascriptInterface(Bridge(), "AndroidTTS")
         tts = TextToSpeech(this, this)
 
         web.loadUrl("https://appassets.androidplatform.net/assets/dailytalk.html")
+    }
+
+    @Deprecated("deprecated in api")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQ_FILE) {
+            fileCb?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data))
+            fileCb = null
+        }
     }
 
     override fun onInit(status: Int) {
@@ -101,4 +135,6 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
         tts?.stop(); tts?.shutdown()
         super.onDestroy()
     }
+
+    companion object { private const val REQ_FILE = 1 }
 }
