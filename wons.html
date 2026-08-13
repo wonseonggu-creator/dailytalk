@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="원스회화">
+<meta name="theme-color" content="#DB2777">
+<title>원스회화 — 매일 10분 영어</title>
+<link rel="manifest" id="mf">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#FFFFFF;--bg2:#FBF5F9;--bg3:#F4E9F0;
+  --tx:#101828;--tx2:#5B6472;--tx3:#98A2B3;
+  --line:#F0DEEA;--grad:linear-gradient(135deg,#EC4899,#8B5CF6);
+  --blue:#DB2777;--blue-dk:#BE185D;--blue-bg:#FCE7F3;--blue-tx:#BE185D;
+  --green:#16A34A;--green-bg:#EAF8EF;--green-tx:#15803D;
+  --amber:#D97706;--amber-bg:#FEF6E7;--amber-tx:#B45309;
+  --sh:0 2px 6px rgba(190,24,93,.05),0 8px 22px rgba(190,24,93,.07);
+  --r:20px;--r-sm:14px;
+  --f-en:'Inter','SF Pro Text',-apple-system,'Segoe UI',sans-serif;
+  --f-ko:'Pretendard Variable','Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#171019;--bg2:#211826;--bg3:#2C2033;
+  --tx:#EDF0F4;--tx2:#9AA3B0;--tx3:#5E6875;
+  --line:#352640;--grad:linear-gradient(135deg,#EC4899,#8B5CF6);
+  --blue:#F472B6;--blue-dk:#DB2777;--blue-bg:#3B1830;--blue-tx:#F9A8D4;
+  --green:#34C769;--green-bg:#12301D;--green-tx:#63D68D;
+  --amber:#F0A23C;--amber-bg:#33230C;--amber-tx:#F3B563;
+  --sh:0 1px 2px rgba(0,0,0,.4);
+}}
+html{font-size:16px}
+body{font-family:var(--f-ko);background:radial-gradient(900px 420px at 112% -8%,var(--blue-bg) 0%,transparent 62%),radial-gradient(700px 360px at -12% -4%,rgba(139,92,246,.12) 0%,transparent 58%),var(--bg);color:var(--tx);overscroll-behavior:none;line-height:1.5}
+button{font-family:inherit;border:none;background:none;color:inherit;cursor:pointer}
+input{font-family:inherit}
+.en{font-family:var(--f-en)}
+.app{max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+
+/* ── 헤더 ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:calc(max(env(safe-area-inset-top),10px)) 20px 6px}
+.logo{font-family:var(--f-en);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo b{}
+.hdr-right{display:flex;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;padding:5px 11px;border-radius:20px;background:var(--bg2);color:var(--tx2)}
+.pill.streak{background:var(--blue-bg);color:var(--blue-tx)}
+.pill svg{width:14px;height:14px}
+
+/* ── 화면 공통 ── */
+.screen{display:none;padding:8px 20px 24px;animation:fadein .18s ease}
+.screen.on{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}
+.sec-t{font-size:13px;font-weight:700;color:var(--tx3);letter-spacing:.04em;margin:22px 0 10px}
+
+/* ── 홈: 링 ── */
+.ring-wrap{display:flex;flex-direction:column;align-items:center;padding:18px 0 8px}
+.ring{position:relative;width:168px;height:168px}
+.ring svg{transform:rotate(-90deg)}
+.ring .track{fill:none;stroke:var(--bg3);stroke-width:12}
+.ring .bar{fill:none;stroke:url(#wg1);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)}
+.ring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ring-pct{font-family:var(--f-en);font-size:34px;font-weight:800;letter-spacing:-.03em}
+.ring-lb{font-size:12px;color:var(--tx3);font-weight:600}
+.today-theme{margin-top:14px;width:100%}
+.tt-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.tt-day{font-family:var(--f-en);font-size:13px;font-weight:800;color:var(--blue)}
+.tt-week{font-size:12px;color:var(--tx3)}
+.tt-name{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.tt-sub{font-size:13px;color:var(--tx2);margin-top:3px}
+.btn-main{display:block;width:100%;margin-top:16px;padding:16px;border-radius:16px;background:var(--grad);color:#fff;font-size:17px;font-weight:800;letter-spacing:-.01em;box-shadow:0 8px 20px rgba(219,39,119,.32);transition:transform .12s}
+.btn-main:active{transform:scale(.975)}
+.btn-main.done{background:var(--green);box-shadow:0 6px 16px rgba(22,163,74,.25)}
+.btn-sub{display:block;width:100%;margin-top:10px;padding:13px;border-radius:14px;background:var(--bg2);color:var(--tx2);font-size:15px;font-weight:700;transition:transform .12s}
+.btn-sub:active{transform:scale(.975)}
+
+/* ── 레슨 ── */
+.ltop{display:flex;align-items:center;gap:12px;padding:6px 0 14px}
+.lx{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--tx3);font-size:20px;flex-shrink:0}
+.lx:active{background:var(--bg2)}
+.ptrack{flex:1;height:12px;background:var(--bg3);border-radius:8px;overflow:hidden}
+.pbar{height:100%;width:0;background:var(--grad);border-radius:8px;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.combo{min-width:44px;text-align:center;font-family:var(--f-en);font-size:13px;font-weight:800;padding:5px 9px;border-radius:20px;background:var(--bg2);color:var(--tx3);transition:all .2s}
+.combo.hot{background:var(--blue-bg);color:var(--blue-tx)}
+.qtype{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--blue-tx);background:var(--blue-bg);padding:5px 11px;border-radius:20px;margin-bottom:14px}
+.qask{font-size:15px;font-weight:700;color:var(--tx2);margin-bottom:14px}
+.qen{font-family:var(--f-en);font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.4;margin-bottom:6px}
+.qko{font-size:17px;font-weight:600;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;padding:15px 16px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--bg);font-size:16px;font-weight:600;line-height:1.45;transition:transform .1s,border-color .15s,background .15s}
+.opt.en{font-family:var(--f-en);font-size:17px}
+.opt:active{transform:scale(.985)}
+.opt.sel{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-tx)}
+.opt.ok{border-color:var(--green);background:var(--green-bg);color:var(--green-tx)}
+.opt.no{border-color:var(--amber);background:var(--amber-bg);color:var(--amber-tx)}
+.spk{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:22px;background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(219,39,119,.32);transition:transform .12s;margin:4px 0 18px}
+.spk:active{transform:scale(.93)}
+.spk svg{width:28px;height:28px}
+.spk.sm{width:40px;height:40px;border-radius:13px;margin:0;box-shadow:none;background:var(--blue-bg);color:var(--blue-tx)}
+.spk.sm svg{width:19px;height:19px}
+
+/* 플립 카드 */
+.flip{perspective:900px;margin:6px 0 4px}
+.flip-in{position:relative;width:100%;min-height:190px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,1.2,.4,1);cursor:pointer}
+.flip.f .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px;text-align:center}
+.face.back{transform:rotateY(180deg);background:var(--blue-bg);border-color:transparent}
+.face .hint{font-size:12px;color:var(--tx3);font-weight:600;position:absolute;bottom:12px}
+.nu{font-size:13px;color:var(--tx2);background:var(--bg);border-radius:8px;padding:6px 12px;font-weight:600}
+
+/* 빈칸·배열·뱅크 */
+.gapline{font-family:var(--f-en);font-size:22px;font-weight:700;line-height:1.6;margin-bottom:20px}
+.gap{display:inline-block;min-width:74px;border-bottom:2.5px solid var(--tx3);text-align:center;color:var(--blue-tx);padding:0 6px}
+.gap.fill{border-color:var(--blue)}
+.bank{display:flex;flex-wrap:wrap;gap:9px}
+.chip{font-family:var(--f-en);font-size:16px;font-weight:700;padding:10px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);box-shadow:0 2px 0 var(--line);transition:transform .1s,opacity .15s}
+.chip:active{transform:translateY(1px)}
+.chip.used{opacity:.25;pointer-events:none}
+.ans-row{min-height:52px;border-bottom:1.5px dashed var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:0 0 10px;margin-bottom:16px}
+.ans-row .chip{background:var(--blue-bg);border-color:transparent;box-shadow:none;color:var(--blue-tx)}
+
+/* 매칭 */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mbtn{padding:13px 10px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--bg);font-size:14.5px;font-weight:600;line-height:1.35;transition:all .15s;min-height:56px}
+.mbtn.en{font-family:var(--f-en);font-size:15px}
+.mbtn.sel{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-tx)}
+.mbtn.ok{border-color:transparent;background:var(--green-bg);color:var(--green-tx);opacity:.55;pointer-events:none}
+.mbtn.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* 타이핑 */
+.tinput{width:100%;font-family:var(--f-en);font-size:19px;font-weight:600;padding:15px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--bg);color:var(--tx);outline:none}
+.tinput:focus{border-color:var(--blue)}
+.hintbtn{margin-top:10px;font-size:13px;font-weight:700;color:var(--blue-tx);padding:6px 0}
+
+/* 문법 */
+.gram{border-left:4px solid var(--blue);padding-left:14px;margin:4px 0 16px}
+.gram-t{font-size:18px;font-weight:800;margin-bottom:8px}
+.gram-e{font-size:15px;color:var(--tx2);line-height:1.7;white-space:pre-line}
+.gram-ex{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.gex{background:var(--bg2);border-radius:var(--r-sm);padding:11px 13px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.gex .e{font-family:var(--f-en);font-size:15.5px;font-weight:700}
+.gex .k{font-size:13px;color:var(--tx2);margin-top:2px}
+
+/* 하단 확인/피드백 시트 */
+.sheet{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);z-index:30}
+.sheet.ok{background:var(--green-bg);border-color:transparent}
+.sheet.no{background:var(--amber-bg);border-color:transparent}
+.fb-t{font-size:16px;font-weight:800;margin-bottom:2px}
+.sheet.ok .fb-t{color:var(--green-tx)}
+.sheet.no .fb-t{color:var(--amber-tx)}
+.fb-s{font-size:14.5px;color:var(--tx2);margin-bottom:10px}
+.fb-s .en{font-weight:700;color:var(--tx)}
+.btn-chk{display:block;width:100%;padding:15px;border-radius:16px;font-size:16.5px;font-weight:800;background:var(--grad);color:#fff;transition:transform .1s,opacity .2s}
+.btn-chk:disabled{background:var(--bg3);color:var(--tx3)}
+.btn-chk:active{transform:scale(.98)}
+.sheet.ok .btn-chk{background:var(--green)}
+.sheet.no .btn-chk{background:var(--amber)}
+
+/* 완료 화면 */
+.doneWrap{display:flex;flex-direction:column;align-items:center;text-align:center;padding:36px 0 10px}
+.done-t{font-size:24px;font-weight:800;margin:18px 0 4px}
+.done-s{font-size:15px;color:var(--tx2)}
+.dstats{display:flex;gap:10px;margin-top:22px;width:100%}
+.dstat{flex:1;background:var(--bg2);border-radius:var(--r-sm);padding:14px 8px}
+.dstat .v{font-family:var(--f-en);font-size:22px;font-weight:800;color:var(--blue-tx)}
+.dstat .l{font-size:12px;color:var(--tx3);font-weight:700;margin-top:2px}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+.cf{position:absolute;top:-12px;width:9px;height:9px;border-radius:2px;animation:fall 1.15s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.6}}
+
+/* 복습·나 */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;box-shadow:var(--sh)}
+.stat .v{font-family:var(--f-en);font-size:24px;font-weight:800;letter-spacing:-.02em}
+.stat .v small{font-size:13px;color:var(--tx3);font-weight:700}
+.stat .l{font-size:12.5px;color:var(--tx3);font-weight:700;margin-top:2px}
+.cal{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.cd{aspect-ratio:1;border-radius:11px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--f-en);font-size:13px;font-weight:700;color:var(--tx3);background:var(--bg)}
+.cd.done{background:var(--blue);border-color:transparent;color:#fff}
+.cd.today{border:2px solid var(--blue);color:var(--blue-tx)}
+.cd.lock{opacity:.45}
+.weak{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.weak .e{font-family:var(--f-en);font-size:15.5px;font-weight:700}
+.weak .k{font-size:13px;color:var(--tx2);margin-top:1px}
+.tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:12px;background:var(--amber-bg);color:var(--amber-tx);flex-shrink:0}
+.gitem{padding:12px 0;border-bottom:1px solid var(--line)}
+.gitem .h{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:700}
+.gitem .h span{color:var(--tx3);font-size:12px;font-family:var(--f-en)}
+.gitem .b{display:none;font-size:14px;color:var(--tx2);line-height:1.65;margin-top:8px;white-space:pre-line}
+.gitem.open .b{display:block}
+
+/* 설정 */
+.setrow{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;font-weight:600}
+.setrow .d{font-size:12.5px;color:var(--tx3);font-weight:500;margin-top:2px}
+.sw{position:relative;width:48px;height:28px;border-radius:20px;background:var(--bg3);transition:background .2s;flex-shrink:0}
+.sw.on{background:var(--blue)}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.sw.on::after{left:23px}
+.sinput{width:150px;font-size:13px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg2);color:var(--tx);outline:none;text-align:right}
+.btn-line{display:block;width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1.5px solid var(--line);font-size:14.5px;font-weight:700;color:var(--tx2);transition:transform .1s}
+.btn-line:active{transform:scale(.98)}
+.btn-line.warn{color:var(--amber-tx);border-color:var(--amber-bg)}
+
+/* 탭바 */
+.tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--bg);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:20}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;font-size:11px;font-weight:700;color:var(--tx3);transition:color .15s}
+.tab svg{width:23px;height:23px}
+.tab.on{color:var(--blue)}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-70px);background:var(--tx);color:var(--bg);font-size:14px;font-weight:700;padding:11px 20px;border-radius:24px;z-index:60;transition:transform .3s cubic-bezier(.22,1,.36,1);box-shadow:0 8px 22px rgba(0,0,0,.22);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px}
+
+/* ── 응원단 (딸들) ── */
+.cheer{position:fixed;right:8px;bottom:146px;z-index:35;display:flex;align-items:flex-end;gap:6px;pointer-events:none;opacity:0;transform:translateY(14px);transition:opacity .22s,transform .25s cubic-bezier(.22,1,.36,1)}
+.cheer.show{opacity:1;transform:none}
+.ch-col{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+.ch-face{width:76px;height:76px;border-radius:50%;border:3.5px solid #fff;box-shadow:0 6px 16px rgba(16,24,40,.25);overflow:hidden;background:var(--blue-bg);flex-shrink:0}
+.ch-face img,.ch-face svg{width:100%;height:100%;object-fit:cover;display:block}
+.ch-face img{filter:saturate(1.05)}
+.ch-name{font-size:11.5px;font-weight:800;color:#fff;background:var(--blue);padding:2px 10px;border-radius:10px;white-space:nowrap}
+.ch-char{width:150px;height:auto;display:block;transform-origin:50% 62%;filter:drop-shadow(0 6px 12px rgba(16,24,40,.22))}
+.ch-bub{max-width:215px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px 16px 3px 16px;padding:10px 13px;font-size:14.5px;font-weight:700;box-shadow:var(--sh);margin-bottom:26px}
+/* ── 캐릭터 파츠 상시 애니메이션 ── */
+#q-area{padding-bottom:205px}
+.ch-char .pt,.ch-char .cg-all{transform-box:view-box}
+.cg-armL{transform-origin:40px 84px}
+.cg-armR{transform-origin:80px 84px}
+.cg-head{transform-origin:60px 60px}
+.cg-legL{transform-origin:48px 112px}
+.cg-legR{transform-origin:72px 112px}
+.cg-all{transform-origin:60px 105px}
+.cheer .ch-bub{animation:chPop .28s cubic-bezier(.3,1.6,.5,1)}
+@keyframes chPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes chJump{0%,100%{transform:translateY(0) scale(1,1)}35%{transform:translateY(-20px) scale(.94,1.06)}70%{transform:translateY(0) scale(1.07,.93)}}
+/* 대기 — 항상 꼼지락 */
+.ch-idle .cg-all{animation:iBob 1.4s ease-in-out infinite}
+@keyframes iBob{0%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(-6px) scale(.99,1.01)}}
+.ch-idle .cg-armL{animation:iArmL 1.4s ease-in-out infinite}
+.ch-idle .cg-armR{animation:iArmR 1.4s ease-in-out infinite}
+@keyframes iArmL{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(16deg)}}
+@keyframes iArmR{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-16deg)}}
+.ch-idle .cg-head{animation:iHead 3.4s ease-in-out infinite}
+@keyframes iHead{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.ch-idle .cg-legL{animation:iLeg 1.4s ease-in-out infinite}
+.ch-idle .cg-legR{animation:iLeg 1.4s ease-in-out infinite .7s}
+@keyframes iLeg{0%,100%{transform:rotate(0)}50%{transform:rotate(-6deg)}}
+/* 재롱 (5초마다 랜덤) */
+.f-jump .cg-all{animation:chJump .45s ease 2}
+.f-jump .cg-armL{animation:aUpL .45s ease 2}
+.f-jump .cg-armR{animation:aUpR .45s ease 2}
+.f-spin .cg-all{animation:rSpin .9s cubic-bezier(.4,.1,.3,1.15)}
+.f-wave .cg-armR{animation:aWaveR .3s ease-in-out 4}
+.f-wiggle .cg-all{animation:rHips .3s ease-in-out 4}
+/* 공용 파츠 키프레임 */
+@keyframes aUpL{0%,100%{transform:rotate(0)}50%{transform:rotate(-150deg)}}
+@keyframes aUpR{0%,100%{transform:rotate(0)}50%{transform:rotate(150deg)}}
+@keyframes aHoldL{to{transform:rotate(-145deg)}}
+@keyframes aHoldR{to{transform:rotate(145deg)}}
+@keyframes aWaveL{0%,100%{transform:rotate(-115deg)}50%{transform:rotate(-165deg)}}
+@keyframes aWaveR{0%,100%{transform:rotate(115deg)}50%{transform:rotate(165deg)}}
+@keyframes aDroopL{to{transform:rotate(22deg)}}
+@keyframes aDroopR{to{transform:rotate(-22deg)}}
+@keyframes rSpin{from{transform:rotate(0) scale(.92)}60%{transform:rotate(680deg) scale(1.12)}to{transform:rotate(720deg) scale(1)}}
+@keyframes rHips{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+/* 정답 리액션 7 */
+.r-jump .cg-all{animation:chJump .48s ease 3}
+.r-jump .cg-armL{animation:aWaveL .48s ease 3}
+.r-jump .cg-armR{animation:aWaveR .48s ease 3}
+.r-spin .cg-all{animation:rSpin 1s cubic-bezier(.4,.1,.3,1.15)}
+.r-spin .cg-armL{animation:aHoldL .3s forwards}
+.r-spin .cg-armR{animation:aHoldR .3s forwards}
+.r-flash{animation:rGlow .85s ease}
+.r-flash .cg-all{animation:rShake .12s linear 6}
+.r-flash .cg-armL{animation:aHoldL .25s forwards}
+.r-flash .cg-armR{animation:aHoldR .25s forwards}
+@keyframes rGlow{0%,100%{filter:brightness(1) drop-shadow(0 6px 12px rgba(16,24,40,.22))}20%,55%,85%{filter:brightness(1.85) saturate(1.5) drop-shadow(0 0 18px rgba(245,158,11,.8))}}
+@keyframes rShake{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.r-dance .cg-all{animation:rHips .32s ease-in-out 6}
+.r-dance .cg-armL{animation:aUpL .64s ease 3}
+.r-dance .cg-armR{animation:aUpR .64s ease 3 .32s}
+.r-dance .cg-legL{animation:iLeg .32s ease 6}
+.r-dance .cg-legR{animation:iLeg .32s ease 6 .16s}
+.r-pop .cg-all{animation:rPop .5s cubic-bezier(.3,1.7,.4,1) 2}
+@keyframes rPop{0%,100%{transform:scale(1)}50%{transform:scale(1.32)}}
+.r-pop .cg-armL{animation:aHoldL .3s forwards}
+.r-pop .cg-armR{animation:aHoldR .3s forwards}
+.r-clap .cg-armL{animation:aClapL .22s ease-in-out 6}
+.r-clap .cg-armR{animation:aClapR .22s ease-in-out 6}
+@keyframes aClapL{0%,100%{transform:rotate(-40deg)}50%{transform:rotate(-84deg)}}
+@keyframes aClapR{0%,100%{transform:rotate(40deg)}50%{transform:rotate(84deg)}}
+.r-clap .cg-all{animation:iBob .44s ease 3}
+.r-run .cg-legL{animation:rRunL .18s linear 9}
+.r-run .cg-legR{animation:rRunR .18s linear 9 .09s}
+@keyframes rRunL{0%,100%{transform:rotate(-24deg)}50%{transform:rotate(24deg)}}
+@keyframes rRunR{0%,100%{transform:rotate(24deg)}50%{transform:rotate(-24deg)}}
+.r-run .cg-armL{animation:rRunR .18s linear 9}
+.r-run .cg-armR{animation:rRunL .18s linear 9 .09s}
+.r-run .cg-all{animation:rLean 1.7s ease forwards}
+@keyframes rLean{0%{transform:rotate(0)}15%,85%{transform:rotate(7deg) translateY(-3px)}100%{transform:rotate(0)}}
+/* 오답 리액션 7 */
+.r-sulk .cg-all{animation:rDroop .8s ease forwards}
+@keyframes rDroop{to{transform:translateY(9px) rotate(-3deg)}}
+.r-sulk .cg-armL{animation:aDroopL .6s ease forwards}
+.r-sulk .cg-armR{animation:aDroopR .6s ease forwards}
+.r-sulk .cg-head{animation:hDown .7s ease forwards}
+@keyframes hDown{to{transform:rotate(-7deg) translateY(4px)}}
+.r-no .cg-head{animation:hShake .22s linear 6}
+@keyframes hShake{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
+.r-no .cg-armL{animation:aDroopL .5s forwards}
+.r-no .cg-armR{animation:aDroopR .5s forwards}
+.r-dizzy .cg-all{animation:rWobble 1.2s ease-in-out}
+@keyframes rWobble{0%{transform:rotate(0)}25%{transform:rotate(-11deg)}50%{transform:rotate(9deg)}75%{transform:rotate(-6deg) translateY(3px)}100%{transform:rotate(-2deg) translateY(5px)}}
+.r-dizzy .cg-head{animation:hShake .3s linear 4}
+.r-rain{animation:rGray 1s ease forwards}
+@keyframes rGray{to{filter:grayscale(.6) brightness(.85) drop-shadow(0 6px 12px rgba(16,24,40,.22))}}
+.r-rain .cg-all{animation:rDroop .9s ease forwards}
+.r-rain .cg-armL{animation:aDroopL .7s forwards}
+.r-rain .cg-armR{animation:aDroopR .7s forwards}
+.r-faint .cg-all{animation:rFall .9s cubic-bezier(.55,0,.7,.4) forwards}
+@keyframes rFall{0%{transform:rotate(0)}55%{transform:rotate(80deg) translateY(2px)}70%{transform:rotate(72deg) translateY(9px)}100%{transform:rotate(76deg) translateY(11px)}}
+.r-faint .cg-legL{animation:iLeg .3s ease 3 .6s}
+.r-deflate .cg-all{animation:rFlat .9s ease forwards}
+@keyframes rFlat{0%{transform:scale(1,1)}40%{transform:scale(1.06,.9)}100%{transform:scale(1.14,.6) translateY(17px)}}
+.r-cry .cg-head{animation:hShake .3s linear 4}
+.r-cry .cg-armL{animation:aCryL .5s ease-in-out 3}
+@keyframes aCryL{0%,100%{transform:rotate(-55deg)}50%{transform:rotate(-95deg)}}
+.r-cry .cg-armR{animation:aDroopR .5s forwards}
+/* 이펙트 */
+.fx{position:absolute;pointer-events:none;font-weight:800;z-index:2}
+.fx-bolt{top:-14px;font-size:24px;color:#F59E0B;animation:fxBlink .16s ease 5 alternate;text-shadow:0 0 10px rgba(245,158,11,.85)}
+@keyframes fxBlink{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1.3)}}
+.fx-star{left:50%;top:26%;font-size:17px;color:#FBBF24;animation:fxOrbit 1.05s linear;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+@keyframes fxOrbit{from{transform:rotate(0) translateX(44px) rotate(0)}to{transform:rotate(360deg) translateX(44px) rotate(-360deg)}}
+.fx-drop{top:52px;right:40px;width:10px;height:14px;background:#60A5FA;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;animation:fxDrop .8s ease-in 2}
+@keyframes fxDrop{from{transform:translateY(0);opacity:1}to{transform:translateY(40px);opacity:0}}
+.fx-rain{top:-16px;width:3px;height:13px;background:#60A5FA;border-radius:2px;animation:fxRain .5s linear 3}
+@keyframes fxRain{from{transform:translateY(0);opacity:.9}to{transform:translateY(70px);opacity:0}}
+.ch-h{position:absolute;top:-6px;font-size:15px;color:#F472B6;animation:hFly 1s ease-out forwards}
+@keyframes hFly{from{transform:translateY(0) scale(.7);opacity:1}to{transform:translateY(-48px) scale(1.25);opacity:0}}
+.dgirls{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin-top:20px}
+.dgirls .ch-char{width:112px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="hdr" id="hdr">
+    <div class="logo">원스<b>회화</b></div>
+    <div class="hdr-right">
+      <span class="pill" id="p-xp">0 XP</span>
+      <span class="pill streak" id="p-streak">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 1.5s1 2.6 1 4.5c0 1.8-1.2 3-2.8 3S9 7.7 9 6c0-.4.1-.9.2-1.3C6.7 6.4 5 9.2 5 12.4 5 17.1 8.1 20.5 12 20.5s7-3.4 7-8.1c0-4.6-3.4-8.6-5.5-10.9z"/></svg>
+        <span id="streak-n">0</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- 오늘 -->
+  <section class="screen on" id="s-home">
+    <div class="ring-wrap">
+      <div class="ring">
+        <svg width="168" height="168" viewBox="0 0 168 168">
+          <defs><linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
+          <circle class="track" cx="84" cy="84" r="74"></circle>
+          <circle class="bar" id="ring-bar" cx="84" cy="84" r="74" stroke-dasharray="465" stroke-dashoffset="465"></circle>
+        </svg>
+        <div class="ring-c">
+          <div class="ring-pct" id="ring-pct">0%</div>
+          <div class="ring-lb">오늘 목표</div>
+        </div>
+      </div>
+      <div class="today-theme card" id="theme-card"></div>
+      <button class="btn-main" id="btn-start" onclick="startLesson()">오늘 시작</button>
+      <button class="btn-sub" id="btn-quickrev" onclick="startReview()">복습만 하기</button>
+    </div>
+  </section>
+
+  <!-- 레슨 -->
+  <section class="screen" id="s-lesson">
+    <div class="ltop">
+      <button class="lx" onclick="quitLesson()" aria-label="레슨 나가기">✕</button>
+      <div class="ptrack"><div class="pbar" id="pbar"></div></div>
+      <div class="combo" id="combo">—</div>
+    </div>
+    <div id="q-area"></div>
+  </section>
+
+  <!-- 복습 -->
+  <section class="screen" id="s-review">
+    <div class="card">
+      <div style="font-size:18px;font-weight:800" id="rev-head">복습</div>
+      <div style="font-size:14px;color:var(--tx2);margin-top:4px" id="rev-sub"></div>
+      <button class="btn-main" style="margin-top:14px" onclick="startReview()">복습 시작</button>
+    </div>
+    <div class="sec-t">약한 표현</div>
+    <div id="weak-list"></div>
+  </section>
+
+  <!-- 나 -->
+  <section class="screen" id="s-me">
+    <div class="stat-grid">
+      <div class="stat"><div class="v" id="st-streak">0<small>일</small></div><div class="l">연속 학습</div></div>
+      <div class="stat"><div class="v" id="st-xp">0</div><div class="l">총 XP</div></div>
+      <div class="stat"><div class="v" id="st-days">0<small>/20</small></div><div class="l">완료한 날</div></div>
+      <div class="stat"><div class="v" id="st-acc">—</div><div class="l">복습 정답률</div></div>
+    </div>
+    <div class="sec-t">진도 — 1~4주차 <span style="font-weight:500">(5주차부터 Phase 2)</span></div>
+    <div class="cal" id="cal"></div>
+    <div class="sec-t">배운 문법</div>
+    <div id="gram-list"></div>
+    <div class="sec-t">설정</div>
+    <div class="card" id="settings"></div>
+  </section>
+
+  <!-- 탭바 -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab on" data-t="home" onclick="go('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      오늘</button>
+    <button class="tab" data-t="review" onclick="go('review')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+      복습</button>
+    <button class="tab" data-t="me" onclick="go('me')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+      나</button>
+  </nav>
+
+  <div class="sheet" id="sheet" style="display:none"></div>
+  <div class="cheer" id="cheer" aria-hidden="true"></div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+"use strict";
+/* ───────── 헬퍼 ───────── */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const todayStr=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const escH=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* ───────── 사운드 엔진 (Web Audio 합성 — 파일 없음) ───────── */
+const FX={
+  ctx:null,bgmGain:null,bgmTimer:null,
+  init(){if(this.ctx)return;try{this.ctx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}},
+  resume(){this.init();if(this.ctx&&this.ctx.state==="suspended")this.ctx.resume()},
+  t(freq,start,dur,type,vol,slide){ // 단일 톤
+    if(!this.ctx||!S.set.sfx)return;
+    const o=this.ctx.createOscillator(),g=this.ctx.createGain(),n=this.ctx.currentTime+start;
+    o.type=type||"sine";o.frequency.setValueAtTime(freq,n);
+    if(slide)o.frequency.exponentialRampToValueAtTime(slide,n+dur);
+    g.gain.setValueAtTime(0.0001,n);
+    g.gain.exponentialRampToValueAtTime(vol||0.14,n+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001,n+dur);
+    o.connect(g).connect(this.ctx.destination);o.start(n);o.stop(n+dur+0.05);
+  },
+  correct(){this.resume();this.t(523.25,0,.14,"sine",.15);this.t(659.25,.07,.2,"sine",.15)},
+  combo(n){this.resume();const base=523.25*Math.pow(1.06,Math.min(n,12));[0,4,7,12].forEach((st,i)=>this.t(base*Math.pow(2,st/12),i*.06,.16,"sine",.13))},
+  wrong(){this.resume();this.t(196,0,.22,"triangle",.1);this.t(174.6,.1,.26,"triangle",.08)},
+  tap(){this.resume();this.t(760,0,.05,"square",.05)},
+  flip(){this.resume();this.t(320,0,.14,"sine",.07,640)},
+  match(){this.resume();this.t(880,0,.07,"sine",.1);this.t(1318.5,.06,.12,"sine",.1)},
+  bell(){this.resume();this.t(1568,0,.7,"sine",.12);this.t(2093,.02,.55,"sine",.05)},
+  fanfare(){this.resume();const m=[[392,0],[523.25,.11],[659.25,.22],[783.99,.33],[1046.5,.5]];m.forEach(([f,d])=>this.t(f,d,.28,"triangle",.13));this.t(1046.5,.5,.55,"sine",.1)},
+  streak(){this.resume();[659.25,783.99,987.77,1318.5].forEach((f,i)=>this.t(f,i*.09,.22,"sine",.12))},
+  /* 배경음: 로파이풍 코드 패드 루프 */
+  bgmStart(){
+    this.resume();if(!this.ctx||this.bgmTimer)return;
+    this.bgmGain=this.ctx.createGain();this.bgmGain.gain.value=0.045;
+    const lp=this.ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=900;
+    this.bgmGain.connect(lp).connect(this.ctx.destination);
+    const chords=[[261.63,329.63,392,493.88],[220,261.63,329.63,415.3],[174.61,220,261.63,349.23],[196,246.94,293.66,392]];
+    let ci=0;
+    const play=()=>{
+      const ch=chords[ci%chords.length];ci++;
+      ch.forEach((f,i)=>{
+        const o=this.ctx.createOscillator(),g=this.ctx.createGain(),n=this.ctx.currentTime;
+        o.type=i%2?"triangle":"sine";o.frequency.value=f*(i===3?0.5:1);
+        o.detune.value=(Math.random()*8-4);
+        g.gain.setValueAtTime(0.0001,n);g.gain.linearRampToValueAtTime(0.22,n+1.2);
+        g.gain.linearRampToValueAtTime(0.0001,n+3.8);
+        o.connect(g).connect(this.bgmGain);o.start(n);o.stop(n+4);
+      });
+    };
+    play();this.bgmTimer=setInterval(play,3600);
+  },
+  bgmStop(){if(this.bgmTimer){clearInterval(this.bgmTimer);this.bgmTimer=null}if(this.bgmGain){try{this.bgmGain.disconnect()}catch(e){}this.bgmGain=null}},
+  duck(on){if(this.bgmGain&&this.ctx)this.bgmGain.gain.linearRampToValueAtTime(on?0.012:0.045,this.ctx.currentTime+0.25)}
+};
+function vib(p){if(!S.set.vib)return;
+  if(navigator.vibrate){try{navigator.vibrate(p)}catch(e){}}
+  else if(window.AndroidTTS&&AndroidTTS.vibrate){try{AndroidTTS.vibrate(Array.isArray(p)?p.reduce((a,b)=>a+b,0):p)}catch(e){}}}
+
+/* ───────── TTS ───────── */
+let VOICE=null;
+function pickVoice(){
+  if(!window.speechSynthesis)return;
+  const vs=speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.startsWith("en"));
+  VOICE=vs.find(v=>/en[-_]US/i.test(v.lang)&&/female|samantha|aria|jenny|zira/i.test(v.name))||vs.find(v=>/en[-_]US/i.test(v.lang))||vs[0]||null;
+}
+if(window.speechSynthesis){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function speak(text,btn){
+  if(window.AndroidTTS){ // APK: 네이티브 TTS 브리지
+    FX.duck(true);if(btn)btn.style.opacity=".55";
+    window._ttsEnd=()=>{FX.duck(false);if(btn)btn.style.opacity=""};
+    try{AndroidTTS.speak(text,S.set.rate)}catch(e){window._ttsEnd()}
+    return;
+  }
+  if(!window.speechSynthesis)return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";u.rate=S.set.rate;if(VOICE)u.voice=VOICE;
+  u.onstart=()=>{FX.duck(true);if(btn)btn.style.opacity=".55"};
+  u.onend=u.onerror=()=>{FX.duck(false);if(btn)btn.style.opacity=""};
+  speechSynthesis.speak(u);
+}
+const SPK_SVG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M15.5 8.5a4.5 4.5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17.8 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+</script>
+<script>
+/* ───────── 콘텐츠: 1~4주차 (20일 × 표현 5 + 문법 1) ───────── */
+const DATA=[
+{d:1,w:1,t:"주말 이야기",p:[
+["How was your weekend?","주말 어땠어요?","How was ~? = ~ 어땠어요"],
+["I went hiking with my family.","가족이랑 등산 갔어요.","went = go의 과거형"],
+["We had a great time.","정말 즐거운 시간을 보냈어요.","have a great time"],
+["I just stayed home and relaxed.","그냥 집에서 쉬었어요.","stay home = 집에 있다"],
+["I met an old friend for coffee.","오랜 친구를 만나 커피 마셨어요.","met = meet의 과거형"],
+["The weather was perfect for a walk.","산책하기 딱 좋은 날씨였어요.","perfect for = ~하기 딱 좋은"],
+["I watched a movie last night.","어젯밤에 영화 봤어요.","last night = 어젯밤"],
+["It was better than I expected.","기대보다 좋았어요.","than I expected = 예상보다"],
+["What did you do on Sunday?","일요일에 뭐 했어요?","What did you do? 과거 질문"],
+["Time flies on weekends.","주말은 시간이 참 빨라요.","Time flies = 시간이 빠르다"]],
+g:{t:"과거시제 — 불규칙 동사",e:"went(go)·had(have)·met(meet)·saw(see)처럼 자주 쓰는 동사는 불규칙 변화예요.\n질문은 did + 동사원형: What did you do?\n부정은 didn't + 동사원형: I didn't go.",
+x:[["I saw a movie yesterday.","어제 영화를 봤어요."],["We ate out on Saturday.","토요일에 외식했어요."]],
+q:{s:"I ___ hiking last weekend.",a:"went",o:["went","go","gone","going"]}}},
+
+{d:2,w:1,t:"오랜만의 안부",p:[
+["How have you been?","그동안 어떻게 지냈어요?","오랜만에 만났을 때 인사"],
+["Long time no see!","오랜만이에요!","굳어진 인사 표현"],
+["It's been a while.","꽤 오랜만이네요.","It's been = It has been"],
+["I've been really busy lately.","요즘 정말 바빴어요.","lately = 요즘"],
+["Same as usual.","늘 똑같죠 뭐.","as usual = 평소처럼"],
+["How's your family doing?","가족들은 잘 지내요?","How's ~ doing? = 잘 지내요?"],
+["You haven't changed at all!","하나도 안 변했네요!","not ~ at all = 전혀"],
+["What have you been up to?","요즘 뭐 하고 지냈어요?","be up to = 지내다"],
+["Let's catch up soon.","조만간 만나서 밀린 얘기해요.","catch up = 근황을 나누다"],
+["Give my regards to your husband.","남편분께 안부 전해 주세요.","regards = 안부"]],
+g:{t:"현재완료 인사 — have been",e:"과거부터 지금까지 이어진 상태는 have been으로 말해요.\nHow have you been? (그동안 어땠어요?)\nI've been busy. (계속 바빴어요)\nlately·recently(요즘)와 잘 어울립니다.",
+x:[["I've been good, thanks.","잘 지냈어요, 고마워요."],["She's been sick this week.","그녀는 이번 주 내내 아팠어요."]],
+q:{s:"I've ___ really busy lately.",a:"been",o:["been","be","was","being"]}}},
+
+{d:3,w:1,t:"날씨 스몰토크",p:[
+["It looks like rain.","비가 올 것 같아요.","look like = ~것 같다"],
+["It's getting colder these days.","요즘 점점 추워지네요.","get + 비교급 = 점점 ~해지다"],
+["What a beautiful day!","날씨 정말 좋네요!","What a ~! 감탄문"],
+["I can't stand this heat.","이 더위는 못 참겠어요.","can't stand = 못 견디다"],
+["The forecast says it'll be sunny.","예보로는 맑을 거래요.","forecast = 일기예보"],
+["Don't forget your umbrella.","우산 잊지 마세요.","Don't forget = 잊지 마요"],
+["It rained all day yesterday.","어제 하루 종일 비가 왔어요.","all day = 하루 종일"],
+["Spring is my favorite season.","봄이 제일 좋아요.","favorite = 가장 좋아하는"],
+["It's a bit chilly this morning.","오늘 아침은 좀 쌀쌀하네요.","chilly = 쌀쌀한"],
+["Perfect weather for a picnic, isn't it?","소풍 가기 딱 좋은 날씨네요, 그렇죠?","isn't it? = 동의 구하기"]],
+g:{t:"get + 비교급 — 점점 ~해지다",e:"변화는 get + 비교급으로 말해요.\nIt's getting colder. (점점 추워진다)\nIt's getting better. (점점 나아진다)\n날씨·실력·상황 어디에나 쓰는 변화 표현의 기본입니다.",
+x:[["The days are getting longer.","해가 점점 길어지고 있어요."],["My English is getting better.","제 영어가 점점 늘고 있어요."]],
+q:{s:"It's getting ___ these days.",a:"colder",o:["colder","cold","coldest","coldly"]}}},
+
+{d:4,w:1,t:"경험 말하기",p:[
+["Have you ever been to Jeju?","제주도에 가 본 적 있어요?","have been to = 가 봤다"],
+["I've never tried Indian food.","인도 음식은 한 번도 안 먹어 봤어요.","never = 한 번도 안"],
+["I've seen that movie twice.","그 영화 두 번 봤어요.","twice = 두 번"],
+["It was my first time abroad.","해외는 그때가 처음이었어요.","abroad = 해외에"],
+["Have you tried this restaurant?","이 식당 가 봤어요?","try = 먹어(가) 보다"],
+["I've always wanted to learn English.","영어는 늘 배우고 싶었어요.","always wanted to = 늘 원했다"],
+["That's the best pasta I've ever had.","지금까지 먹어 본 최고의 파스타예요.","the best ~ ever"],
+["I've heard a lot about you.","말씀 많이 들었어요.","hear about = ~에 대해 듣다"],
+["Once is enough for me.","저는 한 번이면 충분해요.","once = 한 번"],
+["You should try it at least once.","한 번은 꼭 해 보세요.","at least = 적어도"]],
+g:{t:"Have you ever ~? — 경험 묻기",e:"ever(한 번이라도)를 넣어 경험을 물어요.\nHave you ever been to Jeju?\n대답: Yes, I have. / No, I've never been there.\nbeen to = ~에 가 본 적 있다.",
+x:[["Have you ever tried kimchi?","김치 먹어 본 적 있어요?"],["I've never been there.","거긴 가 본 적이 없어요."]],
+q:{s:"Have you ___ been to Busan?",a:"ever",o:["ever","never","yet","still"]}}},
+
+{d:5,w:1,t:"어제 있었던 일",p:[
+["I didn't sleep well last night.","어젯밤에 잠을 잘 못 잤어요.","didn't + 동사원형"],
+["What time did you get home?","몇 시에 집에 들어갔어요?","did 의문문"],
+["I forgot to bring my phone.","휴대폰 챙기는 걸 깜빡했어요.","forgot to = ~할 걸 잊다"],
+["It took longer than usual.","평소보다 오래 걸렸어요.","than usual = 평소보다"],
+["I almost missed the bus.","버스를 놓칠 뻔했어요.","almost = ~할 뻔"],
+["Luckily, I caught it in time.","다행히 제때 탔어요.","in time = 제때"],
+["Why didn't you call me?","왜 전화 안 했어요?","Why didn't ~? = 왜 안 했어요"],
+["Sorry, my phone was dead.","미안해요, 폰이 방전됐었어요.","dead = 방전된"],
+["It happens to everyone.","누구나 그럴 수 있죠.","It happens = 흔한 일이다"],
+["Let's not talk about yesterday.","어제 얘기는 하지 말아요.","Let's not = ~하지 말자"]],
+g:{t:"didn't + 동사원형 — 과거 부정·질문",e:"과거의 부정은 didn't + 동사원형: I didn't sleep well.\n질문은 Did you ~? 의문사가 있으면 그 뒤에: What time did you get home?\ndidn't·did 뒤 동사는 반드시 원형입니다.",
+x:[["I didn't know that.","그건 몰랐어요."],["Did you eat lunch?","점심 먹었어요?"]],
+q:{s:"I ___ sleep well last night.",a:"didn't",o:["didn't","don't","wasn't","haven't"]}}},
+
+{d:6,w:2,t:"기분·감정 표현",p:[
+["I'm so excited about the trip.","여행 때문에 너무 설레요.","excited about = ~에 설레는"],
+["That's such a relief.","정말 다행이에요.","relief = 안도"],
+["I was really disappointed.","정말 실망했어요.","disappointed = 실망한"],
+["You look tired today.","오늘 피곤해 보여요.","look + 형용사 = ~해 보이다"],
+["Don't worry, it'll be fine.","걱정 마요, 잘될 거예요.","it'll be fine"],
+["I'm a little nervous about it.","그것 때문에 좀 긴장돼요.","nervous about = ~에 긴장한"],
+["That sounds amazing!","와, 정말 멋지겠는데요!","sound + 형용사 = ~하게 들리다"],
+["I know how you feel.","그 기분 알아요.","how you feel = 당신 기분"],
+["It made my day.","덕분에 기분이 확 좋아졌어요.","make one's day = 기분 좋게 하다"],
+["Cheer up! Things will get better.","힘내요! 좋아질 거예요.","Cheer up = 힘내요"]],
+g:{t:"look / sound + 형용사",e:"~해 보인다·들린다는 look/sound 뒤에 형용사를 바로 붙여요.\nYou look tired. / That sounds fun.\n명사를 붙일 땐 like가 필요해요: It looks like rain.",
+x:[["You look happy today.","오늘 기분 좋아 보여요."],["That sounds like a good idea.","좋은 생각인 것 같네요."]],
+q:{s:"That ___ amazing!",a:"sounds",o:["sounds","sound","sounding","sounded"]}}},
+
+{d:7,w:2,t:"의견 말하기",p:[
+["What do you think of this?","이거 어떻게 생각해요?","think of = ~에 대해 생각하다"],
+["I think it's a great idea.","좋은 생각인 것 같아요.","I think = 내 생각엔"],
+["In my opinion, it's too risky.","제 생각엔 너무 위험해요.","in my opinion = 제 의견으로는"],
+["I agree with you.","당신 말에 동의해요.","agree with + 사람"],
+["I'm not sure about that.","그건 글쎄요, 잘 모르겠어요.","not sure about = 확신이 없는"],
+["That makes sense.","일리가 있네요.","make sense = 말이 되다"],
+["I see your point, but I disagree.","무슨 말인지 알겠지만 생각이 달라요.","see one's point"],
+["It depends on the situation.","상황에 따라 달라요.","depend on = ~에 달려 있다"],
+["Let me think about it.","생각 좀 해 볼게요.","Let me ~ = 제가 ~할게요"],
+["Honestly, I don't really care.","솔직히 별로 상관없어요.","honestly = 솔직히"]],
+g:{t:"I think + 문장 — 부드러운 의견",e:"의견은 I think (that) ~로 부드럽게 시작해요.\n반대 의견은 I don't think ~가 자연스러워요.\n(I think it's not ~ 보다 I don't think it's ~)",
+x:[["I think you're right.","당신 말이 맞는 것 같아요."],["I don't think it's a good idea.","좋은 생각은 아닌 것 같아요."]],
+q:{s:"I ___ it's a great idea.",a:"think",o:["think","thinks","thought","thinking"]}}},
+
+{d:8,w:2,t:"계획 말하기",p:[
+["I'm going to visit my parents this weekend.","이번 주말에 부모님 댁에 갈 거예요.","be going to = ~할 예정"],
+["What are you going to do tonight?","오늘 밤에 뭐 할 거예요?","계획 묻기"],
+["We're planning a trip to Busan.","부산 여행을 계획 중이에요.","plan = 계획하다"],
+["I'll probably stay home.","아마 집에 있을 것 같아요.","probably = 아마"],
+["Are you doing anything on Friday?","금요일에 약속 있어요?","현재진행형 = 가까운 계획"],
+["I have an appointment at three.","3시에 약속이 있어요.","appointment = 예약·약속"],
+["Maybe next time.","다음 기회에 해요.","maybe = 어쩌면"],
+["It's going to be a busy week.","바쁜 한 주가 될 거예요.","예정·예상"],
+["I can't make it tomorrow.","내일은 못 가요.","make it = 참석하다, 가다"],
+["Let's play it by ear.","상황 봐서 정해요.","play it by ear = 즉흥으로 하다"]],
+g:{t:"be going to vs will",e:"미리 정해 둔 계획은 be going to: I'm going to visit my parents.\n그 자리에서 정하거나 추측할 땐 will: I'll help you.\n둘 다 미래지만 뉘앙스가 달라요.",
+x:[["I'm going to see a doctor tomorrow.","내일 병원에 갈 예정이에요."],["I'll call you tonight.","오늘 밤에 전화할게요."]],
+q:{s:"I'm ___ to visit my parents.",a:"going",o:["going","go","goes","gone"]}}},
+
+{d:9,w:2,t:"제안과 조언",p:[
+["You should get some rest.","좀 쉬는 게 좋겠어요.","should = ~하는 게 좋다"],
+["Why don't we eat out tonight?","오늘 밤 외식하는 거 어때요?","Why don't we ~? = ~할래요?"],
+["How about Italian food?","이탈리안 어때요?","How about + 명사"],
+["You'd better take a jacket.","재킷 챙기는 게 좋을 거예요.","had better = ~하는 게 낫다"],
+["Let's take a break.","잠깐 쉬어요.","Let's = ~합시다"],
+["If I were you, I'd apologize.","나라면 사과하겠어요.","If I were you = 나라면"],
+["It's worth a try.","해 볼 만해요.","worth = ~할 가치가 있는"],
+["That's not a bad idea.","나쁘지 않은데요.","not bad = 꽤 괜찮다"],
+["Trust me on this one.","이건 날 믿어요.","Trust me = 믿어요"],
+["Whatever you decide is fine.","뭘 결정하든 좋아요.","whatever = 무엇이든"]],
+g:{t:"should — 부드러운 조언",e:"should + 동사원형 = ~하는 게 좋겠다.\n부정은 shouldn't: You shouldn't skip meals.\n더 강한 경고는 had better(안 하면 곤란해짐)를 써요.",
+x:[["You should see a doctor.","병원에 가 보는 게 좋겠어요."],["We shouldn't be late.","우리 늦으면 안 돼요."]],
+q:{s:"You ___ get some rest.",a:"should",o:["should","must","shall","would"]}}},
+
+{d:10,w:2,t:"비교와 선호",p:[
+["This one is much better than that.","이게 저것보다 훨씬 나아요.","much + 비교급 = 훨씬"],
+["I prefer coffee to tea in the morning.","아침엔 차보다 커피가 좋아요.","prefer A to B"],
+["It's cheaper to cook at home.","집에서 해 먹는 게 더 싸요.","It's ~ to 동사"],
+["Which do you like better?","어느 쪽이 더 좋아요?","like better = 더 좋아하다"],
+["It's the most popular one here.","여기서 제일 인기 있는 거예요.","the most = 최상급"],
+["Quality matters more than price.","가격보다 품질이 중요해요.","matter = 중요하다"],
+["It's not as good as before.","예전만 못하네요.","not as ~ as = ~만큼 아니다"],
+["The more, the better.","많을수록 좋죠.","the 비교급, the 비교급"],
+["I'd rather stay home.","차라리 집에 있을래요.","would rather = 차라리 ~하겠다"],
+["Either is fine with me.","둘 다 상관없어요.","either = 어느 쪽이든"]],
+g:{t:"much + 비교급 — 훨씬",e:"비교급을 강조할 땐 much: much better(훨씬 나은).\nvery better는 틀린 표현이에요.\n조금 차이는 a little: a little taller.\n같음은 as ~ as: as good as before.",
+x:[["This is much cheaper.","이게 훨씬 싸요."],["He's a little taller than me.","그가 저보다 조금 커요."]],
+q:{s:"This is ___ better than that.",a:"much",o:["much","very","many","most"]}}},
+
+{d:11,w:3,t:"전화 걸고 받기",p:[
+["Hello, may I speak to Ms. Kim?","여보세요, 김 선생님과 통화할 수 있을까요?","may I speak to = ~와 통화"],
+["Speaking. Who's calling, please?","전데요. 실례지만 누구세요?","Speaking = 접니다"],
+["I'm calling about the reservation.","예약 건으로 전화드렸어요.","calling about = ~건으로 전화"],
+["Could you speak up a little?","조금만 크게 말씀해 주시겠어요?","speak up = 크게 말하다"],
+["Sorry, you have the wrong number.","전화 잘못 거셨어요.","wrong number = 잘못 건 전화"],
+["Can I leave a message?","메시지 남길 수 있을까요?","leave a message"],
+["I'll call you back in ten minutes.","10분 뒤에 다시 걸게요.","call back = 다시 걸다"],
+["The line is busy.","통화 중이네요.","line is busy = 통화 중"],
+["My battery is running low.","배터리가 얼마 안 남았어요.","run low = 떨어져 가다"],
+["Sorry, I missed your call.","미안해요, 전화 못 받았어요.","miss a call = 전화를 놓치다"]],
+g:{t:"전화 영어의 굳은 표현",e:"전화는 굳어진 표현이 정해져 있어요.\nMay I speak to ~?(바꿔 주세요) / Speaking.(전데요)\nI'm calling about ~(용건) / call back(다시 걸다)\n통째로 외우는 게 가장 빠릅니다.",
+x:[["May I speak to the manager?","매니저와 통화할 수 있을까요?"],["I'll call back later.","나중에 다시 걸게요."]],
+q:{s:"Can I leave a ___?",a:"message",o:["message","call","phone","talk"]}}},
+
+{d:12,w:3,t:"약속 잡기",p:[
+["Are you free this Saturday?","이번 토요일에 시간 있어요?","free = 시간이 있는"],
+["What time works for you?","몇 시가 편하세요?","work for = (일정이) 괜찮다"],
+["How about two o'clock?","2시 어때요?","시간 제안"],
+["Two works perfectly for me.","2시 딱 좋아요.","perfectly = 완벽하게"],
+["Can we make it a bit later?","조금만 늦출 수 있을까요?","a bit later = 조금 늦게"],
+["Something came up suddenly.","갑자기 일이 생겼어요.","come up = (일이) 생기다"],
+["Can we reschedule for next week?","다음 주로 미룰 수 있을까요?","reschedule = 일정 변경"],
+["Sorry for the short notice.","갑자기 말씀드려 죄송해요.","short notice = 촉박한 통보"],
+["See you there at six.","6시에 거기서 봐요.","See you = 봐요"],
+["Don't be late this time!","이번엔 늦지 마요!","Don't be late = 늦지 마요"]],
+g:{t:"work for — 시간이 괜찮다",e:"일정 조율의 만능 동사가 work예요.\nDoes Friday work for you? (금요일 괜찮아요?)\nThat works for me. (저는 좋아요)\nMonday doesn't work. (월요일은 안 돼요)",
+x:[["What time works best?","몇 시가 제일 좋아요?"],["Monday doesn't work for me.","월요일은 저는 안 돼요."]],
+q:{s:"What time ___ for you?",a:"works",o:["works","work","working","worked"]}}},
+
+{d:13,w:3,t:"초대하고 응하기",p:[
+["Would you like to come over for dinner?","저녁 먹으러 우리 집에 오실래요?","come over = 놀러 오다"],
+["I'd love to!","좋아요, 꼭 갈게요!","I'd love to = 기꺼이"],
+["Thanks for inviting me.","초대해 줘서 고마워요.","invite = 초대하다"],
+["Should I bring anything?","뭐 좀 가져갈까요?","Should I ~? = ~할까요?"],
+["Just bring yourself.","몸만 오세요.","굳어진 표현"],
+["Make yourself at home.","편하게 계세요.","손님을 맞을 때"],
+["I'm afraid I can't make it.","아쉽지만 못 갈 것 같아요.","I'm afraid = 유감이지만"],
+["Can I take a rain check?","다음 기회로 미뤄도 될까요?","rain check = 다음 기회"],
+["The party starts at seven.","파티는 7시에 시작해요.","start at + 시각"],
+["Feel free to bring a friend.","친구 데려와도 좋아요.","feel free to = 편하게 ~하세요"]],
+g:{t:"Would you like to ~? — 정중한 초대",e:"Do you want to보다 정중한 초대·제안이에요.\nWould you like to join us?\n수락: I'd love to. / 거절: I'm afraid I can't.\n음식 권할 땐 Would you like some ~?",
+x:[["Would you like to join us?","저희랑 같이 하실래요?"],["Would you like some coffee?","커피 좀 드릴까요?"]],
+q:{s:"___ you like to come over?",a:"Would",o:["Would","Will","Do","Are"]}}},
+
+{d:14,w:3,t:"부탁하기",p:[
+["Could you do me a favor?","부탁 하나 해도 될까요?","do a favor = 부탁을 들어주다"],
+["Would you mind opening the window?","창문 좀 열어 주시겠어요?","Would you mind ~ing"],
+["Not at all.","그럼요, 전혀요.","mind 질문에 대한 수락"],
+["Can you give me a hand?","좀 도와줄래요?","give a hand = 도와주다"],
+["Could you keep an eye on my bag?","가방 좀 봐 주시겠어요?","keep an eye on = 지켜보다"],
+["I hate to bother you, but...","귀찮게 해서 미안한데요...","bother = 귀찮게 하다"],
+["Take your time.","천천히 하세요.","서두르지 말라는 배려"],
+["I owe you one.","신세 한 번 졌네요.","owe = 빚지다"],
+["Anytime!","언제든지요!","부탁 수락의 쿨한 답"],
+["It's no big deal.","별거 아니에요.","no big deal = 대단한 일 아님"]],
+g:{t:"Would you mind ~ing? — 아주 정중한 부탁",e:"mind는 '꺼리다'라서 직역하면 '~하는 게 싫으세요?'\n그래서 수락할 땐 부정으로: Not at all. / No problem.\n뒤에는 동사에 -ing를 붙여요: mind opening.",
+x:[["Would you mind waiting a minute?","잠깐 기다려 주시겠어요?"],["Would you mind closing the door?","문 좀 닫아 주시겠어요?"]],
+q:{s:"Would you mind ___ the window?",a:"opening",o:["opening","open","opened","to open"]}}},
+
+{d:15,w:3,t:"문제 설명하기",p:[
+["The air conditioner isn't working.","에어컨이 작동을 안 해요.","isn't working = 안 된다"],
+["There's something wrong with my phone.","제 폰이 뭔가 이상해요.","something wrong with"],
+["It keeps making a strange noise.","자꾸 이상한 소리가 나요.","keep ~ing = 계속 ~하다"],
+["The screen went black suddenly.","화면이 갑자기 꺼졌어요.","go black = 까맣게 되다"],
+["Could you take a look at it?","한번 봐 주시겠어요?","take a look = 살펴보다"],
+["How long will it take to fix?","고치는 데 얼마나 걸릴까요?","take to fix = 수리에 걸리다"],
+["Is it still under warranty?","아직 보증 기간인가요?","warranty = 보증"],
+["It worked fine until yesterday.","어제까진 멀쩡했어요.","work fine = 잘 작동하다"],
+["I dropped it by accident.","실수로 떨어뜨렸어요.","by accident = 실수로"],
+["Please handle it with care.","조심히 다뤄 주세요.","with care = 조심스럽게"]],
+g:{t:"keep + ~ing — 자꾸·계속",e:"반복되는 상황은 keep + ~ing로 말해요.\nIt keeps making noise. (자꾸 소리가 나요)\nI keep forgetting. (자꾸 까먹어요)\n고장·문제 설명에 꼭 필요한 패턴입니다.",
+x:[["The door keeps opening.","문이 자꾸 열려요."],["He keeps calling me.","그가 계속 전화해요."]],
+q:{s:"It keeps ___ a strange noise.",a:"making",o:["making","make","made","to make"]}}},
+
+{d:16,w:4,t:"공항과 기내",p:[
+["I'd like a window seat, please.","창가 좌석으로 부탁해요.","window seat = 창가 자리"],
+["Is this carry-on okay?","이거 기내 반입 되나요?","carry-on = 기내 수하물"],
+["What's the purpose of your visit?","방문 목적이 무엇인가요?","입국 심사 단골 질문"],
+["I'm here on vacation for a week.","일주일 휴가로 왔어요.","on vacation = 휴가로"],
+["Where is the boarding gate?","탑승구가 어디예요?","boarding gate = 탑승구"],
+["The flight has been delayed.","비행기가 지연됐어요.","delayed = 지연된"],
+["Could I have a blanket, please?","담요 좀 주시겠어요?","기내 요청"],
+["I'll have the chicken, please.","기내식은 치킨으로 주세요.","기내식 고르기"],
+["Please fasten your seatbelt.","안전벨트를 매 주세요.","fasten = 매다"],
+["My luggage hasn't come out yet.","제 짐이 아직 안 나왔어요.","yet = 아직"]],
+g:{t:"has been + 과거분사 — 안내방송의 형태",e:"공항 안내는 has been + 과거분사(수동 완료)가 단골이에요.\nThe flight has been delayed. (지연되었습니다)\nThe gate has been changed. (게이트가 변경되었습니다)\n형태만 익혀 두면 방송이 들리기 시작해요.",
+x:[["The gate has been changed.","탑승구가 변경되었어요."],["My order has been canceled.","제 주문이 취소되었어요."]],
+q:{s:"The flight has been ___.",a:"delayed",o:["delayed","delay","delays","delaying"]}}},
+
+{d:17,w:4,t:"호텔에서",p:[
+["I have a reservation under Kim.","김으로 예약했어요.","under + 이름 = ~ 이름으로"],
+["Could I check in early?","일찍 체크인할 수 있을까요?","check in = 체크인"],
+["What time is checkout?","체크아웃이 몇 시예요?","checkout = 체크아웃"],
+["Is breakfast included?","조식 포함인가요?","included = 포함된"],
+["Could I get extra towels?","수건 좀 더 받을 수 있을까요?","extra = 여분의"],
+["The Wi-Fi isn't working in my room.","방에 와이파이가 안 돼요.","isn't working"],
+["Could you keep my luggage until three?","3시까지 짐 좀 맡아 주시겠어요?","keep luggage = 짐 보관"],
+["Is there a convenience store nearby?","근처에 편의점 있나요?","nearby = 근처에"],
+["I'd like to extend my stay one more night.","하루 더 연장하고 싶어요.","extend = 연장하다"],
+["Everything was great, thank you.","전부 다 좋았어요, 감사합니다.","체크아웃 인사"]],
+g:{t:"under + 이름 — 예약 확인",e:"예약은 under + 이름으로 확인해요.\na reservation under Kim (김 이름으로 된 예약)\n호텔·식당·병원 어디서나 통하는 표현입니다.\n예약할 땐 book a table/room을 써요.",
+x:[["It's under Lee.","이 씨 이름으로 되어 있어요."],["I booked a table under my name.","제 이름으로 자리를 예약했어요."]],
+q:{s:"I have a reservation ___ Kim.",a:"under",o:["under","on","in","by"]}}},
+
+{d:18,w:4,t:"길 묻기 심화",p:[
+["Could you tell me where the station is?","역이 어디인지 알려 주시겠어요?","간접의문문 — 어순 주의"],
+["Do you know what time it opens?","몇 시에 여는지 아세요?","know + 의문사절"],
+["I'm trying to find this place.","이 장소를 찾고 있어요.","try to find = 찾으려 하다"],
+["Is this the right way to the museum?","박물관 가는 길이 이쪽 맞나요?","the right way = 맞는 길"],
+["You're going in the wrong direction.","반대 방향으로 가고 계세요.","direction = 방향"],
+["It's easier to take the subway.","지하철 타는 게 더 쉬워요.","easier to = ~하는 게 더 쉬운"],
+["Get off at the third stop.","세 번째 정거장에서 내리세요.","get off = 내리다"],
+["It's right around the corner.","바로 모퉁이 돌면 있어요.","around the corner = 모퉁이 근처"],
+["You can't miss it — it's a big red building.","큰 빨간 건물이라 바로 보여요.","can't miss it"],
+["Thanks, you've been a great help.","큰 도움이 됐어요, 감사해요.","a great help = 큰 도움"]],
+g:{t:"간접의문문 — 정중하게 묻기",e:"의문문을 문장 안에 넣으면 어순이 평서문이 돼요.\nWhere is the station? → Could you tell me where the station is?\n(is가 뒤로 갑니다)\n훨씬 정중하게 들리는 고급 표현이에요.",
+x:[["Do you know where he lives?","그가 어디 사는지 아세요?"],["Can you tell me when it starts?","언제 시작하는지 알려 줄래요?"]],
+q:{s:"Could you tell me where the station ___?",a:"is",o:["is","are","be","was"]}}},
+
+{d:19,w:4,t:"아플 때",p:[
+["I have a terrible headache.","머리가 너무 아파요.","headache = 두통"],
+["I've had a cough for three days.","사흘째 기침이 나요.","for + 기간 (현재완료)"],
+["I feel dizzy when I stand up.","일어설 때 어지러워요.","dizzy = 어지러운"],
+["Do you have anything for a sore throat?","목 아픈 데 먹는 약 있나요?","sore throat = 인후통"],
+["Take this three times a day after meals.","하루 세 번 식후에 드세요.","after meals = 식후에"],
+["Are there any side effects?","부작용은 없나요?","side effects = 부작용"],
+["I'm allergic to penicillin.","페니실린 알레르기가 있어요.","allergic to = 알레르기"],
+["You should stay in bed for a couple of days.","며칠은 누워서 쉬어야 해요.","a couple of = 두어 ~"],
+["I'm feeling much better now.","이제 훨씬 나아졌어요.","much better = 훨씬 나은"],
+["Get well soon!","빨리 나으세요!","쾌유를 비는 인사"]],
+g:{t:"for + 기간 — 얼마나 지속됐는지",e:"현재완료와 함께 for + 기간으로 지속을 말해요.\nI've had a cough for three days. (사흘째)\n시작 시점을 말할 땐 since: since Monday.\n증상 설명의 핵심 패턴입니다.",
+x:[["I've lived here for ten years.","여기 산 지 10년 됐어요."],["She's been sick since Friday.","그녀는 금요일부터 아파요."]],
+q:{s:"I've had a cough ___ three days.",a:"for",o:["for","since","during","from"]}}},
+
+{d:20,w:4,t:"환불과 협상",p:[
+["I bought this here last week.","지난주에 여기서 샀어요.","bought = buy의 과거"],
+["It stopped working after two days.","이틀 만에 작동을 멈췄어요.","stop ~ing = ~하기를 멈추다"],
+["I'd like a refund rather than an exchange.","교환보다는 환불을 원해요.","rather than = ~보다는"],
+["Here's the receipt and the box.","영수증이랑 박스 여기 있어요.","Here's = 여기 있어요"],
+["Could you check if it's in stock?","재고 있는지 확인해 주시겠어요?","in stock = 재고 있는"],
+["When will it be back in stock?","언제 재입고되나요?","back in stock = 재입고"],
+["Is there any way to get a discount?","할인받을 방법이 있을까요?","any way to = ~할 방법"],
+["If it's over fifty dollars, I'll pass.","50달러 넘으면 안 살래요.","I'll pass = 사양할게요"],
+["Could you gift-wrap it, please?","선물 포장해 주시겠어요?","gift-wrap = 선물 포장하다"],
+["I'll take it if you throw in a case.","케이스 덤으로 주면 살게요.","throw in = 덤으로 주다"]],
+g:{t:"if 조건문 — If + 현재, will",e:"조건과 결과는 If + 현재형, will로 연결해요.\nIf it rains, I'll stay home.\n조건 쪽은 현재형(will 안 씀), 결과 쪽에 will.\n쇼핑 협상·계획 어디에나 쓰는 틀입니다.",
+x:[["If it's too expensive, I won't buy it.","너무 비싸면 안 살 거예요."],["I'll call you if I'm late.","늦으면 전화할게요."]],
+q:{s:"___ it rains, I'll stay home.",a:"If",o:["If","So","Because","But"]}}}
+];
+const STOP=new Set(["i","a","an","the","to","at","in","on","is","am","are","my","me","it","this","that","for","you","do","we","of","and","its","was","im","ill","id"]);
+function keyWord(en){ // 빈칸으로 뚫을 핵심 단어
+  const ws=en.replace(/[.!?,]/g,"").split(" ");
+  let best="",bi=0;
+  ws.forEach((w,i)=>{const c=w.toLowerCase().replace(/'/g,"");if(!STOP.has(c)&&w.length>=best.length){best=w;bi=i}});
+  if(!best)ws.forEach((w,i)=>{if(w.length>=best.length){best=w;bi=i}}); // 전부 스톱워드면 최장 단어
+  return{word:best,idx:bi};
+}
+const EID=(d,i)=>d+"-"+i;
+const EXP=id=>{const[d,i]=id.split("-").map(Number);return DATA[d-1].p[i]};
+const ALL_IDS=[];DATA.forEach(dd=>dd.p.forEach((_,i)=>ALL_IDS.push(EID(dd.d,i))));
+</script>
+<script>
+/* ───────── 상태 ───────── */
+const DEF={day:1,xp:0,streak:0,lastDone:"",freeze:0,done:[],cards:{},revC:0,revW:0,
+  today:{date:"",ans:0,total:0,comp:false},
+  set:{sfx:1,bgm:0,vib:1,rate:0.95,compact:0,srv:"",cheer:1,toon:0},
+  girls:[{n:"큰딸",img:""},{n:"작은딸",img:""}],saved:0};
+let S=load();
+function load(){
+  try{const j=JSON.parse(localStorage.getItem("wonshw")||"null");
+    if(j){const s=Object.assign({},DEF,j);s.set=Object.assign({},DEF.set,j.set||{});s.today=Object.assign({},DEF.today,j.today||{});if(!Array.isArray(s.girls)||s.girls.length!==2)s.girls=JSON.parse(JSON.stringify(DEF.girls));return s}
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEF));
+}
+function save(){S.saved=Date.now();try{localStorage.setItem("wonshw",JSON.stringify(S))}catch(e){}}
+
+/* ───────── SRS (간격 반복) ───────── */
+const INT=[0,1,3,7,16,35];
+function addDays(n){const d=new Date();d.setDate(d.getDate()+n);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function srsUpdate(id,ok){
+  const c=S.cards[id]||{b:1,due:todayStr(),c:0,w:0};
+  if(ok){c.c++;c.b=Math.min(c.b+1,5);c.due=addDays(INT[c.b]);S.revC++}
+  else{c.w++;c.b=1;c.due=addDays(1);S.revW++}
+  S.cards[id]=c;
+}
+function dueIds(){const t=todayStr();return Object.keys(S.cards).filter(id=>S.cards[id].due<=t)}
+function ladder(id){
+  const b=(S.cards[id]||{b:1}).b;
+  if(b<=2)return["mean","listen","blank"];
+  if(b<=4)return["arrange","blank"];
+  return["type"];
+}
+
+/* ───────── 레슨 엔진 ───────── */
+let L=null;
+const TYPE_LB={flip:"새 표현",mean:"뜻 고르기",listen:"듣고 고르기",blank:"빈칸 채우기",arrange:"문장 만들기",match:"짝 맞추기",type:"영어로 쓰기",gram:"오늘의 문법",gq:"문법 확인"};
+function rot(pool,prev){const c=pool.filter(t=>t!==prev);return c[Math.floor(Math.random()*c.length)]}
+function canListen(){return !!(window.AndroidTTS||window.speechSynthesis)}
+
+function buildDaily(){
+  const day=DATA[S.day-1],newIds=day.p.map((_,i)=>EID(S.day,i)),steps=[];
+  const compact=S.set.compact;
+  // 1 워밍업 — 밀린 복습
+  const due=shuffle(dueIds().filter(id=>!newIds.includes(id))).slice(0,compact?2:3);
+  let prev="";
+  due.forEach(id=>{const tp=rot(ladder(id),prev);prev=tp;steps.push({k:"q",tp:tp==="listen"&&!canListen()?"mean":tp,id,srs:1})});
+  // 2 새 표현 도입
+  newIds.forEach(id=>steps.push({k:"flip",id}));
+  // 3 연습 A — 인식형
+  prev="";
+  shuffle(newIds).slice(0,compact?5:10).forEach(id=>{let tp=rot(canListen()?["mean","listen","blank"]:["mean","blank"],prev);prev=tp;steps.push({k:"q",tp,id})});
+  // 4 짝 맞추기
+  if(!compact)steps.push({k:"match",ids:shuffle(newIds).slice(0,5)});
+  // 5 연습 B — 회상형
+  prev="match";
+  shuffle(newIds).slice(0,compact?5:10).forEach((id,i)=>{let tp=i===0?"arrange":rot(["blank","arrange","type"],prev);prev=tp;steps.push({k:"q",tp,id})});
+  // 6 오늘의 문법
+  steps.push({k:"gram"},{k:"gq"});
+  return steps;
+}
+function startLesson(){
+  if(S.day>DATA.length){toast("1~4주차 완료! Phase 2 콘텐츠 예정 — 복습을 이용하세요");return}
+  FX.resume();if(S.set.bgm)FX.bgmStart();
+  L={steps:buildDaily(),i:0,ok:0,no:0,combo:0,best:0,xp:0,redoDone:{},review:false};
+  S.today={date:todayStr(),ans:0,total:L.steps.filter(s=>s.k!=="gram").length,comp:S.today.date===todayStr()?S.today.comp:false};
+  go("lesson");renderStep();
+}
+function startReview(){
+  const due=shuffle(dueIds());
+  if(!due.length){toast("지금은 복습할 카드가 없어요");return}
+  FX.resume();if(S.set.bgm)FX.bgmStart();
+  const steps=[];let prev="";
+  due.slice(0,15).forEach(id=>{const tp=rot(ladder(id),prev);prev=tp;steps.push({k:"q",tp:tp==="listen"&&!canListen()?"mean":tp,id,srs:1})});
+  L={steps,i:0,ok:0,no:0,combo:0,best:0,xp:0,redoDone:{},review:true};
+  go("lesson");renderStep();
+}
+function quitLesson(){if(window.AndroidTTS)try{AndroidTTS.stop()}catch(e){};if(window.speechSynthesis)speechSynthesis.cancel();FX.bgmStop();L=null;hideSheet();chHide();go("home")}
+
+function renderStep(){
+  const st=L.steps[L.i];
+  if(!st){finishLesson();return}
+  $("#pbar").style.width=(L.i/L.steps.length*100)+"%";
+  const cb=$("#combo");
+  cb.textContent=L.combo>=2?"×"+L.combo:"—";
+  cb.classList.toggle("hot",L.combo>=3);
+  hideSheet();
+  const R={flip:rFlip,q:rQ,match:rMatch,gram:rGram,gq:rGQ};
+  R[st.k](st);
+  chEnsure();
+}
+function next(){L.i++;renderStep()}
+
+/* ─── 피드백 시트 ─── */
+function sheetCheck(label,enabled){
+  const s=$("#sheet");s.style.display="block";s.className="sheet";
+  s.innerHTML='<button class="btn-chk" id="chk" '+(enabled?"":"disabled")+' onclick="doCheck()">'+label+"</button>";
+}
+function chkEnable(){const b=$("#chk");if(b)b.disabled=false}
+function sheetFeedback(ok,en,ko,extra){
+  const s=$("#sheet");s.style.display="block";s.className="sheet "+(ok?"ok":"no");
+  s.innerHTML='<div class="fb-t">'+(ok?comboMsg():"아쉬워요! 정답은:")+'</div>'
+    +(en?'<div class="fb-s"><span class="en">'+escH(en)+'</span>'+(ko?' — '+escH(ko):'')+'</div>':'<div style="height:6px"></div>')
+    +(extra||"")
+    +'<button class="btn-chk" onclick="next()">계속</button>';
+}
+function hideSheet(){const s=$("#sheet");s.style.display="none";s.innerHTML=""}
+function comboMsg(){
+  if(L.combo>=10)return"완벽해요! ×"+L.combo+" 연속!";
+  if(L.combo>=5)return"대단해요! ×"+L.combo+" 연속!";
+  if(L.combo>=3)return"좋아요! ×"+L.combo+" 연속!";
+  return["정답이에요!","맞았어요!","잘했어요!"][Math.floor(Math.random()*3)];
+}
+/* 채점 공통 */
+function grade(ok,st,en,ko){
+  S.today.ans++;
+  if(ok){
+    L.ok++;L.combo++;L.best=Math.max(L.best,L.combo);
+    const bonus=L.combo>=5?5:L.combo>=3?2:0;
+    L.xp+=10+bonus;
+    if(L.combo>=3){FX.combo(L.combo)}else{FX.correct()}
+    vib(20);
+  }else{
+    L.no++;L.combo=0;FX.wrong();vib([40,60,40]);
+    if(st&&st.id&&!st.redo&&!L.redoDone[st.id]){L.redoDone[st.id]=1;L.steps.push({k:"q",tp:"mean",id:st.id,redo:1,srs:st.srs})}
+  }
+  if(st&&st.srs&&st.id)srsUpdate(st.id,ok);
+  save();
+  sheetFeedback(ok,en,ko);
+  cheer(ok);
+}
+
+/* ───────── 문항 렌더러 ───────── */
+let CUR=null;
+function qHead(tp){return '<div class="qtype">'+TYPE_LB[tp]+'</div>'}
+
+/* ① 카드 플립 */
+function rFlip(st){
+  const p=EXP(st.id);
+  $("#q-area").innerHTML=qHead("flip")
+   +'<div class="qask">카드를 탭해서 뜻을 확인하세요</div>'
+   +'<div class="flip" id="fc"><div class="flip-in">'
+   +'<div class="face"><div class="qen">'+escH(p[0])+'</div><button class="spk sm" onclick="event.stopPropagation();speak(CUR.en,this)">'+SPK_SVG+'</button><div class="hint">탭하여 뒤집기</div></div>'
+   +'<div class="face back"><div class="qko">'+escH(p[1])+'</div><div class="nu">'+escH(p[2])+'</div><div class="hint">다시 탭하면 영어</div></div>'
+   +'</div></div>';
+  CUR={en:p[0]};
+  $("#fc").onclick=()=>{FX.flip();$("#fc").classList.toggle("f")};
+  speak(p[0]);
+  const s=$("#sheet");s.style.display="block";s.className="sheet";
+  s.innerHTML='<button class="btn-chk" onclick="next()">다음</button>';
+}
+
+/* ②③ 선택형 (뜻 고르기 / 듣고 고르기) + ④⑤⑦은 아래 */
+function rQ(st){
+  const p=EXP(st.id);
+  if(st.tp==="mean")return rMean(st,p);
+  if(st.tp==="listen")return rListen(st,p);
+  if(st.tp==="blank")return rBlank(st,p);
+  if(st.tp==="arrange")return rArr(st,p);
+  if(st.tp==="type")return rType(st,p);
+}
+function optHTML(list,en){
+  return '<div class="opts">'+list.map((o,i)=>'<button class="opt'+(en?" en":"")+'" data-i="'+i+'" onclick="pickOpt(this)">'+escH(o)+'</button>').join("")+"</div>";
+}
+function pickOpt(el){
+  FX.tap();
+  document.querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));
+  el.classList.add("sel");CUR.sel=+el.dataset.i;chkEnable();
+}
+function rMean(st,p){
+  const wrong=shuffle(ALL_IDS.filter(id=>id!==st.id)).slice(0,3).map(id=>EXP(id)[1]);
+  const opts=shuffle([p[1],...wrong]);
+  CUR={st,p,opts,ans:opts.indexOf(p[1]),sel:-1,mode:"opt"};
+  $("#q-area").innerHTML=qHead("mean")+'<div class="qask">알맞은 뜻을 고르세요</div>'
+   +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><button class="spk sm" onclick="speak(CUR.p[0],this)">'+SPK_SVG+'</button><div class="qen" style="margin:0">'+escH(p[0])+'</div></div>'
+   +optHTML(opts,false);
+  sheetCheck("확인",false);
+}
+function rListen(st,p){
+  const pool=shuffle(ALL_IDS.filter(id=>id!==st.id&&Math.abs(EXP(id)[0].length-p[0].length)<14)).slice(0,3).map(id=>EXP(id)[0]);
+  while(pool.length<3)pool.push(EXP(shuffle(ALL_IDS.filter(id=>id!==st.id))[0])[0]);
+  const opts=shuffle([p[0],...pool.slice(0,3)]);
+  CUR={st,p,opts,ans:opts.indexOf(p[0]),sel:-1,mode:"opt"};
+  $("#q-area").innerHTML=qHead("listen")+'<div class="qask">잘 듣고 들린 문장을 고르세요</div>'
+   +'<div style="text-align:center"><button class="spk" onclick="speak(CUR.p[0],this)">'+SPK_SVG+'</button></div>'
+   +optHTML(opts,true);
+  sheetCheck("확인",false);
+  setTimeout(()=>speak(p[0]),250);
+}
+/* ④ 빈칸 */
+function rBlank(st,p){
+  const kw=keyWord(p[0]);
+  const ws=p[0].split(" ");
+  const line=ws.map((w,i)=>i===kw.idx?'<span class="gap" id="gap">&nbsp;</span>'+(w.match(/[.!?,]$/)?w.slice(-1):""):escH(w)).join(" ");
+  const others=shuffle(ALL_IDS.filter(id=>id!==st.id)).map(id=>keyWord(EXP(id)[0]).word.replace(/[.!?,]/g,""));
+  const distract=[...new Set(others.filter(w=>w.toLowerCase()!==kw.word.toLowerCase().replace(/[.!?,]/g,"")))].slice(0,3);
+  const clean=kw.word.replace(/[.!?,]/g,"");
+  const bank=shuffle([clean,...distract]);
+  CUR={st,p,ans:clean,sel:"",mode:"blank"};
+  $("#q-area").innerHTML=qHead("blank")+'<div class="qask">빈칸에 들어갈 단어를 고르세요 <span style="color:var(--tx3)">— '+escH(p[1])+'</span></div>'
+   +'<div class="gapline">'+line+'</div>'
+   +'<div class="bank">'+bank.map(w=>'<button class="chip" onclick="fillGap(this)">'+escH(w)+'</button>').join("")+'</div>';
+  sheetCheck("확인",false);
+}
+function fillGap(el){
+  FX.tap();
+  document.querySelectorAll(".bank .chip").forEach(c=>c.classList.remove("used"));
+  el.classList.add("used");
+  CUR.sel=el.textContent;
+  const g=$("#gap");g.textContent=CUR.sel;g.classList.add("fill");
+  chkEnable();
+}
+/* ⑤ 문장 배열 */
+function rArr(st,p){
+  const ws=p[0].replace(/[.!?]$/,"").split(" ");
+  CUR={st,p,ws,picked:[],mode:"arr"};
+  $("#q-area").innerHTML=qHead("arrange")+'<div class="qask">단어를 순서대로 탭해 문장을 만드세요</div>'
+   +'<div class="qko" style="margin-bottom:16px">'+escH(p[1])+'</div>'
+   +'<div class="ans-row" id="arow"></div>'
+   +'<div class="bank" id="abank">'+shuffle(ws.map((w,i)=>({w,i}))).map(o=>'<button class="chip" data-i="'+o.i+'" onclick="tileTap(this)">'+escH(o.w)+'</button>').join("")+'</div>';
+  sheetCheck("확인",false);
+}
+function tileTap(el){
+  FX.tap();
+  const bank=el.parentElement.id==="abank";
+  if(bank){
+    CUR.picked.push(+el.dataset.i);el.classList.add("used");
+    const c=document.createElement("button");c.className="chip";c.dataset.i=el.dataset.i;c.textContent=el.textContent;c.onclick=()=>tileBack(c);
+    $("#arow").appendChild(c);
+  }
+  const left=document.querySelectorAll("#abank .chip:not(.used)").length;
+  const b=$("#chk");if(b)b.disabled=left>0;
+}
+function tileBack(c){
+  FX.tap();
+  CUR.picked=CUR.picked.filter(i=>i!==+c.dataset.i);
+  document.querySelector('#abank .chip[data-i="'+c.dataset.i+'"]').classList.remove("used");
+  c.remove();
+  const b=$("#chk");if(b)b.disabled=true;
+}
+/* ⑦ 한→영 쓰기 */
+function rType(st,p){
+  CUR={st,p,mode:"type",hint:0};
+  $("#q-area").innerHTML=qHead("type")+'<div class="qask">한국어를 보고 영어로 쓰세요</div>'
+   +'<div class="qko" style="margin-bottom:16px">'+escH(p[1])+'</div>'
+   +'<input class="tinput en" id="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="영어로 입력...">'
+   +'<button class="hintbtn" onclick="typeHint()">힌트 보기</button><span id="thint" style="font-size:13px;color:var(--tx3)"></span>';
+  const inp=$("#tin");
+  inp.oninput=()=>{const b=$("#chk");if(b)b.disabled=inp.value.trim().length===0};
+  inp.onkeydown=e=>{if(e.key==="Enter"&&inp.value.trim())doCheck()};
+  sheetCheck("확인",false);
+  setTimeout(()=>inp.focus(),150);
+}
+function typeHint(){
+  const ws=CUR.p[0].split(" ");CUR.hint=Math.min(CUR.hint+1,2);
+  $("#thint").textContent="  "+ws.slice(0,CUR.hint).join(" ")+" ...";
+}
+function norm(s){return s.toLowerCase().replace(/[.!?,']/g,"").replace(/\s+/g," ").trim()}
+function lev(a,b){
+  const m=Array.from({length:a.length+1},(_,i)=>[i,...Array(b.length).fill(0)]);
+  for(let j=0;j<=b.length;j++)m[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)
+    m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return m[a.length][b.length];
+}
+/* ⑥ 짝 맞추기 */
+function rMatch(st){
+  const pairs=st.ids.map(id=>({id,en:EXP(id)[0],ko:EXP(id)[1]}));
+  CUR={st,pairs,selE:null,selK:null,left:pairs.length,mode:"match"};
+  const ens=shuffle(pairs.map((p,i)=>({t:p.en,i})));
+  const kos=shuffle(pairs.map((p,i)=>({t:p.ko,i})));
+  let html=qHead("match")+'<div class="qask">영어와 뜻을 짝지으세요</div><div class="match">';
+  for(let r=0;r<pairs.length;r++){
+    html+='<button class="mbtn en" data-side="e" data-i="'+ens[r].i+'" onclick="mTap(this)">'+escH(ens[r].t)+'</button>';
+    html+='<button class="mbtn" data-side="k" data-i="'+kos[r].i+'" onclick="mTap(this)">'+escH(kos[r].t)+'</button>';
+  }
+  $("#q-area").innerHTML=html+"</div>";
+  hideSheet();
+}
+function mTap(el){
+  FX.tap();
+  const side=el.dataset.side;
+  document.querySelectorAll('.mbtn[data-side="'+side+'"]').forEach(b=>b.classList.remove("sel"));
+  el.classList.add("sel");
+  if(side==="e")CUR.selE=el;else CUR.selK=el;
+  if(CUR.selE&&CUR.selK){
+    if(CUR.selE.dataset.i===CUR.selK.dataset.i){
+      FX.match();vib(15);
+      CUR.selE.classList.remove("sel");CUR.selK.classList.remove("sel");
+      CUR.selE.classList.add("ok");CUR.selK.classList.add("ok");
+      CUR.left--;
+      if(CUR.left===0){grade(true,CUR.st,null,null)}
+    }else{
+      FX.wrong();vib(60);
+      CUR.selE.classList.add("shake");CUR.selK.classList.add("shake");
+      const a=CUR.selE,b=CUR.selK;
+      setTimeout(()=>{a.classList.remove("sel","shake");b.classList.remove("sel","shake")},320);
+    }
+    CUR.selE=null;CUR.selK=null;
+  }
+}
+/* 확인 버튼 채점 */
+function doCheck(){
+  const c=CUR;if(!c)return;
+  if(c.mode==="opt"){
+    const ok=c.sel===c.ans;
+    document.querySelectorAll(".opt").forEach((o,i)=>{if(i===c.ans)o.classList.add("ok");else if(i===c.sel&&!ok)o.classList.add("no")});
+    grade(ok,c.st,c.p[0],c.p[1]);if(ok&&c.st.tp==="mean")speak(c.p[0]);
+  }else if(c.mode==="blank"){
+    const ok=norm(c.sel)===norm(c.ans);
+    const g=$("#gap");g.style.color=ok?"var(--green-tx)":"var(--amber-tx)";
+    grade(ok,c.st,c.p[0],c.p[1]);if(ok)speak(c.p[0]);
+  }else if(c.mode==="arr"){
+    const made=c.picked.map(i=>c.ws[i]).join(" ");
+    const ok=norm(made)===norm(c.p[0]);
+    grade(ok,c.st,c.p[0],c.p[1]);if(ok)speak(c.p[0]);
+  }else if(c.mode==="type"){
+    const v=$("#tin").value,d=lev(norm(v),norm(c.p[0]));
+    const ok=d<=2;
+    const extra=ok&&d>0?'<div class="fb-s">거의 정확해요 (작은 오타 허용)</div>':"";
+    grade(ok,c.st,c.p[0],c.p[1]);if(ok)speak(c.p[0]);
+  }else if(c.mode==="gq"){
+    const ok=c.sel===c.ans;
+    document.querySelectorAll(".opt").forEach((o,i)=>{if(i===c.ans)o.classList.add("ok");else if(i===c.sel&&!ok)o.classList.add("no")});
+    gradeG(ok);
+  }
+}
+/* 문법 카드 + 확인 문제 */
+function rGram(){
+  const g=DATA[Math.min(S.day,DATA.length)-1].g;
+  $("#q-area").innerHTML=qHead("gram")
+   +'<div class="card"><div class="gram"><div class="gram-t">'+escH(g.t)+'</div><div class="gram-e">'+escH(g.e)+'</div></div>'
+   +'<div class="gram-ex">'+g.x.map((x,i)=>'<div class="gex"><div><div class="e">'+escH(x[0])+'</div><div class="k">'+escH(x[1])+'</div></div><button class="spk sm" onclick="speak(DATA['+(Math.min(S.day,DATA.length)-1)+'].g.x['+i+'][0],this)">'+SPK_SVG+'</button></div>').join("")+'</div></div>';
+  const s=$("#sheet");s.style.display="block";s.className="sheet";
+  s.innerHTML='<button class="btn-chk" onclick="next()">확인 문제 풀기</button>';
+}
+function rGQ(){
+  const g=DATA[Math.min(S.day,DATA.length)-1].g;
+  const opts=shuffle(g.q.o.slice());
+  CUR={mode:"gq",g,opts,ans:opts.indexOf(g.q.a),sel:-1};
+  $("#q-area").innerHTML=qHead("gq")+'<div class="qask">빈칸에 알맞은 것은?</div>'
+   +'<div class="gapline en">'+escH(g.q.s).replace("___",'<span class="gap fill">___</span>')+'</div>'
+   +optHTML(opts,true);
+  sheetCheck("확인",false);
+}
+function gradeG(ok){
+  S.today.ans++;
+  if(ok){L.ok++;L.combo++;L.xp+=10;FX.correct();vib(20)}
+  else{L.no++;L.combo=0;FX.wrong();vib([40,60,40])}
+  save();
+  const g=CUR.g;
+  sheetFeedback(ok,g.q.s.replace("___",g.q.a),null);
+  cheer(ok);
+}
+
+/* ───────── 레슨 완료 ───────── */
+function finishLesson(){
+  FX.bgmStop();hideSheet();chHide();
+  $("#pbar").style.width="100%";
+  const wasReview=L.review,acc=L.ok+L.no?Math.round(L.ok/(L.ok+L.no)*100):100;
+  S.xp+=L.xp;
+  let streakMsg="";
+  if(!wasReview){
+    const t=todayStr();
+    if(S.lastDone!==t){
+      const y=addDays(-1);
+      if(S.lastDone===y){S.streak++}
+      else if(S.lastDone&&S.freeze>0){S.freeze--;S.streak++;streakMsg="프리즈 1개 사용 — 스트릭 유지!"}
+      else S.streak=1;
+      S.lastDone=t;
+      if(S.streak>0&&S.streak%7===0){S.freeze++;streakMsg="7일 달성! 프리즈 +1"}
+    }
+    if(!S.done.includes(S.day))S.done.push(S.day);
+    // 새 표현 SRS 등록
+    DATA[S.day-1].p.forEach((_,i)=>{const id=EID(S.day,i);if(!S.cards[id])S.cards[id]={b:1,due:addDays(1),c:0,w:0}});
+    S.today.comp=true;S.today.ans=S.today.total;
+    S.day=Math.min(S.day+1,DATA.length+1);
+  }
+  save();syncUp(true);
+  $("#q-area").innerHTML='<div class="doneWrap">'
+   +'<div class="ring"><svg width="168" height="168" viewBox="0 0 168 168"><circle class="track" cx="84" cy="84" r="74"></circle><circle class="bar" id="dring" cx="84" cy="84" r="74" stroke-dasharray="465" stroke-dashoffset="465" style="stroke:var(--green)"></circle></svg>'
+   +'<div class="ring-c"><div class="ring-pct" style="color:var(--green-tx)">100%</div><div class="ring-lb">'+(wasReview?"복습 완료":"오늘 완료")+'</div></div></div>'
+   +'<div class="done-t">'+(wasReview?"복습 완료!":"오늘 학습 완료!")+'</div>'
+   +'<div class="done-s">'+(streakMsg||(wasReview?"약한 카드가 다시 단단해졌어요":"내일 이 시간에 또 만나요"))+'</div>'
+   +'<div class="dstats">'
+   +'<div class="dstat"><div class="v">+'+L.xp+'</div><div class="l">XP</div></div>'
+   +'<div class="dstat"><div class="v">'+acc+'%</div><div class="l">정답률</div></div>'
+   +'<div class="dstat"><div class="v">×'+L.best+'</div><div class="l">최고 콤보</div></div>'
+   +'</div>'
+   +'<button class="btn-main" style="margin-top:24px" onclick="quitLesson()">홈으로</button></div>';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=$("#dring");if(r)r.style.strokeDashoffset="0"}));
+  if(streakMsg&&streakMsg.includes("7일")){FX.streak();setTimeout(()=>FX.fanfare(),500)}else FX.fanfare();
+  vib([30,50,30,50,80]);
+  confetti();
+  cheerFinish();
+  L=null;
+}
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const w=document.createElement("div");w.className="confetti";
+  const cols=["#EC4899","#F472B6","#8B5CF6","#FBBF24","#34D399"];
+  for(let i=0;i<44;i++){
+    const c=document.createElement("div");c.className="cf";
+    c.style.left=Math.random()*100+"%";
+    c.style.background=cols[i%cols.length];
+    c.style.animationDelay=(Math.random()*.5)+"s";
+    c.style.animationDuration=(0.9+Math.random()*0.8)+"s";
+    w.appendChild(c);
+  }
+  document.body.appendChild(w);setTimeout(()=>w.remove(),2400);
+}
+
+/* ───────── 화면: 홈 / 복습 / 나 ───────── */
+function go(t){
+  if(t!=="lesson")chHide();
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
+  const lesson=t==="lesson";
+  $("#tabbar").style.display=lesson?"none":"flex";
+  $("#hdr").style.display=lesson?"none":"flex";
+  $("#s-"+(lesson?"lesson":t)).classList.add("on");
+  if(t==="home")renderHome();
+  if(t==="review")renderReview();
+  if(t==="me")renderMe();
+}
+function renderHome(){
+  $("#p-xp").textContent=S.xp+" XP";
+  $("#streak-n").textContent=S.streak;
+  const t=todayStr(),isToday=S.today.date===t;
+  const pct=S.today.comp&&isToday?100:isToday&&S.today.total?Math.min(99,Math.round(S.today.ans/S.today.total*100)):0;
+  $("#ring-pct").textContent=pct+"%";
+  $("#ring-bar").style.strokeDashoffset=String(465-465*pct/100);
+  const fin=S.day>DATA.length;
+  const day=DATA[Math.min(S.day,DATA.length)-1];
+  const doneToday=S.today.comp&&isToday;
+  $("#theme-card").innerHTML=fin
+   ?'<div class="tt-name">1~4주차 완주!</div><div class="tt-sub">5~12주차 콘텐츠는 Phase 2에서 추가돼요. 그동안 복습으로 유지하세요.</div>'
+   :'<div class="tt-top"><span class="tt-day">DAY '+day.d+' / 20</span><span class="tt-week">'+day.w+'주차</span></div>'
+    +'<div class="tt-name">'+escH(day.t)+'</div>'
+    +'<div class="tt-sub">새 표현 10개 · 문법 「'+escH(day.g.t)+'」'+(S.freeze?' · 프리즈 '+S.freeze+'개 보유':'')+'</div>';
+  const b=$("#btn-start");
+  if(fin){b.textContent="복습 시작";b.className="btn-main";b.onclick=startReview}
+  else if(doneToday){b.textContent="오늘 완료 — 한 번 더?";b.className="btn-main done";b.onclick=startLesson}
+  else{b.textContent="오늘 시작 (10분)";b.className="btn-main";b.onclick=startLesson}
+  $("#btn-quickrev").style.display=dueIds().length?"block":"none";
+}
+function renderReview(){
+  const due=dueIds();
+  $("#rev-head").textContent="복습할 카드 "+due.length+"장";
+  $("#rev-sub").textContent=due.length?"간격 반복이 고른, 지금 다시 봐야 할 표현들이에요":"지금은 밀린 복습이 없어요. 내일 다시 확인하세요";
+  const weak=Object.entries(S.cards).filter(([,c])=>c.w>=2&&c.b<=2)
+    .sort((a,b)=>b[1].w-a[1].w).slice(0,8);
+  $("#weak-list").innerHTML=weak.length
+   ?weak.map(([id,c])=>{const p=EXP(id);return '<div class="weak"><div><div class="e">'+escH(p[0])+'</div><div class="k">'+escH(p[1])+'</div></div><span class="tag">'+c.w+'회 틀림</span></div>'}).join("")
+   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">아직 약한 표현이 없어요</div>';
+}
+function renderMe(){
+  $("#st-streak").innerHTML=S.streak+"<small>일</small>";
+  $("#st-xp").textContent=S.xp;
+  $("#st-days").innerHTML=S.done.length+"<small>/20</small>";
+  const tot=S.revC+S.revW;
+  $("#st-acc").textContent=tot?Math.round(S.revC/tot*100)+"%":"—";
+  $("#cal").innerHTML=DATA.map(d=>{
+    const done=S.done.includes(d.d),today=d.d===S.day&&!done,lock=d.d>S.day;
+    return '<div class="cd'+(done?" done":today?" today":lock?" lock":"")+'" title="'+escH(d.t)+'">'+d.d+"</div>";
+  }).join("");
+  const seen=DATA.filter(d=>S.done.includes(d.d));
+  $("#gram-list").innerHTML=seen.length
+   ?seen.map(d=>'<div class="gitem" onclick="this.classList.toggle(\'open\')"><div class="h">'+escH(d.g.t)+'<span>DAY '+d.d+'</span></div><div class="b">'+escH(d.g.e)+'</div></div>').join("")
+   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">학습을 완료하면 여기에 쌓여요</div>';
+  renderSettings();
+}
+function renderSettings(){
+  const s=S.set;
+  const row=(k,name,desc)=>'<div class="setrow"><div>'+name+(desc?'<div class="d">'+desc+'</div>':'')+'</div><button class="sw'+(s[k]?" on":"")+'" role="switch" aria-checked="'+(!!s[k])+'" onclick="togSet(\''+k+'\')"></button></div>';
+  $("#settings").innerHTML=
+    row("sfx","효과음","정답·콤보·완료 사운드")
+   +row("bgm","배경 음악","로파이풍 루프 (기본 꺼짐)")
+   +row("vib","진동","정답·오답 햅틱")
+   +row("compact","5분 압축 모드","문항 수를 줄여 짧게")
+   +row("cheer","응원단","정답·오답마다 딸들이 응원해요")
+   +row("toon","사진 만화풍 변환","기본은 원본 합성. 바꾼 뒤엔 사진 다시 선택")
+   +girlRow(0)+girlRow(1)
+   +'<div class="setrow"><div>발음 속도<div class="d">현재 '+s.rate.toFixed(2)+'배속</div></div><button class="pill" onclick="cycleRate()">변경</button></div>'
+   +'<div class="setrow"><div>동기화 서버<div class="d">집 PC 주소 (예: http://192.168.x.x:8378)</div></div><input class="sinput" id="srv-in" value="'+escH(s.srv)+'" placeholder="자동" onchange="S.set.srv=this.value.trim();save()"></div>'
+   +'<button class="btn-line" onclick="syncUp()">서버로 저장 (업로드)</button>'
+   +'<button class="btn-line" onclick="syncDown()">서버에서 불러오기</button>'
+   +'<button class="btn-line warn" onclick="resetAll()">전체 초기화</button>';
+}
+function girlRow(i){
+  const g=S.girls[i];
+  return '<div class="setrow"><div style="display:flex;align-items:center;gap:10px"><div class="ch-face" style="width:44px;height:44px;border-width:2px">'+faceHTML(i)
+   +'</div><input class="sinput" style="width:86px;text-align:left" value="'+escH(g.n)+'" onchange="S.girls['+i+'].n=this.value.trim()||(\''+(i?'작은딸':'큰딸')+'\');save();renderSettings()"></div>'
+   +'<div style="display:flex;gap:6px"><button class="pill" onclick="document.getElementById(\'ph'+i+'\').click()">사진</button>'
+   +(g.img?'<button class="pill" onclick="delPhoto('+i+')">삭제</button>':'')
+   +'</div></div><input type="file" id="ph'+i+'" accept="image/*" style="display:none" onchange="onPhoto('+i+',this)">';
+}
+function togSet(k){
+  S.set[k]=S.set[k]?0:1;save();
+  if(k==="bgm"){S.set.bgm?FX.bgmStart():FX.bgmStop()}
+  if(k==="sfx"&&S.set.sfx)FX.correct();
+  renderSettings();
+}
+function cycleRate(){
+  const r=[0.8,0.95,1.1],i=r.findIndex(v=>Math.abs(v-S.set.rate)<.01);
+  S.set.rate=r[(i+1)%r.length];save();renderSettings();speak("How much is this?");
+}
+function resetAll(){
+  if(!confirm("모든 진행·설정을 삭제할까요?"))return;
+  localStorage.removeItem("wonshw");S=load();go("home");toast("초기화 완료");
+}
+
+
+/* ───────── 응원단 (딸들) ───────── */
+const DEF_FACE=[
+'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#FFE9F0"/><circle cx="50" cy="56" r="34" fill="#FFE3CE"/><path d="M14 58 Q12 16 50 14 Q88 16 86 58 Q86 40 74 32 Q60 24 40 27 Q22 31 14 58Z" fill="#4A382E"/><circle cx="38" cy="56" r="4.4" fill="#2b2b2b"/><circle cx="62" cy="56" r="4.4" fill="#2b2b2b"/><path d="M43 69 Q50 75 57 69" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="28" cy="64" r="5" fill="#FFB9CB" opacity=".75"/><circle cx="72" cy="64" r="5" fill="#FFB9CB" opacity=".75"/></svg>',
+'<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#EAF2FF"/><circle cx="17" cy="42" r="10" fill="#3B2C24"/><circle cx="83" cy="42" r="10" fill="#3B2C24"/><circle cx="50" cy="56" r="34" fill="#FFE3CE"/><path d="M16 54 Q16 18 50 16 Q84 18 84 54 Q80 36 66 30 Q52 25 38 29 Q24 34 16 54Z" fill="#3B2C24"/><circle cx="38" cy="56" r="4.4" fill="#2b2b2b"/><circle cx="62" cy="56" r="4.4" fill="#2b2b2b"/><path d="M42 68 Q50 76 58 68" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="28" cy="64" r="5" fill="#FFB9CB" opacity=".75"/><circle cx="72" cy="64" r="5" fill="#FFB9CB" opacity=".75"/></svg>'];
+const PRAISE=["엄마 잘했어!","사랑해 엄마 ♥","우리 엄마 최고!","오~ 엄마 좀 하는데?","역시 우리 엄마!","완전 잘했어!","짝짝짝! 박수!","엄마 천재 아니야?","엄마 멋져!","선생님 해도 되겠어!"];
+const CHEERUP=["괜찮아 엄마, 다시!","아쉽다~ 한 번 더!","힘내 엄마!","실수해도 괜찮아!","에이~ 아깝다!","집중집중!","엄마 파이팅!","천천히 다시 읽어봐~"];
+const COMBOP=["대박 엄마! 연속 정답!","엄마 오늘 물올랐네!","막을 수가 없어!"];
+const DONEP=["오늘도 해냈다 엄마!","내일도 같이 하자!","엄마가 제일 자랑스러워!"];
+let CHT=0,LAST_R="";
+function faceHTML(i){const g=S.girls[i];return g.img?'<img src="'+g.img+'" alt="">':DEF_FACE[i]}
+const R_HAPPY=["r-jump","r-spin","r-flash","r-dance","r-pop","r-clap","r-run"];
+const R_SAD=["r-sulk","r-no","r-dizzy","r-rain","r-faint","r-deflate","r-cry"];
+const FLOURISH=["f-jump","f-spin","f-wave","f-wiggle"];
+function pickR(l){let a;do{a=l[Math.floor(Math.random()*l.length)]}while(a===LAST_R&&l.length>1);LAST_R=a;return a}
+function fxHTML(r){
+  if(r==="r-jump"||r==="r-clap")return [0,1,2,3].map(k=>'<span class="ch-h" style="right:'+(10+k*22)+'px;animation-delay:'+(k*.12)+'s">♥</span>').join("");
+  if(r==="r-flash")return '<span class="fx fx-bolt" style="left:2px">⚡</span><span class="fx fx-bolt" style="right:2px;animation-delay:.09s">⚡</span>';
+  if(r==="r-spin"||r==="r-pop")return '<span class="fx fx-star">★</span><span class="fx fx-star" style="animation-delay:.3s;color:#F472B6">★</span>';
+  if(r==="r-dance")return '<span class="fx" style="top:-14px;left:2px;font-size:16px;color:var(--blue)">♪</span><span class="fx" style="top:-9px;right:2px;font-size:14px;color:#F472B6">♫</span>';
+  if(r==="r-dizzy")return [0,1,2].map(k=>'<span class="fx fx-star" style="animation-delay:'+(k*.18)+'s">★</span>').join("");
+  if(r==="r-rain")return [0,1,2,3,4].map(k=>'<span class="fx fx-rain" style="left:'+(14+k*26)+'px;animation-delay:'+(k*.09)+'s"></span>').join("");
+  if(r==="r-cry")return '<span class="fx fx-drop"></span><span class="fx fx-drop" style="right:88px;animation-delay:.25s"></span>';
+  if(r==="r-faint")return '<span class="fx fx-drop" style="right:24px"></span>';
+  return "";
+}
+function charSVG(i,cls){ // 파츠(팔·다리·머리) 분리형 캐릭터 + 얼굴 사진 합성
+  const g=S.girls[i],shirt=i?"#F472B6":"#8B5CF6",dark=i?"#DB2777":"#7C3AED",skin="#FFD9B8",oc="#2b2b2b";
+  const arm=(x1,y1,x2,y2,cx,cy)=>'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+oc+'" stroke-width="15" stroke-linecap="round"/><path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+skin+'" stroke-width="10.5" stroke-linecap="round"/>';
+  const leg=x=>'<path d="M'+x+' 112 L'+x+' 141" stroke="'+oc+'" stroke-width="17" stroke-linecap="round"/><path d="M'+x+' 112 L'+x+' 141" stroke="'+dark+'" stroke-width="12" stroke-linecap="round"/>';
+  let head;
+  if(g.img){
+    head='<clipPath id="hc'+i+'"><circle cx="60" cy="44" r="33"/></clipPath>'
+      +'<circle cx="60" cy="44" r="36" fill="#fff"/>'
+      +'<image href="'+g.img+'" xlink:href="'+g.img+'" x="27" y="11" width="66" height="66" clip-path="url(#hc'+i+')" preserveAspectRatio="xMidYMid slice"/>'
+      +'<circle cx="60" cy="44" r="35" fill="none" stroke="'+oc+'" stroke-width="2.5"/>';
+  }else{
+    head='<circle cx="60" cy="44" r="35" fill="'+skin+'" stroke="'+oc+'" stroke-width="2.5"/>'
+      +(i?'<circle cx="25" cy="31" r="9" fill="#3B2C24"/><circle cx="95" cy="31" r="9" fill="#3B2C24"/><path d="M27 41 Q30 14 60 12 Q90 14 93 41 Q86 23 60 21 Q34 23 27 41Z" fill="#3B2C24"/>'
+          :'<path d="M26 43 Q28 12 60 11 Q92 12 94 43 Q88 23 60 20 Q32 23 26 43Z" fill="#4A382E"/>')
+      +'<circle cx="49" cy="47" r="4" fill="#2b2b2b"/><circle cx="71" cy="47" r="4" fill="#2b2b2b"/>'
+      +'<path d="M53 58 Q60 64 67 58" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="40" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/><circle cx="80" cy="55" r="4.5" fill="#FFB9CB" opacity=".8"/>';
+  }
+  return '<svg class="ch-char '+(cls||"")+'" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
+    +'<g class="cg-all">'
+    +'<g class="pt cg-legL">'+leg(48)+'</g><g class="pt cg-legR">'+leg(72)+'</g>'
+    +'<rect x="32" y="70" width="56" height="48" rx="21" fill="'+shirt+'" stroke="'+oc+'" stroke-width="3"/>'
+    +'<path d="M60 93 C57 89 51 90 51 95 C51 99 60 105 60 105 C60 105 69 99 69 95 C69 90 63 89 60 93Z" fill="#fff" opacity=".92"/>'
+    +'<g class="pt cg-armL">'+arm(40,86,20,108,24,100)+'</g>'
+    +'<g class="pt cg-armR">'+arm(80,86,100,108,96,100)+'</g>'
+    +'<g class="pt cg-head">'+head+'</g>'
+    +'</g></svg>';
+}
+function chShow(cls,msg,mood){
+  const el=$("#cheer");
+  el.innerHTML=(msg?'<div class="ch-bub">'+escH(msg)+'</div>':'')
+    +'<div class="ch-col">'+fxHTML(cls)+charSVG(CHT,cls)+'<div class="ch-name">'+escH(S.girls[CHT].n)+'</div></div>';
+  el.className="cheer show"+(mood?" "+mood:"");
+}
+function chIdle(){if(!S.set.cheer||!L){chHide();return}chShow("ch-idle","")}
+function chHide(){const el=$("#cheer");if(el){el.className="cheer";el.innerHTML=""}}
+function chEnsure(){const el=$("#cheer");if(S.set.cheer&&L&&el&&!el.firstChild)chIdle()}
+function cheer(ok){
+  if(!S.set.cheer||!L)return;
+  CHT^=1;
+  const pool=ok?((L.combo>=5)?COMBOP:PRAISE):CHEERUP;
+  const msg=pool[Math.floor(Math.random()*pool.length)];
+  chShow(pickR(ok?R_HAPPY:R_SAD),msg,ok?"happy":"sad");
+  clearTimeout(window._chT);window._chT=setTimeout(chIdle,2400);
+}
+setInterval(()=>{ // 5초마다 재롱
+  if(document.hidden||!L||!S.set.cheer)return;
+  const svg=document.querySelector("#cheer .ch-char.ch-idle");
+  if(!svg)return;
+  const f=FLOURISH[Math.floor(Math.random()*FLOURISH.length)];
+  svg.classList.add(f);setTimeout(()=>svg.classList.remove(f),1250);
+},5200);
+function cheerFinish(){
+  if(!S.set.cheer)return;
+  const w=document.querySelector(".doneWrap");if(!w)return;
+  const s=w.querySelector(".done-s");
+  if(s)s.textContent=DONEP[Math.floor(Math.random()*DONEP.length)];
+  const d=document.createElement("div");d.className="dgirls";
+  d.innerHTML='<div class="ch-col">'+charSVG(0,"ch-idle")+'<div class="ch-name">'+escH(S.girls[0].n)+'</div></div>'
+    +'<div class="ch-col">'+charSVG(1,"ch-idle")+'<div class="ch-name">'+escH(S.girls[1].n)+'</div></div>';
+  w.insertBefore(d,w.querySelector(".dstats"));
+}
+function boxBlur(p,w,h){ // 3x3 평균 블러 (피부 매끈)
+  const o=new Uint8ClampedArray(p.length);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    let r=0,g=0,b=0,n=0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      const yy=y+dy,xx=x+dx;
+      if(yy<0||yy>=h||xx<0||xx>=w)continue;
+      const j=(yy*w+xx)*4;r+=p[j];g+=p[j+1];b+=p[j+2];n++;
+    }
+    const k=(y*w+x)*4;o[k]=r/n;o[k+1]=g/n;o[k+2]=b/n;o[k+3]=255;
+  }
+  return o;
+}
+function toonify(ctx,w,h){ // 만화풍: 색 단순화 + 검은 외곽선
+  const im=ctx.getImageData(0,0,w,h);
+  let p=boxBlur(im.data,w,h);p=boxBlur(p,w,h);
+  const lum=new Float32Array(w*h);
+  const LV=6,step=255/(LV-1);
+  for(let i=0;i<p.length;i+=4){
+    let r=p[i],g=p[i+1],b=p[i+2];
+    const l=0.299*r+0.587*g+0.114*b;lum[i/4]=l;
+    r=l+(r-l)*1.5;g=l+(g-l)*1.5;b=l+(b-l)*1.5;        // 채도 올리기
+    r=(r-128)*1.08+130;g=(g-128)*1.08+130;b=(b-128)*1.08+130; // 살짝 밝고 진하게
+    p[i]=Math.round(Math.min(255,Math.max(0,r))/step)*step;   // 색 단계 단순화
+    p[i+1]=Math.round(Math.min(255,Math.max(0,g))/step)*step;
+    p[i+2]=Math.round(Math.min(255,Math.max(0,b))/step)*step;
+  }
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){        // 소벨 외곽선
+    const i=y*w+x;
+    const gx=-lum[i-w-1]-2*lum[i-1]-lum[i+w-1]+lum[i-w+1]+2*lum[i+1]+lum[i+w+1];
+    const gy=-lum[i-w-1]-2*lum[i-w]-lum[i-w+1]+lum[i+w-1]+2*lum[i+w]+lum[i+w+1];
+    const m=Math.abs(gx)+Math.abs(gy);
+    if(m>58){const f=Math.max(0.2,1-(m-58)/150),k=i*4;p[k]*=f;p[k+1]*=f;p[k+2]*=f;}
+  }
+  im.data.set(p);ctx.putImageData(im,0,0);
+}
+function onPhoto(i,inp){
+  const f=inp.files&&inp.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{const img=new Image();
+    img.onload=()=>{
+      const c=document.createElement("canvas");c.width=c.height=220;
+      const s=Math.min(img.width,img.height);
+      const ctx=c.getContext("2d");
+      ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,220,220);
+      if(S.set.toon)try{toonify(ctx,220,220)}catch(e){}
+      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast(S.set.toon?"사진 등록 완료 — 만화풍 변환!":"사진 등록 완료!");
+    };
+    img.src=r.result;};
+  r.readAsDataURL(f);inp.value="";
+}
+function delPhoto(i){S.girls[i].img="";save();renderSettings()}
+
+/* ───────── 동기화 ───────── */
+function srvUrl(){
+  if(S.set.srv)return S.set.srv.replace(/\/$/,"");
+  if(location.host.indexOf("appassets")>-1)return ""; // APK 내부 오리진은 서버 아님
+  if(location.protocol.startsWith("http"))return location.origin;
+  return "";
+}
+async function syncUp(silent){
+  const u=srvUrl();if(!u){if(!silent)toast("서버 주소를 먼저 입력하세요");return}
+  try{
+    await fetch(u+"/api/progress",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(S)});
+    if(!silent)toast("서버에 저장했어요");
+  }catch(e){if(!silent)toast("서버에 연결할 수 없어요")}
+}
+async function syncDown(){
+  const u=srvUrl();if(!u){toast("서버 주소를 먼저 입력하세요");return}
+  try{
+    const r=await fetch(u+"/api/progress");const j=await r.json();
+    if(j&&j.saved){
+      if(j.saved<S.saved&&!confirm("서버 데이터가 이 기기보다 오래됐어요. 그래도 불러올까요?"))return;
+      localStorage.setItem("wonshw",JSON.stringify(j));S=load();go("home");toast("서버 데이터를 불러왔어요");
+    }else toast("서버에 저장된 데이터가 없어요");
+  }catch(e){toast("서버에 연결할 수 없어요")}
+}
+async function autoSync(){
+  const u=srvUrl();if(!u||!location.protocol.startsWith("http"))return;
+  try{
+    const r=await fetch(u+"/api/progress");const j=await r.json();
+    if(j&&j.saved&&j.saved>S.saved){localStorage.setItem("wonshw",JSON.stringify(j));S=load();renderHome();toast("PC 진행 상황과 동기화됨")}
+  }catch(e){}
+}
+
+/* ───────── PWA ───────── */
+const ICON="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#g)"/><text x="50" y="67" font-size="44" font-family="sans-serif" font-weight="800" fill="#fff" text-anchor="middle">원</text></svg>');
+$("#mf").href="data:application/manifest+json,"+encodeURIComponent(JSON.stringify({
+  name:"원스회화 — 매일 10분 영어",short_name:"원스회화",start_url:".",display:"standalone",
+  background_color:"#FFFFFF",theme_color:"#DB2777",orientation:"portrait",
+  icons:[{src:ICON,sizes:"192x192",type:"image/svg+xml"},{src:ICON,sizes:"512x512",type:"image/svg+xml"}]
+}));
+if("serviceWorker" in navigator&&location.protocol.startsWith("http")){
+  navigator.serviceWorker.register("/sw.js").catch(()=>{});
+}
+
+/* ───────── 초기화 ───────── */
+document.addEventListener("touchstart",()=>FX.resume(),{once:true});
+document.addEventListener("click",()=>FX.resume(),{once:true});
+if(S.today.date!==todayStr()){S.today={date:todayStr(),ans:0,total:0,comp:false};save()}
+renderHome();autoSync();
+</script>
+</body>
+</html>
