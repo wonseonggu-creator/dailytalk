@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
@@ -7,34 +7,34 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="WON-GLISH">
-<meta name="theme-color" content="#DB2777">
-<title>WON-GLISH — 每天10分钟英语</title>
+<meta name="theme-color" content="#2563EB">
+<title>WON-GLISH — 매일 10분 영어회화</title>
 <link rel="manifest" id="mf">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#FFFFFF;--bg2:#FBF5F9;--bg3:#F4E9F0;
+  --bg:#FFFFFF;--bg2:#F5F7FA;--bg3:#EBEFF5;
   --tx:#101828;--tx2:#5B6472;--tx3:#98A2B3;
-  --line:#F0DEEA;--grad:linear-gradient(135deg,#EC4899,#8B5CF6);
-  --blue:#DB2777;--blue-dk:#BE185D;--blue-bg:#FCE7F3;--blue-tx:#BE185D;
+  --line:#E4E9F0;
+  --blue:#2563EB;--blue-dk:#1D4ED8;--blue-bg:#EFF4FF;--blue-tx:#1D4ED8;
   --green:#16A34A;--green-bg:#EAF8EF;--green-tx:#15803D;
   --amber:#D97706;--amber-bg:#FEF6E7;--amber-tx:#B45309;
-  --sh:0 2px 6px rgba(190,24,93,.05),0 8px 22px rgba(190,24,93,.07);
-  --r:20px;--r-sm:14px;
+  --sh:0 1px 2px rgba(16,24,40,.05),0 4px 12px rgba(16,24,40,.06);
+  --r:16px;--r-sm:12px;
   --f-en:'Inter','SF Pro Text',-apple-system,'Segoe UI',sans-serif;
-  --f-ko:'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif;
+  --f-ko:'Pretendard Variable','Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg:#171019;--bg2:#211826;--bg3:#2C2033;
+  --bg:#0F1319;--bg2:#171C24;--bg3:#212834;
   --tx:#EDF0F4;--tx2:#9AA3B0;--tx3:#5E6875;
-  --line:#352640;--grad:linear-gradient(135deg,#EC4899,#8B5CF6);
-  --blue:#F472B6;--blue-dk:#DB2777;--blue-bg:#3B1830;--blue-tx:#F9A8D4;
+  --line:#252D3A;
+  --blue:#3B82F6;--blue-dk:#2563EB;--blue-bg:#1B2A4A;--blue-tx:#7CA9F9;
   --green:#34C769;--green-bg:#12301D;--green-tx:#63D68D;
   --amber:#F0A23C;--amber-bg:#33230C;--amber-tx:#F3B563;
   --sh:0 1px 2px rgba(0,0,0,.4);
 }}
 html{font-size:16px}
-body{font-family:var(--f-ko);background:radial-gradient(900px 420px at 112% -8%,var(--blue-bg) 0%,transparent 62%),radial-gradient(700px 360px at -12% -4%,rgba(139,92,246,.12) 0%,transparent 58%),var(--bg);color:var(--tx);overscroll-behavior:none;line-height:1.5}
+body{font-family:var(--f-ko);background:var(--bg);color:var(--tx);overscroll-behavior:none;line-height:1.5}
 button{font-family:inherit;border:none;background:none;color:inherit;cursor:pointer}
 input{font-family:inherit}
 .en{font-family:var(--f-en)}
@@ -43,8 +43,7 @@ input{font-family:inherit}
 /* ── 헤더 ── */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:calc(max(env(safe-area-inset-top),10px)) 20px 6px}
 .logo{font-family:var(--f-en);font-weight:800;font-size:19px;letter-spacing:-.02em}
-.logo{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo b{}
+.logo b{color:var(--blue)}
 .hdr-right{display:flex;gap:8px;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;padding:5px 11px;border-radius:20px;background:var(--bg2);color:var(--tx2)}
 .pill.streak{background:var(--blue-bg);color:var(--blue-tx)}
@@ -62,7 +61,7 @@ input{font-family:inherit}
 .ring{position:relative;width:168px;height:168px}
 .ring svg{transform:rotate(-90deg)}
 .ring .track{fill:none;stroke:var(--bg3);stroke-width:12}
-.ring .bar{fill:none;stroke:url(#wg1);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)}
+.ring .bar{fill:none;stroke:var(--blue);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)}
 .ring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .ring-pct{font-family:var(--f-en);font-size:34px;font-weight:800;letter-spacing:-.03em}
 .ring-lb{font-size:12px;color:var(--tx3);font-weight:600}
@@ -72,7 +71,7 @@ input{font-family:inherit}
 .tt-week{font-size:12px;color:var(--tx3)}
 .tt-name{font-size:19px;font-weight:800;letter-spacing:-.01em}
 .tt-sub{font-size:13px;color:var(--tx2);margin-top:3px}
-.btn-main{display:block;width:100%;margin-top:16px;padding:16px;border-radius:16px;background:var(--grad);color:#fff;font-size:17px;font-weight:800;letter-spacing:-.01em;box-shadow:0 8px 20px rgba(219,39,119,.32);transition:transform .12s}
+.btn-main{display:block;width:100%;margin-top:16px;padding:16px;border-radius:14px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;letter-spacing:-.01em;box-shadow:0 6px 16px rgba(37,99,235,.3);transition:transform .12s}
 .btn-main:active{transform:scale(.975)}
 .btn-main.done{background:var(--green);box-shadow:0 6px 16px rgba(22,163,74,.25)}
 .btn-sub{display:block;width:100%;margin-top:10px;padding:13px;border-radius:14px;background:var(--bg2);color:var(--tx2);font-size:15px;font-weight:700;transition:transform .12s}
@@ -83,7 +82,7 @@ input{font-family:inherit}
 .lx{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--tx3);font-size:20px;flex-shrink:0}
 .lx:active{background:var(--bg2)}
 .ptrack{flex:1;height:12px;background:var(--bg3);border-radius:8px;overflow:hidden}
-.pbar{height:100%;width:0;background:var(--grad);border-radius:8px;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.pbar{height:100%;width:0;background:var(--blue);border-radius:8px;transition:width .35s cubic-bezier(.22,1,.36,1)}
 .combo{min-width:44px;text-align:center;font-family:var(--f-en);font-size:13px;font-weight:800;padding:5px 9px;border-radius:20px;background:var(--bg2);color:var(--tx3);transition:all .2s}
 .combo.hot{background:var(--blue-bg);color:var(--blue-tx)}
 .qtype{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--blue-tx);background:var(--blue-bg);padding:5px 11px;border-radius:20px;margin-bottom:14px}
@@ -97,7 +96,7 @@ input{font-family:inherit}
 .opt.sel{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-tx)}
 .opt.ok{border-color:var(--green);background:var(--green-bg);color:var(--green-tx)}
 .opt.no{border-color:var(--amber);background:var(--amber-bg);color:var(--amber-tx)}
-.spk{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:22px;background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(219,39,119,.32);transition:transform .12s;margin:4px 0 18px}
+.spk{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:20px;background:var(--blue);color:#fff;box-shadow:0 5px 14px rgba(37,99,235,.32);transition:transform .12s;margin:4px 0 18px}
 .spk:active{transform:scale(.93)}
 .spk svg{width:28px;height:28px}
 .spk.sm{width:40px;height:40px;border-radius:13px;margin:0;box-shadow:none;background:var(--blue-bg);color:var(--blue-tx)}
@@ -155,7 +154,7 @@ input{font-family:inherit}
 .sheet.no .fb-t{color:var(--amber-tx)}
 .fb-s{font-size:14.5px;color:var(--tx2);margin-bottom:10px}
 .fb-s .en{font-weight:700;color:var(--tx)}
-.btn-chk{display:block;width:100%;padding:15px;border-radius:16px;font-size:16.5px;font-weight:800;background:var(--grad);color:#fff;transition:transform .1s,opacity .2s}
+.btn-chk{display:block;width:100%;padding:15px;border-radius:14px;font-size:16.5px;font-weight:800;background:var(--blue);color:#fff;transition:transform .1s,opacity .2s}
 .btn-chk:disabled{background:var(--bg3);color:var(--tx3)}
 .btn-chk:active{transform:scale(.98)}
 .sheet.ok .btn-chk{background:var(--green)}
@@ -361,74 +360,73 @@ button:focus-visible,.sw:focus-visible{outline:2.5px solid var(--blue);outline-o
     </div>
   </div>
 
-  <!-- 今天 -->
+  <!-- 오늘 -->
   <section class="screen on" id="s-home">
     <div class="ring-wrap">
       <div class="ring">
         <svg width="168" height="168" viewBox="0 0 168 168">
-          <defs><linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
           <circle class="track" cx="84" cy="84" r="74"></circle>
           <circle class="bar" id="ring-bar" cx="84" cy="84" r="74" stroke-dasharray="465" stroke-dashoffset="465"></circle>
         </svg>
         <div class="ring-c">
           <div class="ring-pct" id="ring-pct">0%</div>
-          <div class="ring-lb">今日目标</div>
+          <div class="ring-lb">오늘 목표</div>
         </div>
       </div>
       <div class="today-theme card" id="theme-card"></div>
-      <button class="btn-main" id="btn-start" onclick="startLesson()">开始今天</button>
-      <button class="btn-sub" id="btn-quickrev" onclick="startReview()">只做复习</button>
+      <button class="btn-main" id="btn-start" onclick="startLesson()">오늘 시작</button>
+      <button class="btn-sub" id="btn-quickrev" onclick="startReview()">복습만 하기</button>
     </div>
   </section>
 
-  <!-- 课程 -->
+  <!-- 레슨 -->
   <section class="screen" id="s-lesson">
     <div class="ltop">
-      <button class="lx" onclick="quitLesson()" aria-label="退出课程">✕</button>
+      <button class="lx" onclick="quitLesson()" aria-label="레슨 나가기">✕</button>
       <div class="ptrack"><div class="pbar" id="pbar"></div></div>
       <div class="combo" id="combo">—</div>
     </div>
     <div id="q-area"></div>
   </section>
 
-  <!-- 复习 -->
+  <!-- 복습 -->
   <section class="screen" id="s-review">
     <div class="card">
-      <div style="font-size:18px;font-weight:800" id="rev-head">复习</div>
+      <div style="font-size:18px;font-weight:800" id="rev-head">복습</div>
       <div style="font-size:14px;color:var(--tx2);margin-top:4px" id="rev-sub"></div>
-      <button class="btn-main" style="margin-top:14px" onclick="startReview()">开始复习</button>
+      <button class="btn-main" style="margin-top:14px" onclick="startReview()">복습 시작</button>
     </div>
-    <div class="sec-t">薄弱表达</div>
+    <div class="sec-t">약한 표현</div>
     <div id="weak-list"></div>
   </section>
 
-  <!-- 我 -->
+  <!-- 나 -->
   <section class="screen" id="s-me">
     <div class="stat-grid">
-      <div class="stat"><div class="v" id="st-streak">0<small>天</small></div><div class="l">连续学习</div></div>
-      <div class="stat"><div class="v" id="st-xp">0</div><div class="l">总 XP</div></div>
-      <div class="stat"><div class="v" id="st-days">0<small>/20</small></div><div class="l">完成天数</div></div>
-      <div class="stat"><div class="v" id="st-acc">—</div><div class="l">复习正确率</div></div>
+      <div class="stat"><div class="v" id="st-streak">0<small>일</small></div><div class="l">연속 학습</div></div>
+      <div class="stat"><div class="v" id="st-xp">0</div><div class="l">총 XP</div></div>
+      <div class="stat"><div class="v" id="st-days">0<small>/20</small></div><div class="l">완료한 날</div></div>
+      <div class="stat"><div class="v" id="st-acc">—</div><div class="l">복습 정답률</div></div>
     </div>
-    <div class="sec-t">进度 — 第1~4周 <span style="font-weight:500">(第5周起 Phase 2)</span></div>
+    <div class="sec-t">진도 — 1~4주차 <span style="font-weight:500">(5주차부터 Phase 2)</span></div>
     <div class="cal" id="cal"></div>
-    <div class="sec-t">学过的语法</div>
+    <div class="sec-t">배운 문법</div>
     <div id="gram-list"></div>
-    <div class="sec-t">设置</div>
+    <div class="sec-t">설정</div>
     <div class="card" id="settings"></div>
   </section>
 
-  <!-- 标签栏 -->
+  <!-- 탭바 -->
   <nav class="tabbar" id="tabbar">
     <button class="tab on" data-t="home" onclick="go('home')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-      今天</button>
+      오늘</button>
     <button class="tab" data-t="review" onclick="go('review')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
-      复习</button>
+      복습</button>
     <button class="tab" data-t="me" onclick="go('me')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
-      我</button>
+      나</button>
   </nav>
 
   <div class="sheet" id="sheet" style="display:none"></div>
@@ -524,305 +522,305 @@ const SPK_SVG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 
 <script>
 /* ───────── 콘텐츠: 1~4주차 (20일 × 표현 5 + 문법 1) ───────── */
 const DATA=[
-{d:1,w:1,t:"聊周末",p:[
-["How was your weekend?","你周末过得怎么样?","How was ~? = ~怎么样"],
-["I went hiking with my family.","我和家人去爬山了。","went = go的过去式"],
-["We had a great time.","我们玩得很开心。","have a great time = 玩得开心"],
-["I just stayed home and relaxed.","我就待在家里休息了。","stay home = 待在家"],
-["I met an old friend for coffee.","我和老朋友见面喝了咖啡。","met = meet的过去式"],
-["The weather was perfect for a walk.","天气特别适合散步。","perfect for = 特别适合"],
-["I watched a movie last night.","我昨晚看了部电影。","last night = 昨晚"],
-["It was better than I expected.","比我预期的要好。","than I expected = 比预期"],
-["What did you do on Sunday?","你星期天做什么了?","What did you do? 过去式提问"],
-["Time flies on weekends.","周末时间过得真快。","Time flies = 时间飞逝"]],
-g:{t:"过去式 — 不规则动词",e:"went(go)、had(have)、met(meet)、saw(see)这些常用动词是不规则变化。\n提问用 did + 动词原形: What did you do?\n否定用 didn't + 动词原形: I didn't go.",
-x:[["I saw a movie yesterday.","我昨天看了电影。"],["We ate out on Saturday.","我们周六下馆子了。"]],
-q:{s:"I ___ hiking last weekend.",a:"went",o:["went","go","gone","going"]}}},
+{d:1,w:1,t:"아침 루틴",p:[
+["I get up at seven every day.","나는 매일 7시에 일어나요.","get up = 잠자리에서 일어나다"],
+["I wash my face and brush my teeth.","세수하고 이를 닦아요.","brush one's teeth = 이를 닦다"],
+["I have breakfast at eight.","8시에 아침을 먹어요.","have = eat보다 자연스러운 '먹다'"],
+["I check my phone in the morning.","아침에 휴대폰을 확인해요.","in the morning = 아침에"],
+["I leave home at nine.","9시에 집에서 나가요.","leave + 장소 = ~를 떠나다"],
+["I wake up before my alarm.","알람보다 먼저 잠이 깨요.","wake up = 잠이 깨다 (get up은 일어나기)"],
+["I make my bed every morning.","매일 아침 침대를 정리해요.","make the bed = 이부자리 정리"],
+["I drink a glass of water first.","먼저 물 한 잔을 마셔요.","a glass of = 한 잔"],
+["I get dressed after breakfast.","아침 먹고 옷을 입어요.","get dressed = 옷을 입다"],
+["I'm always in a hurry in the morning.","아침엔 늘 정신없이 바빠요.","in a hurry = 급한"]],
+g:{t:"현재형 — 매일 하는 일",e:"매일·습관적으로 하는 일은 현재형(동사원형)으로 말해요.\n「I + 동사원형 ~」이 기본 틀입니다.\n시각은 at seven, 빈도는 every day처럼 문장 끝에 붙여요.",
+x:[["I drink coffee every morning.","나는 아침마다 커피를 마셔요."],["I go to work at nine.","나는 9시에 출근해요."]],
+q:{s:"I ___ breakfast at eight every day.",a:"have",o:["have","has","having","had"]}}},
 
-{d:2,w:1,t:"久别问候",p:[
-["How have you been?","你最近过得怎么样?","久别重逢的问候"],
-["Long time no see!","好久不见!","固定问候语"],
-["It's been a while.","有一阵子没见了。","It's been = It has been"],
-["I've been really busy lately.","我最近特别忙。","lately = 最近"],
-["Same as usual.","还是老样子。","as usual = 和平时一样"],
-["How's your family doing?","家里人都好吗?","How's ~ doing? = ~还好吗"],
-["You haven't changed at all!","你一点都没变!","not ~ at all = 一点也不"],
-["What have you been up to?","最近都在忙什么?","be up to = 在做"],
-["Let's catch up soon.","改天见面好好聊聊。","catch up = 叙旧"],
-["Give my regards to your husband.","替我向你先生问好。","regards = 问候"]],
-g:{t:"现在完成时问候 — have been",e:"从过去持续到现在的状态用 have been。\nHow have you been?(这段时间过得怎么样?)\nI've been busy.(一直很忙)\n常和 lately、recently(最近)搭配。",
-x:[["I've been good, thanks.","我挺好的,谢谢。"],["She's been sick this week.","她这周一直生病。"]],
-q:{s:"I've ___ really busy lately.",a:"been",o:["been","be","was","being"]}}},
+{d:2,w:1,t:"일과 시간",p:[
+["I start work at ten.","10시에 일을 시작해요.","start work = 일을 시작하다"],
+["I have lunch with my coworkers.","동료들과 점심을 먹어요.","coworker = 직장 동료"],
+["I take a short break at three.","3시에 잠깐 쉬어요.","take a break = 휴식하다"],
+["I finish work at six.","6시에 일을 마쳐요.","finish = 끝내다"],
+["I go home by bus.","버스로 집에 가요.","by + 교통수단 (관사 없음)"],
+["I have a meeting at eleven.","11시에 회의가 있어요.","have a meeting = 회의가 있다"],
+["I answer emails after lunch.","점심 후에 이메일에 답해요.","answer = 답하다"],
+["I'm busy on Mondays.","월요일엔 바빠요.","on + 요일"],
+["I take the subway to work.","지하철 타고 출근해요.","take + 교통수단 = 타다"],
+["I get home around seven.","7시쯤 집에 도착해요.","around = ~쯤, 대략"]],
+g:{t:"at + 시각 / by + 교통수단",e:"정확한 시각 앞에는 at을 써요: at ten, at six.\n교통수단은 by 뒤에 관사 없이 그대로: by bus, by subway, by taxi.\n'걸어서'만 예외로 on foot이라고 합니다.",
+x:[["I get there by subway.","지하철로 거기 가요."],["The meeting starts at two.","회의는 2시에 시작해요."]],
+q:{s:"I go home ___ bus.",a:"by",o:["by","at","on","in"]}}},
 
-{d:3,w:1,t:"天气闲聊",p:[
-["It looks like rain.","好像要下雨了。","look like = 好像"],
-["It's getting colder these days.","最近越来越冷了。","get + 比较级 = 越来越"],
-["What a beautiful day!","今天天气真好!","What a ~! 感叹句"],
-["I can't stand this heat.","这么热我受不了。","can't stand = 受不了"],
-["The forecast says it'll be sunny.","天气预报说会是晴天。","forecast = 天气预报"],
-["Don't forget your umbrella.","别忘了带伞。","Don't forget = 别忘了"],
-["It rained all day yesterday.","昨天下了一整天雨。","all day = 一整天"],
-["Spring is my favorite season.","春天是我最喜欢的季节。","favorite = 最喜欢的"],
-["It's a bit chilly this morning.","今天早上有点凉。","chilly = 微凉的"],
-["Perfect weather for a picnic, isn't it?","正是野餐的好天气,对吧?","isn't it? = 寻求认同"]],
-g:{t:"get + 比较级 — 越来越",e:"变化用 get + 比较级表达。\nIt's getting colder.(越来越冷)\nIt's getting better.(越来越好)\n天气、水平、状况都能用,是变化表达的基础。",
-x:[["The days are getting longer.","白天越来越长了。"],["My English is getting better.","我的英语越来越好了。"]],
-q:{s:"It's getting ___ these days.",a:"colder",o:["colder","cold","coldest","coldly"]}}},
+{d:3,w:1,t:"저녁 루틴",p:[
+["I make dinner at home.","집에서 저녁을 만들어요.","make dinner = 저녁을 차리다"],
+["I watch TV after dinner.","저녁 먹은 뒤 TV를 봐요.","after + 명사 = ~ 후에"],
+["I take a shower before bed.","자기 전에 샤워해요.","take a shower = 샤워하다"],
+["I go to bed at eleven.","11시에 잠자리에 들어요.","go to bed = 자러 가다"],
+["I read a little before I sleep.","자기 전에 조금 읽어요.","a little = 조금"],
+["I take a walk in the evening.","저녁에 산책해요.","take a walk = 산책하다"],
+["I do the dishes after dinner.","저녁 먹고 설거지해요.","do the dishes = 설거지하다"],
+["I call my daughter at night.","밤에 딸에게 전화해요.","call = 전화하다"],
+["I set my alarm for six.","알람을 6시로 맞춰요.","set an alarm for + 시각"],
+["I fall asleep quickly.","금방 잠들어요.","fall asleep = 잠들다"]],
+g:{t:"before / after — 전에·후에",e:"before(~ 전에)·after(~ 후에) 뒤에는 명사를 바로 붙일 수 있어요: after dinner, before bed.\n문장을 붙일 수도 있어요: before I sleep.\n문장 앞에 둘 수도 있습니다: After dinner, I watch TV.",
+x:[["I brush my teeth after lunch.","점심 먹고 이를 닦아요."],["Call me before the meeting.","회의 전에 전화 줘요."]],
+q:{s:"I watch TV ___ dinner.",a:"after",o:["after","before","at","by"]}}},
 
-{d:4,w:1,t:"聊经历",p:[
-["Have you ever been to Jeju?","你去过济州岛吗?","have been to = 去过"],
-["I've never tried Indian food.","我从来没吃过印度菜。","never = 从来没有"],
-["I've seen that movie twice.","那部电影我看过两遍。","twice = 两次"],
-["It was my first time abroad.","那是我第一次出国。","abroad = 在国外"],
-["Have you tried this restaurant?","这家餐厅你去过吗?","try = 尝试"],
-["I've always wanted to learn English.","我一直想学英语。","always wanted to = 一直想"],
-["That's the best pasta I've ever had.","这是我吃过最好吃的意面。","the best ~ ever = 最~"],
-["I've heard a lot about you.","久仰大名。","hear about = 听说"],
-["Once is enough for me.","对我来说一次就够了。","once = 一次"],
-["You should try it at least once.","你至少该试一次。","at least = 至少"]],
-g:{t:"Have you ever ~? — 问经历",e:"加上 ever(哪怕一次)来询问经历。\nHave you ever been to Jeju?\n回答: Yes, I have. / No, I've never been there.\nbeen to = 去过~。",
-x:[["Have you ever tried kimchi?","你吃过泡菜吗?"],["I've never been there.","我从没去过那儿。"]],
-q:{s:"Have you ___ been to Busan?",a:"ever",o:["ever","never","yet","still"]}}},
+{d:4,w:1,t:"빈도 말하기",p:[
+["I always drink coffee in the morning.","아침엔 항상 커피를 마셔요.","always = 항상 (100%)"],
+["I usually walk to the store.","보통은 가게까지 걸어가요.","usually = 보통 (80%)"],
+["I sometimes cook Korean food.","가끔 한국 음식을 해요.","sometimes = 가끔 (50%)"],
+["I often call my family.","자주 가족에게 전화해요.","often = 자주 (70%)"],
+["I never skip breakfast.","아침은 절대 거르지 않아요.","never = 전혀 안 함 (0%)"],
+["I rarely eat out on weekdays.","평일엔 외식을 거의 안 해요.","rarely = 거의 안 함"],
+["I exercise twice a week.","일주일에 두 번 운동해요.","twice a week = 주 2회"],
+["I check the news every morning.","매일 아침 뉴스를 봐요.","every + 단수 명사"],
+["How often do you cook?","얼마나 자주 요리해요?","How often = 얼마나 자주"],
+["I'm usually free on Sundays.","일요일엔 보통 한가해요.","free = 한가한"]],
+g:{t:"빈도부사의 위치",e:"always·usually·often·sometimes·never는 '얼마나 자주'를 나타내요.\n위치는 일반동사 바로 앞: I always drink coffee.\nbe동사 뒤: I am always busy.\nnever 자체가 부정이라 not을 또 쓰지 않아요.",
+x:[["I usually get up early.","나는 보통 일찍 일어나요."],["She never eats fast food.","그녀는 패스트푸드를 전혀 안 먹어요."]],
+q:{s:"I ___ skip breakfast.",a:"never",o:["never","no","not","none"]}}},
 
-{d:5,w:1,t:"昨天的事",p:[
-["I didn't sleep well last night.","我昨晚没睡好。","didn't + 动词原形"],
-["What time did you get home?","你几点到家的?","did 疑问句"],
-["I forgot to bring my phone.","我忘了带手机。","forgot to = 忘了做"],
-["It took longer than usual.","比平时花的时间长。","than usual = 比平时"],
-["I almost missed the bus.","我差点没赶上公交。","almost = 差点"],
-["Luckily, I caught it in time.","幸好及时赶上了。","in time = 及时"],
-["Why didn't you call me?","你怎么没给我打电话?","Why didn't ~? = 怎么没"],
-["Sorry, my phone was dead.","抱歉,我手机没电了。","dead = 没电的"],
-["It happens to everyone.","谁都会遇到这种事。","It happens = 常有的事"],
-["Let's not talk about yesterday.","别提昨天的事了。","Let's not = 别~了"]],
-g:{t:"didn't + 动词原形 — 过去的否定和疑问",e:"过去否定用 didn't + 动词原形: I didn't sleep well.\n疑问用 Did you ~? 有疑问词放最前: What time did you get home?\ndidn't、did 后面必须用动词原形。",
-x:[["I didn't know that.","我不知道那件事。"],["Did you eat lunch?","你吃午饭了吗?"]],
-q:{s:"I ___ sleep well last night.",a:"didn't",o:["didn't","don't","wasn't","haven't"]}}},
+{d:5,w:1,t:"상대에게 묻기",p:[
+["What time do you get up?","몇 시에 일어나요?","What time = 몇 시에"],
+["Do you drink coffee every day?","매일 커피 마셔요?","Do you ~? = ~하나요?"],
+["What do you do after work?","퇴근 후에 뭐 해요?","do = 하다"],
+["How do you go to work?","어떻게 출근해요?","How = 어떻게(수단·방법)"],
+["I get up early, too.","저도 일찍 일어나요.","too = ~도 (문장 끝)"],
+["What time do you finish work?","몇 시에 일이 끝나요?","finish work = 일을 마치다"],
+["Where do you usually have lunch?","점심은 보통 어디서 먹어요?","Where = 어디서"],
+["Do you exercise in the morning?","아침에 운동해요?","exercise = 운동하다"],
+["Me too.","저도요.","맞장구의 기본"],
+["Really? That's early!","정말요? 이르네요!","리액션 한마디"]],
+g:{t:"Do you ~? — 일반동사 의문문",e:"일반동사 질문은 Do를 문장 앞에 붙여요: Do you drink coffee?\n의문사가 있으면 의문사 뒤에: What time do you get up?\n대답은 Yes, I do. / No, I don't.",
+x:[["Do you like coffee?","커피 좋아해요?"],["Where do you have lunch?","점심은 어디서 먹어요?"]],
+q:{s:"___ you drink coffee every day?",a:"Do",o:["Do","Are","Does","Is"]}}},
 
-{d:6,w:2,t:"表达心情",p:[
-["I'm so excited about the trip.","想到旅行我就特别兴奋。","excited about = 为~兴奋"],
-["That's such a relief.","那真让人松了口气。","relief = 宽慰"],
-["I was really disappointed.","我真的很失望。","disappointed = 失望的"],
-["You look tired today.","你今天看起来很累。","look + 形容词 = 看起来"],
-["Don't worry, it'll be fine.","别担心,会好的。","it'll be fine = 会好的"],
-["I'm a little nervous about it.","我有点紧张。","nervous about = 为~紧张"],
-["That sounds amazing!","听起来太棒了!","sound + 形容词 = 听起来"],
-["I know how you feel.","我懂你的感受。","how you feel = 你的感受"],
-["It made my day.","这让我一天心情都好了。","make one's day = 让人开心"],
-["Cheer up! Things will get better.","打起精神!会好起来的。","Cheer up = 加油"]],
-g:{t:"look / sound + 形容词",e:"看起来、听起来后面直接加形容词。\nYou look tired. / That sounds fun.\n接名词时要加 like: It looks like rain.",
-x:[["You look happy today.","你今天看起来很开心。"],["That sounds like a good idea.","听起来是个好主意。"]],
-q:{s:"That ___ amazing!",a:"sounds",o:["sounds","sound","sounding","sounded"]}}},
+{d:6,w:2,t:"카페 주문",p:[
+["Can I have an iced americano?","아이스 아메리카노 주시겠어요?","Can I have ~? = 주문의 기본 틀"],
+["A small one, please.","작은 사이즈로 주세요.","one = 앞에 말한 것 대신"],
+["To go, please.","테이크아웃할게요.","매장에서 먹으면 For here"],
+["No sugar, please.","설탕은 빼 주세요.","No + 명사 = ~ 빼고"],
+["Do you have decaf?","디카페인 있나요?","Do you have ~? = ~ 있어요?"],
+["One iced latte and one hot coffee, please.","아이스 라테 하나랑 뜨거운 커피 하나요.","and로 두 개 주문"],
+["What size would you like?","어떤 사이즈로 드릴까요? (점원)","점원 말 알아듣기"],
+["A medium, please.","중간 사이즈로요.","a + 사이즈"],
+["Can I have this warmed up?","이것 좀 데워 주시겠어요?","warm up = 데우다"],
+["Where can I pick up my drink?","음료는 어디서 받아요?","pick up = 받다, 찾다"]],
+g:{t:"Can I have ~? — 주문하기",e:"주문할 때 가장 자연스러운 표현이 Can I have ~? 예요.\n뒤에 원하는 것만 붙이면 끝: Can I have a latte?\n더 정중하게는 Could I have ~?, 캐주얼하게는 I'll have ~.\n끝에 please를 붙이면 부드러워집니다.",
+x:[["Can I have a glass of water?","물 한 잔 주시겠어요?"],["Can I have the menu, please?","메뉴판 좀 주시겠어요?"]],
+q:{s:"Can I ___ an iced latte?",a:"have",o:["have","has","having","had"]}}},
 
-{d:7,w:2,t:"表达看法",p:[
-["What do you think of this?","你觉得这个怎么样?","think of = 对~的看法"],
-["I think it's a great idea.","我觉得是个好主意。","I think = 我觉得"],
-["In my opinion, it's too risky.","依我看,太冒险了。","in my opinion = 依我看"],
-["I agree with you.","我同意你的看法。","agree with + 人"],
-["I'm not sure about that.","这个我说不好。","not sure about = 不确定"],
-["That makes sense.","有道理。","make sense = 讲得通"],
-["I see your point, but I disagree.","我明白你的意思,但我不同意。","see one's point = 明白意思"],
-["It depends on the situation.","要看情况。","depend on = 取决于"],
-["Let me think about it.","让我想想。","Let me ~ = 让我"],
-["Honestly, I don't really care.","说实话,我无所谓。","honestly = 说实话"]],
-g:{t:"I think + 句子 — 委婉表达意见",e:"用 I think (that) ~ 委婉地说出想法。\n否定用 I don't think ~ 更自然。\n(比 I think ~ not 地道)",
-x:[["I think you're right.","我觉得你说得对。"],["I don't think it's a good idea.","我觉得这不是个好主意。"]],
-q:{s:"I ___ it's a great idea.",a:"think",o:["think","thinks","thought","thinking"]}}},
+{d:7,w:2,t:"식당에서",p:[
+["A table for two, please.","두 명 자리 부탁해요.","for + 인원수"],
+["Can I see the menu?","메뉴판 볼 수 있을까요?","see the menu = 메뉴를 보다"],
+["I'd like the steak, please.","스테이크로 할게요.","I'd like = 정중한 주문"],
+["What do you recommend?","추천 메뉴가 뭐예요?","recommend = 추천하다"],
+["Water is fine, thank you.","물이면 충분해요, 감사합니다.","~ is fine = ~면 됐어요"],
+["Do you have a table by the window?","창가 자리 있어요?","by the window = 창가"],
+["I have a reservation at six.","6시에 예약했어요.","have a reservation = 예약이 있다"],
+["Can we sit outside?","밖에 앉아도 돼요?","sit outside = 야외에 앉다"],
+["What comes with the steak?","스테이크에 뭐가 같이 나와요?","come with = 딸려 나오다"],
+["I'll start with a salad.","샐러드 먼저 먹을게요.","start with = ~부터 시작하다"]],
+g:{t:"I'd like ~ — 정중한 want",e:"I'd like는 I would like의 줄임으로, I want의 정중한 버전이에요.\n뒤에 명사를 붙이면: I'd like the steak.\n동사를 붙일 땐 to와 함께: I'd like to order.\n주문·요청 어디서나 쓰는 만능 표현입니다.",
+x:[["I'd like a window seat.","창가 자리로 하고 싶어요."],["I'd like to check in.","체크인하고 싶어요."]],
+q:{s:"I'd ___ the pasta, please.",a:"like",o:["like","likes","liking","liked"]}}},
 
-{d:8,w:2,t:"说计划",p:[
-["I'm going to visit my parents this weekend.","这周末我要去看父母。","be going to = 打算"],
-["What are you going to do tonight?","你今晚打算做什么?","问计划"],
-["We're planning a trip to Busan.","我们在计划去釜山旅行。","plan = 计划"],
-["I'll probably stay home.","我大概会待在家。","probably = 大概"],
-["Are you doing anything on Friday?","你周五有安排吗?","现在进行时 = 近期安排"],
-["I have an appointment at three.","我三点有个预约。","appointment = 预约"],
-["Maybe next time.","下次吧。","maybe = 也许"],
-["It's going to be a busy week.","这周会很忙。","预定·预测"],
-["I can't make it tomorrow.","明天我去不了。","make it = 赶到,参加"],
-["Let's play it by ear.","到时候看情况吧。","play it by ear = 随机应变"]],
-g:{t:"be going to vs will",e:"事先定好的计划用 be going to: I'm going to visit my parents.\n当场决定或推测用 will: I'll help you.\n都表示将来,但语感不同。",
-x:[["I'm going to see a doctor tomorrow.","我明天打算去看医生。"],["I'll call you tonight.","我今晚给你打电话。"]],
-q:{s:"I'm ___ to visit my parents.",a:"going",o:["going","go","goes","gone"]}}},
+{d:8,w:2,t:"요청·추가 주문",p:[
+["Excuse me, can we order now?","저기요, 지금 주문해도 될까요?","Excuse me = 사람 부를 때"],
+["Can I get more water?","물 좀 더 주시겠어요?","more = 더"],
+["This is not what I ordered.","이건 제가 주문한 게 아니에요.","what I ordered = 내가 주문한 것"],
+["It's really good!","정말 맛있어요!","good만으로 음식 칭찬 가능"],
+["Can we get the check, please?","계산서 주시겠어요?","check = 계산서 (영국은 bill)"],
+["Could we have some more bread?","빵 좀 더 주시겠어요?","some more = 조금 더"],
+["Can you take this away?","이것 좀 치워 주시겠어요?","take away = 치우다"],
+["Is this dish spicy?","이 요리 매워요?","dish = 요리"],
+["Can I get this to go?","이거 포장해 주시겠어요?","to go = 포장"],
+["We're ready to order.","주문할 준비 됐어요.","be ready to = ~할 준비가 되다"]],
+g:{t:"Can I get ~? — 요청하기",e:"Can I get ~?은 Can I have와 거의 같은 요청 표현이에요.\n여럿이면 Can we ~?로 바꾸면 됩니다.\n점원이 쓰면 '드릴까요?'라는 뜻이 돼요: Can I get you anything?",
+x:[["Can I get a fork?","포크 하나 주시겠어요?"],["Can we get two coffees?","커피 두 잔 주시겠어요?"]],
+q:{s:"Can we get the ___, please?",a:"check",o:["check","checks","checked","checking"]}}},
 
-{d:9,w:2,t:"建议和劝告",p:[
-["You should get some rest.","你该休息一下。","should = 应该"],
-["Why don't we eat out tonight?","今晚我们出去吃怎么样?","Why don't we ~? = ~怎么样"],
-["How about Italian food?","意大利菜怎么样?","How about + 名词"],
-["You'd better take a jacket.","你最好带件外套。","had better = 最好"],
-["Let's take a break.","我们休息一下吧。","Let's = ~吧"],
-["If I were you, I'd apologize.","要是我就道歉。","If I were you = 换成我"],
-["It's worth a try.","值得一试。","worth = 值得"],
-["That's not a bad idea.","这主意不错。","not bad = 不错"],
-["Trust me on this one.","这件事相信我。","Trust me = 相信我"],
-["Whatever you decide is fine.","你怎么决定都行。","whatever = 无论什么"]],
-g:{t:"should — 委婉的建议",e:"should + 动词原形 = 应该、最好。\n否定是 shouldn't: You shouldn't skip meals.\n更强的提醒用 had better(不做会有麻烦)。",
-x:[["You should see a doctor.","你该去看医生。"],["We shouldn't be late.","我们不该迟到。"]],
-q:{s:"You ___ get some rest.",a:"should",o:["should","must","shall","would"]}}},
+{d:9,w:2,t:"취향 말하기",p:[
+["I like my coffee strong.","커피는 진한 게 좋아요.","like A B = A는 B한 게 좋다"],
+["Not too spicy, please.","너무 맵지 않게 해 주세요.","not too ~ = 너무 ~하지 않게"],
+["I'm allergic to nuts.","저는 견과류 알레르기가 있어요.","allergic to = ~에 알레르기"],
+["I'll have the same.","같은 걸로 할게요.","the same = 같은 것"],
+["Just a little, please.","조금만 주세요.","just a little = 아주 조금"],
+["I don't eat raw fish.","저는 날생선을 안 먹어요.","raw = 날것의"],
+["Is it very sweet?","많이 달아요?","sweet = 단"],
+["I prefer tea to coffee.","커피보다 차가 좋아요.","prefer A to B = B보다 A"],
+["No ice, please.","얼음은 빼 주세요.","No + 명사 = ~ 빼고"],
+["That's exactly what I wanted.","딱 제가 원하던 거예요.","exactly = 정확히, 딱"]],
+g:{t:"I'll ~ — 즉석에서 정하기",e:"그 자리에서 정할 때는 I'll(I will)을 써요: I'll have the same.\n메뉴를 보다가 '이걸로 할게요'가 바로 I'll have ~입니다.\n미리 세운 계획이 아니라 지금 정하는 느낌이에요.",
+x:[["I'll take this one.","이걸로 할게요."],["I'll call you later.","나중에 전화할게요."]],
+q:{s:"I'll ___ the same.",a:"have",o:["have","had","having","has"]}}},
 
-{d:10,w:2,t:"比较和偏好",p:[
-["This one is much better than that.","这个比那个好多了。","much + 比较级 = ~得多"],
-["I prefer coffee to tea in the morning.","早上比起茶我更喜欢咖啡。","prefer A to B = 更喜欢A"],
-["It's cheaper to cook at home.","在家做饭更便宜。","It's ~ to 动词"],
-["Which do you like better?","你更喜欢哪个?","like better = 更喜欢"],
-["It's the most popular one here.","这是这里最受欢迎的。","the most = 最高级"],
-["Quality matters more than price.","质量比价格更重要。","matter = 重要"],
-["It's not as good as before.","不如以前好了。","not as ~ as = 不如"],
-["The more, the better.","越多越好。","the 比较级, the 比较级"],
-["I'd rather stay home.","我宁愿待在家。","would rather = 宁愿"],
-["Either is fine with me.","哪个都行。","either = 任一个"]],
-g:{t:"much + 比较级 — ~得多",e:"强调比较级用 much: much better(好得多)。\nvery better 是错误的。\n差一点用 a little: a little taller.\n一样用 as ~ as: as good as before.",
-x:[["This is much cheaper.","这个便宜得多。"],["He's a little taller than me.","他比我高一点。"]],
-q:{s:"This is ___ better than that.",a:"much",o:["much","very","many","most"]}}},
+{d:10,w:2,t:"계산하기",p:[
+["Separate checks, please.","따로 계산해 주세요.","separate = 따로따로"],
+["Can I pay by card?","카드로 계산되나요?","pay by card = 카드로 내다"],
+["Keep the change.","잔돈은 가지세요.","change = 잔돈"],
+["Everything was delicious.","전부 맛있었어요.","was = ~였다 (과거)"],
+["See you next time!","다음에 또 올게요!","헤어질 때 가벼운 인사"],
+["Is the tip included?","팁이 포함돼 있나요?","included = 포함된"],
+["I think there's a mistake on the bill.","계산서가 잘못된 것 같아요.","mistake = 실수, 오류"],
+["Can I get a receipt, please?","영수증 주시겠어요?","receipt = 영수증"],
+["It's on me.","제가 낼게요.","on me = 내가 산다"],
+["Let's split the bill.","나눠서 내요.","split = 나누다"]],
+g:{t:"by card / in cash — 지불 수단",e:"카드로는 by card, 현금으로는 in cash라고 해요.\n질문은 Can I pay by card?\n'카드 되나요?'는 Do you take cards?도 아주 자주 씁니다.",
+x:[["I'll pay in cash.","현금으로 낼게요."],["Do you take cards?","카드 받으세요?"]],
+q:{s:"Can I pay ___ card?",a:"by",o:["by","in","on","at"]}}},
 
-{d:11,w:3,t:"打电话",p:[
-["Hello, may I speak to Ms. Kim?","喂,请问金女士在吗?","may I speak to = 请~接电话"],
-["Speaking. Who's calling, please?","我就是。请问您是哪位?","Speaking = 我就是"],
-["I'm calling about the reservation.","我打电话是想问预订的事。","calling about = 为~来电"],
-["Could you speak up a little?","您能稍微大点声吗?","speak up = 大声说"],
-["Sorry, you have the wrong number.","不好意思,您打错电话了。","wrong number = 打错电话"],
-["Can I leave a message?","我能留个言吗?","leave a message = 留言"],
-["I'll call you back in ten minutes.","我十分钟后给您回电话。","call back = 回电"],
-["The line is busy.","占线呢。","line is busy = 占线"],
-["My battery is running low.","我手机快没电了。","run low = 快用完"],
-["Sorry, I missed your call.","抱歉,没接到你的电话。","miss a call = 漏接电话"]],
-g:{t:"电话英语的固定说法",e:"打电话有一套固定表达。\nMay I speak to ~?(请找~)/ Speaking.(我就是)\nI'm calling about ~(来电事由)/ call back(回电)\n整句背下来是最快的办法。",
-x:[["May I speak to the manager?","请问经理在吗?"],["I'll call back later.","我稍后再打过来。"]],
-q:{s:"Can I leave a ___?",a:"message",o:["message","call","phone","talk"]}}},
+{d:11,w:3,t:"물건 찾기",p:[
+["I'm just looking, thanks.","그냥 둘러보는 중이에요.","just looking = 구경만 하는 중"],
+["Do you have this in black?","이거 검은색 있어요?","in + 색상"],
+["Where can I find socks?","양말은 어디에 있어요?","find = 찾다"],
+["Can I try this on?","이거 입어 봐도 돼요?","try on = 입어(신어) 보다"],
+["It's a gift for a friend.","친구 선물이에요.","gift for = ~를 위한 선물"],
+["Do you have this in a large?","이거 라지 사이즈 있어요?","in a + 사이즈"],
+["Where is the fitting room?","탈의실이 어디예요?","fitting room = 탈의실"],
+["Is this the last one?","이게 마지막 남은 거예요?","the last one = 마지막 것"],
+["Do you sell phone chargers?","휴대폰 충전기 팔아요?","sell = 팔다"],
+["I'm looking for a gift.","선물을 찾고 있어요.","look for = 찾는 중"]],
+g:{t:"try on — 입어 보다",e:"try on은 '입어(신어·써) 보다'예요.\nit·this 같은 짧은 대명사는 가운데에 넣어요: try it on.\n명사는 뒤에 붙여도 됩니다: try on this jacket.\n탈의실은 fitting room이라고 해요.",
+x:[["Can I try it on?","입어 봐도 될까요?"],["Try on these shoes.","이 신발 신어 보세요."]],
+q:{s:"Can I try this ___?",a:"on",o:["on","in","at","up"]}}},
 
-{d:12,w:3,t:"约时间",p:[
-["Are you free this Saturday?","这周六你有空吗?","free = 有空"],
-["What time works for you?","几点对你方便?","work for = (时间)合适"],
-["How about two o'clock?","两点怎么样?","提议时间"],
-["Two works perfectly for me.","两点对我正合适。","perfectly = 完全"],
-["Can we make it a bit later?","能稍微晚一点吗?","a bit later = 晚一点"],
-["Something came up suddenly.","突然有事了。","come up = (事情)发生"],
-["Can we reschedule for next week?","能改到下周吗?","reschedule = 改期"],
-["Sorry for the short notice.","抱歉这么临时通知。","short notice = 临时通知"],
-["See you there at six.","六点在那儿见。","See you = 到时见"],
-["Don't be late this time!","这次别迟到哦!","Don't be late = 别迟到"]],
-g:{t:"work for — 时间合不合适",e:"约时间的万能动词是 work。\nDoes Friday work for you?(周五你方便吗?)\nThat works for me.(我可以)\nMonday doesn't work.(周一不行)",
-x:[["What time works best?","几点最合适?"],["Monday doesn't work for me.","周一我不行。"]],
-q:{s:"What time ___ for you?",a:"works",o:["works","work","working","worked"]}}},
+{d:12,w:3,t:"가격 묻기",p:[
+["How much is this?","이거 얼마예요?","How much = 얼마"],
+["How much are these shoes?","이 신발 얼마예요?","복수 명사에는 are"],
+["That's too expensive.","너무 비싸요.","too = 너무 (부정적)"],
+["Do you have anything cheaper?","더 싼 거 있어요?","cheaper = 더 싼"],
+["I'll take it.","이걸로 살게요.","take = (사기로) 하다"],
+["Is tax included in the price?","가격에 세금 포함이에요?","tax = 세금"],
+["That's a bit over my budget.","예산을 좀 넘네요.","budget = 예산"],
+["How much is it all together?","전부 다 해서 얼마예요?","all together = 전부 합쳐"],
+["Can I pay in dollars?","달러로 낼 수 있어요?","in + 화폐 단위"],
+["It's half price today.","오늘 반값이에요.","half price = 반값"]],
+g:{t:"How much is / are ~?",e:"가격은 How much로 물어요.\n하나면 is: How much is this?\n신발·바지처럼 복수 명사면 are: How much are these?\n대답은 It's ten dollars처럼 It's + 가격.",
+x:[["How much is that bag?","저 가방 얼마예요?"],["How much are the apples?","사과는 얼마예요?"]],
+q:{s:"How much ___ these shoes?",a:"are",o:["are","is","am","be"]}}},
 
-{d:13,w:3,t:"邀请和应邀",p:[
-["Would you like to come over for dinner?","要不要来我家吃晚饭?","come over = 来家里"],
-["I'd love to!","太好了,我一定去!","I'd love to = 乐意之至"],
-["Thanks for inviting me.","谢谢你邀请我。","invite = 邀请"],
-["Should I bring anything?","我要带点什么吗?","Should I ~? = 要不要我"],
-["Just bring yourself.","人来就行。","固定说法"],
-["Make yourself at home.","别拘束,当自己家。","待客用语"],
-["I'm afraid I can't make it.","恐怕我去不了。","I'm afraid = 恐怕"],
-["Can I take a rain check?","能改天再约吗?","rain check = 改期再约"],
-["The party starts at seven.","聚会七点开始。","start at + 时间"],
-["Feel free to bring a friend.","想带朋友尽管带。","feel free to = 尽管"]],
-g:{t:"Would you like to ~? — 客气的邀请",e:"比 Do you want to 更客气的邀请和提议。\nWould you like to join us?\n接受: I'd love to. / 婉拒: I'm afraid I can't.\n请人吃喝: Would you like some ~?",
-x:[["Would you like to join us?","要不要和我们一起?"],["Would you like some coffee?","来点咖啡吗?"]],
-q:{s:"___ you like to come over?",a:"Would",o:["Would","Will","Do","Are"]}}},
+{d:13,w:3,t:"사이즈·비교",p:[
+["This is too big for me.","이건 저한테 너무 커요.","too + 형용사 = 너무 ~함"],
+["Do you have a smaller size?","더 작은 사이즈 있어요?","smaller = 더 작은"],
+["This one is a little tight.","이건 조금 껴요.","a little = 조금, 살짝"],
+["That looks better.","그게 더 나아 보여요.","look + 형용사 = ~해 보이다"],
+["I like this one more.","이게 더 마음에 들어요.","more = 더"],
+["These fit perfectly.","이거 딱 맞아요.","fit = (사이즈가) 맞다"],
+["It's a little loose.","조금 헐렁해요.","loose = 헐렁한 (tight의 반대)"],
+["Which one do you like better?","어느 게 더 마음에 들어요?","Which one = 어느 것"],
+["This color suits you.","이 색 잘 어울려요.","suit = 어울리다"],
+["I'll take both.","둘 다 살게요.","both = 둘 다"]],
+g:{t:"too vs a little — 정도 표현",e:"too는 '너무 ~해서 곤란하다'는 부정적 뉘앙스: too big(너무 커서 안 됨).\na little은 가벼운 정도의 '조금': a little tight(살짝 낌).\n좋은 뜻의 '아주'는 very를 씁니다: very nice.",
+x:[["It's too small.","너무 작아요."],["It's a little long.","조금 길어요."]],
+q:{s:"This is ___ big for me.",a:"too",o:["too","very","much","so"]}}},
 
-{d:14,w:3,t:"请人帮忙",p:[
-["Could you do me a favor?","能帮我个忙吗?","do a favor = 帮忙"],
-["Would you mind opening the window?","麻烦开一下窗好吗?","Would you mind ~ing"],
-["Not at all.","当然可以。","mind 问句的答应方式"],
-["Can you give me a hand?","能搭把手吗?","give a hand = 帮忙"],
-["Could you keep an eye on my bag?","能帮我看下包吗?","keep an eye on = 照看"],
-["I hate to bother you, but...","不好意思打扰你,不过...","bother = 打扰"],
-["Take your time.","慢慢来,不着急。","不催促的体贴话"],
-["I owe you one.","欠你个人情。","owe = 欠"],
-["Anytime!","随时找我!","爽快答应的回答"],
-["It's no big deal.","小事一桩。","no big deal = 没什么大不了"]],
-g:{t:"Would you mind ~ing? — 非常客气的请求",e:"mind 是「介意」,直译是「你介意~吗?」。\n所以答应要用否定: Not at all. / No problem.\n后面的动词要加 -ing: mind opening.",
-x:[["Would you mind waiting a minute?","麻烦稍等一下好吗?"],["Would you mind closing the door?","麻烦关下门好吗?"]],
-q:{s:"Would you mind ___ the window?",a:"opening",o:["opening","open","opened","to open"]}}},
+{d:14,w:3,t:"할인·결정",p:[
+["Is this on sale?","이거 세일 중이에요?","on sale = 할인 중"],
+["Can you give me a discount?","좀 깎아 주실 수 있어요?","discount = 할인"],
+["I'll think about it.","생각해 볼게요.","거절 대신 부드러운 표현"],
+["I'll come back later.","나중에 다시 올게요.","come back = 다시 오다"],
+["It's a good deal.","가격 괜찮네요.","deal = 거래 조건, 가격"],
+["Is there a member discount?","회원 할인 있어요?","member = 회원"],
+["When does the sale end?","세일 언제 끝나요?","end = 끝나다"],
+["It's buy one get one free.","1+1 행사예요.","buy one get one free = 1+1"],
+["Can I use this coupon?","이 쿠폰 쓸 수 있어요?","coupon = 쿠폰"],
+["I got it for twenty percent off.","20% 할인받아 샀어요.","percent off = ~% 할인"]],
+g:{t:"on sale — 할인 중",e:"on sale은 '할인 중'이라는 뜻이에요.\nfor sale은 '판매 중(팔려고 내놓음)'이라 전혀 다릅니다.\n'20% 할인'은 20% off: It's 20% off.",
+x:[["These bags are on sale.","이 가방들은 세일 중이에요."],["Is this house for sale?","이 집 파는 건가요?"]],
+q:{s:"Is this ___ sale?",a:"on",o:["on","for","in","at"]}}},
 
-{d:15,w:3,t:"说明问题",p:[
-["The air conditioner isn't working.","空调不运转了。","isn't working = 不工作"],
-["There's something wrong with my phone.","我手机有点问题。","something wrong with = 有毛病"],
-["It keeps making a strange noise.","它总发出奇怪的声音。","keep ~ing = 一直"],
-["The screen went black suddenly.","屏幕突然黑了。","go black = 变黑"],
-["Could you take a look at it?","您能帮忙看一下吗?","take a look = 看一看"],
-["How long will it take to fix?","修好要多久?","take to fix = 修理花时间"],
-["Is it still under warranty?","还在保修期内吗?","warranty = 保修"],
-["It worked fine until yesterday.","到昨天还好好的。","work fine = 正常运转"],
-["I dropped it by accident.","我不小心把它摔了。","by accident = 不小心"],
-["Please handle it with care.","请小心轻放。","with care = 小心地"]],
-g:{t:"keep + ~ing — 总是·一直",e:"反复发生的情况用 keep + ~ing。\nIt keeps making noise.(总是响)\nI keep forgetting.(总是忘)\n描述故障和问题时必备的句型。",
-x:[["The door keeps opening.","这门总自己开。"],["He keeps calling me.","他一直给我打电话。"]],
-q:{s:"It keeps ___ a strange noise.",a:"making",o:["making","make","made","to make"]}}},
+{d:15,w:3,t:"교환·환불",p:[
+["Can I get a refund?","환불받을 수 있어요?","refund = 환불"],
+["I'd like to exchange this.","이거 교환하고 싶어요.","exchange = 교환하다"],
+["Here is my receipt.","여기 영수증이요.","Here is ~ = 여기 ~ 있어요"],
+["It doesn't work.","이거 작동을 안 해요.","work = (기계가) 작동하다"],
+["I bought it yesterday.","어제 샀어요.","bought = buy의 과거형"],
+["It's the wrong size.","사이즈가 잘못됐어요.","wrong = 잘못된"],
+["Can I exchange it for a bigger one?","더 큰 걸로 교환할 수 있어요?","exchange A for B"],
+["I lost my receipt.","영수증을 잃어버렸어요.","lost = lose의 과거형"],
+["How long does a refund take?","환불은 얼마나 걸려요?","refund 처리 기간 묻기"],
+["There's a scratch on it.","여기 흠집이 있어요.","scratch = 흠집"]],
+g:{t:"doesn't + 동사원형 — 3인칭 부정",e:"it·this처럼 3인칭 단수가 '안 한다'고 할 땐 doesn't를 써요: It doesn't work.\ndoesn't 뒤 동사는 반드시 원형입니다. (doesn't works ✗)\n나·너·복수는 don't: I don't know.",
+x:[["It doesn't fit.","사이즈가 안 맞아요."],["He doesn't like it.","그는 그걸 안 좋아해요."]],
+q:{s:"It doesn't ___.",a:"work",o:["work","works","worked","working"]}}},
 
-{d:16,w:4,t:"机场和机上",p:[
-["I'd like a window seat, please.","请给我靠窗的座位。","window seat = 靠窗座"],
-["Is this carry-on okay?","这个可以随身带上飞机吗?","carry-on = 随身行李"],
-["What's the purpose of your visit?","您此行的目的是什么?","入境审查常见问题"],
-["I'm here on vacation for a week.","我来度假一周。","on vacation = 度假"],
-["Where is the boarding gate?","登机口在哪里?","boarding gate = 登机口"],
-["The flight has been delayed.","航班延误了。","delayed = 延误的"],
-["Could I have a blanket, please?","能给我一条毯子吗?","机上请求"],
-["I'll have the chicken, please.","飞机餐我要鸡肉的。","选飞机餐"],
-["Please fasten your seatbelt.","请系好安全带。","fasten = 系好"],
-["My luggage hasn't come out yet.","我的行李还没出来。","yet = 还(没)"]],
-g:{t:"has been + 过去分词 — 广播里的句型",e:"机场广播常用 has been + 过去分词(被动完成)。\nThe flight has been delayed.(航班已延误)\nThe gate has been changed.(登机口已更改)\n认识这个形态,广播就能听懂了。",
-x:[["The gate has been changed.","登机口改了。"],["My order has been canceled.","我的订单被取消了。"]],
-q:{s:"The flight has been ___.",a:"delayed",o:["delayed","delay","delays","delaying"]}}},
+{d:16,w:4,t:"길 묻기",p:[
+["Excuse me, where is the station?","실례지만 역이 어디예요?","Where is = ~가 어디예요"],
+["Is it far from here?","여기서 멀어요?","far from = ~에서 먼"],
+["Can I walk there?","걸어갈 수 있어요?","walk there = 거기까지 걷다"],
+["I'm looking for this address.","이 주소를 찾고 있어요.","look for = 찾다"],
+["I'm lost.","길을 잃었어요.","lost = 길 잃은"],
+["Which way is the exit?","출구가 어느 쪽이에요?","Which way = 어느 쪽"],
+["Is there a pharmacy near here?","이 근처에 약국 있어요?","Is there ~? = ~ 있어요?"],
+["How far is it?","얼마나 멀어요?","How far = 얼마나 먼"],
+["Can you show me on the map?","지도에서 보여 주시겠어요?","show A on B"],
+["I'm not from around here.","저는 이 동네 사람이 아니에요.","from around here = 이 근처 출신"]],
+g:{t:"Where is ~? — 위치 묻기",e:"위치는 Where is + 장소로 물어요: Where is the station?\n복수면 Where are ~?\n답으로는 It's next to ~(옆), near ~(근처) 같은 위치 표현이 돌아옵니다.",
+x:[["Where is the restroom?","화장실이 어디예요?"],["Where are the elevators?","엘리베이터가 어디에 있어요?"]],
+q:{s:"___ is the station?",a:"Where",o:["Where","What","When","Who"]}}},
 
-{d:17,w:4,t:"在酒店",p:[
-["I have a reservation under Kim.","我用金的名字订了房。","under + 名字 = 以~名义"],
-["Could I check in early?","能提前入住吗?","check in = 办理入住"],
-["What time is checkout?","几点退房?","checkout = 退房"],
-["Is breakfast included?","含早餐吗?","included = 包含"],
-["Could I get extra towels?","能多要几条毛巾吗?","extra = 额外的"],
-["The Wi-Fi isn't working in my room.","我房间的Wi-Fi不能用。","isn't working = 用不了"],
-["Could you keep my luggage until three?","能帮我寄存行李到三点吗?","keep luggage = 寄存行李"],
-["Is there a convenience store nearby?","附近有便利店吗?","nearby = 附近"],
-["I'd like to extend my stay one more night.","我想多住一晚。","extend = 延长"],
-["Everything was great, thank you.","一切都很好,谢谢。","退房时的客套话"]],
-g:{t:"under + 名字 — 核对预订",e:"预订用 under + 名字来确认。\na reservation under Kim(金名下的预订)\n酒店、餐厅、医院都通用。\n预订本身用 book: book a room.",
-x:[["It's under Lee.","是李的名字订的。"],["I booked a table under my name.","我用自己名字订的位子。"]],
-q:{s:"I have a reservation ___ Kim.",a:"under",o:["under","on","in","by"]}}},
+{d:17,w:4,t:"길 안내 이해",p:[
+["Go straight two blocks.","두 블록 직진하세요.","go straight = 직진하다"],
+["Turn left at the corner.","모퉁이에서 좌회전하세요.","turn left / right"],
+["It's next to the bank.","은행 바로 옆이에요.","next to = 바로 옆"],
+["It's across from the park.","공원 맞은편이에요.","across from = 맞은편"],
+["You can't miss it.","금방 찾을 거예요.","못 지나칠 만큼 잘 보인다는 뜻"],
+["It's on your right.","오른쪽에 있어요.","on your right = 당신 오른쪽에"],
+["Go past the bank.","은행을 지나서 가세요.","past = 지나서"],
+["Take the second right.","두 번째 골목에서 우회전하세요.","take = (길을) 잡다"],
+["It's between the cafe and the bookstore.","카페랑 서점 사이에 있어요.","between A and B = 사이"],
+["It's about a five-minute walk.","걸어서 5분 정도예요.","a five-minute walk = 도보 5분"]],
+g:{t:"명령형 — 길 안내의 문장",e:"길 안내는 주어 없이 동사원형으로 시작해요: Go straight. Turn left.\n부드럽게 하려면 please를 붙입니다.\n'~하지 마세요'는 Don't + 동사원형: Don't turn here.",
+x:[["Turn right at the light.","신호등에서 우회전하세요."],["Take the first left.","첫 번째 골목에서 좌회전하세요."]],
+q:{s:"___ left at the corner.",a:"Turn",o:["Turn","Turns","Turning","Turned"]}}},
 
-{d:18,w:4,t:"问路进阶",p:[
-["Could you tell me where the station is?","请问您能告诉我车站在哪吗?","间接疑问句 — 注意语序"],
-["Do you know what time it opens?","你知道几点开门吗?","know + 疑问词从句"],
-["I'm trying to find this place.","我在找这个地方。","try to find = 想找到"],
-["Is this the right way to the museum?","去博物馆走这边对吗?","the right way = 对的路"],
-["You're going in the wrong direction.","您走反方向了。","direction = 方向"],
-["It's easier to take the subway.","坐地铁更方便。","easier to = 更容易"],
-["Get off at the third stop.","在第三站下车。","get off = 下车"],
-["It's right around the corner.","就在拐角处。","around the corner = 拐角"],
-["You can't miss it — it's a big red building.","很好找,是栋红色大楼。","can't miss it = 不会错过"],
-["Thanks, you've been a great help.","谢谢,帮了我大忙。","a great help = 大忙"]],
-g:{t:"间接疑问句 — 更礼貌地问",e:"把疑问句放进句子里,语序要变回陈述句。\nWhere is the station?\n→ Could you tell me where the station is?\n(is 移到了后面) 听起来礼貌得多。",
-x:[["Do you know where he lives?","你知道他住哪吗?"],["Can you tell me when it starts?","能告诉我几点开始吗?"]],
-q:{s:"Could you tell me where the station ___?",a:"is",o:["is","are","be","was"]}}},
+{d:18,w:4,t:"지하철·버스",p:[
+["Which line goes to the airport?","어느 노선이 공항에 가요?","line = 노선"],
+["Where do I transfer?","어디서 갈아타요?","transfer = 환승하다"],
+["How many stops is it?","몇 정거장이에요?","stop = 정거장"],
+["Does this bus stop at City Hall?","이 버스 시청에 서요?","Does this ~? = 3인칭 질문"],
+["I missed my stop.","내릴 곳을 지나쳤어요.","miss = 놓치다"],
+["Where can I buy a ticket?","표는 어디서 사요?","buy a ticket = 표를 사다"],
+["Does this train go to Seoul Station?","이 기차 서울역 가요?","go to + 역 이름"],
+["Get off at the next stop.","다음 정거장에서 내리세요.","get off = 내리다"],
+["The bus comes every ten minutes.","버스는 10분마다 와요.","every + 시간 = ~마다"],
+["Is this seat taken?","이 자리 주인 있어요?","taken = 차지된"]],
+g:{t:"의문사 + 명사 — 구체적으로 묻기",e:"Which line(어느 노선), How many stops(몇 정거장)처럼\n의문사 뒤에 명사를 붙이면 더 구체적으로 물을 수 있어요.\nWhich는 정해진 선택지 중 '어느 것', How many는 개수를 물을 때 씁니다.",
+x:[["Which bus goes downtown?","어느 버스가 시내에 가요?"],["How many stations are left?","몇 정거장 남았어요?"]],
+q:{s:"___ line goes to the airport?",a:"Which",o:["Which","How","What time","Who"]}}},
 
-{d:19,w:4,t:"身体不舒服",p:[
-["I have a terrible headache.","我头疼得厉害。","headache = 头疼"],
-["I've had a cough for three days.","我咳嗽三天了。","for + 时间段(现在完成)"],
-["I feel dizzy when I stand up.","我一站起来就头晕。","dizzy = 头晕"],
-["Do you have anything for a sore throat?","有治嗓子疼的药吗?","sore throat = 嗓子疼"],
-["Take this three times a day after meals.","一天三次,饭后服用。","after meals = 饭后"],
-["Are there any side effects?","有副作用吗?","side effects = 副作用"],
-["I'm allergic to penicillin.","我对青霉素过敏。","allergic to = 对~过敏"],
-["You should stay in bed for a couple of days.","你该卧床休息几天。","a couple of = 几个"],
-["I'm feeling much better now.","我现在好多了。","much better = 好多了"],
-["Get well soon!","早日康复!","祝早日康复"]],
-g:{t:"for + 时间段 — 持续了多久",e:"和现在完成时搭配,说明持续时间。\nI've had a cough for three days.(咳了三天)\n起点用 since: since Monday.\n描述症状的核心句型。",
-x:[["I've lived here for ten years.","我在这儿住了十年。"],["She's been sick since Friday.","她从周五一直病到现在。"]],
-q:{s:"I've had a cough ___ three days.",a:"for",o:["for","since","during","from"]}}},
+{d:19,w:4,t:"택시에서",p:[
+["To this address, please.","이 주소로 가 주세요.","주소를 보여주며 쓰는 한마디"],
+["How long does it take?","시간이 얼마나 걸려요?","take = (시간이) 걸리다"],
+["I'm in a hurry.","제가 좀 급해요.","in a hurry = 급한"],
+["Can you stop here, please?","여기서 세워 주시겠어요?","stop = 세우다"],
+["Thank you for the ride.","태워 주셔서 감사해요.","ride = 태워 줌, 승차"],
+["Where to?","어디로 모실까요? (기사)","기사가 묻는 말"],
+["The airport, please.","공항으로 가 주세요.","목적지 + please"],
+["You can drop me off here.","여기서 내려 주시면 돼요.","drop off = 내려 주다"],
+["Do you take cards?","카드 되나요?","take = 받다"],
+["Could you open the trunk?","트렁크 좀 열어 주시겠어요?","trunk = 트렁크"]],
+g:{t:"How long does it take?",e:"걸리는 시간은 How long does it take?로 물어요.\ntake에 '(시간이) 걸리다'라는 뜻이 있거든요.\n답은 It takes about ten minutes처럼 It takes + 시간.\n목적지를 붙이면: How long does it take to get there?",
+x:[["It takes twenty minutes.","20분 걸려요."],["How long does it take by subway?","지하철로 얼마나 걸려요?"]],
+q:{s:"How long does it ___?",a:"take",o:["take","takes","taking","took"]}}},
 
-{d:20,w:4,t:"退款和砍价",p:[
-["I bought this here last week.","我上周在这儿买的。","bought = buy的过去式"],
-["It stopped working after two days.","用了两天就坏了。","stop ~ing = 不再~"],
-["I'd like a refund rather than an exchange.","比起换货我想退款。","rather than = 而不是"],
-["Here's the receipt and the box.","这是小票和盒子。","Here's = 给您"],
-["Could you check if it's in stock?","能查一下有没有货吗?","in stock = 有货"],
-["When will it be back in stock?","什么时候补货?","back in stock = 补货"],
-["Is there any way to get a discount?","有办法打折吗?","any way to = 有~的办法"],
-["If it's over fifty dollars, I'll pass.","超过五十美元我就不要了。","I'll pass = 不要了"],
-["Could you gift-wrap it, please?","能帮我做礼品包装吗?","gift-wrap = 礼品包装"],
-["I'll take it if you throw in a case.","送个壳我就买。","throw in = 附赠"]],
-g:{t:"if 条件句 — If + 现在时, will",e:"条件和结果用 If + 现在时, will 连接。\nIf it rains, I'll stay home.\n条件从句用现在时(不加 will),主句用 will。\n砍价、做计划都靠这个句型。",
-x:[["If it's too expensive, I won't buy it.","太贵我就不买。"],["I'll call you if I'm late.","我要是晚了就给你打电话。"]],
-q:{s:"___ it rains, I'll stay home.",a:"If",o:["If","So","Because","But"]}}}
+{d:20,w:4,t:"확인·정중 요청",p:[
+["Am I on the right train?","제가 맞는 기차를 탄 거예요?","right = 맞는, 올바른"],
+["This is my first time here.","여기는 처음이에요.","first time = 처음"],
+["Could you say that again?","다시 한번 말씀해 주시겠어요?","Could you ~? = 정중한 부탁"],
+["Could you speak slowly, please?","천천히 말씀해 주시겠어요?","slowly = 천천히"],
+["Thank you for your help.","도와주셔서 감사합니다.","Thank you for + 명사"],
+["Sorry, I don't understand.","죄송해요, 이해를 못 했어요.","don't understand = 이해 못 함"],
+["What does this mean?","이게 무슨 뜻이에요?","mean = 의미하다"],
+["How do you say this in English?","이건 영어로 뭐라고 해요?","say A in B = B로 A를 말하다"],
+["Just a moment, please.","잠시만요.","a moment = 잠깐"],
+["Have a nice day!","좋은 하루 보내세요!","헤어질 때 인사"]],
+g:{t:"Could you ~? — 한 단계 정중하게",e:"Could you ~?는 Can you ~?보다 한 단계 정중한 부탁이에요.\n처음 보는 사람·모르는 사람에게는 Could you가 안전합니다.\n끝에 please를 붙이면 더 부드러워요.\n대답은 Sure. / Of course.",
+x:[["Could you help me?","좀 도와주시겠어요?"],["Could you write it down?","적어 주시겠어요?"]],
+q:{s:"___ you say that again?",a:"Could",o:["Could","Should","Must","Did"]}}}
 ];
 const STOP=new Set(["i","a","an","the","to","at","in","on","is","am","are","my","me","it","this","that","for","you","do","we","of","and","its","was","im","ill","id"]);
 function keyWord(en){ // 빈칸으로 뚫을 핵심 단어
@@ -841,15 +839,15 @@ const ALL_IDS=[];DATA.forEach(dd=>dd.p.forEach((_,i)=>ALL_IDS.push(EID(dd.d,i)))
 const DEF={day:1,xp:0,streak:0,lastDone:"",freeze:0,done:[],cards:{},revC:0,revW:0,
   today:{date:"",ans:0,total:0,comp:false},
   set:{sfx:1,bgm:0,vib:1,rate:0.95,compact:0,srv:"",cheer:1,toon:0},
-  girls:[{n:"大女儿",img:""},{n:"小女儿",img:""}],saved:0};
+  girls:[{n:"큰딸",img:""},{n:"작은딸",img:""}],saved:0};
 let S=load();
 function load(){
-  try{const j=JSON.parse(localStorage.getItem("wonshw")||"null");
+  try{const j=JSON.parse(localStorage.getItem("dailytalk")||"null");
     if(j){const s=Object.assign({},DEF,j);s.set=Object.assign({},DEF.set,j.set||{});s.today=Object.assign({},DEF.today,j.today||{});if(!Array.isArray(s.girls)||s.girls.length!==2)s.girls=JSON.parse(JSON.stringify(DEF.girls));return s}
   }catch(e){}
   return JSON.parse(JSON.stringify(DEF));
 }
-function save(){S.saved=Date.now();try{localStorage.setItem("wonshw",JSON.stringify(S))}catch(e){}}
+function save(){S.saved=Date.now();try{localStorage.setItem("dailytalk",JSON.stringify(S))}catch(e){}}
 
 /* ───────── SRS (간격 반복) ───────── */
 const INT=[0,1,3,7,16,35];
@@ -870,7 +868,7 @@ function ladder(id){
 
 /* ───────── 레슨 엔진 ───────── */
 let L=null;
-const TYPE_LB={flip:"新表达",mean:"选意思",listen:"听力选择",blank:"填空",arrange:"连词成句",match:"配对",type:"写英文",gram:"今日语法",gq:"语法小测"};
+const TYPE_LB={flip:"새 표현",mean:"뜻 고르기",listen:"듣고 고르기",blank:"빈칸 채우기",arrange:"문장 만들기",match:"짝 맞추기",type:"영어로 쓰기",gram:"오늘의 문법",gq:"문법 확인"};
 function rot(pool,prev){const c=pool.filter(t=>t!==prev);return c[Math.floor(Math.random()*c.length)]}
 function canListen(){return !!(window.AndroidTTS||window.speechSynthesis)}
 
@@ -896,7 +894,7 @@ function buildDaily(){
   return steps;
 }
 function startLesson(){
-  if(S.day>DATA.length){toast("第1~4周完成!Phase 2内容即将推出 — 请先复习");return}
+  if(S.day>DATA.length){toast("1~4주차 완료! Phase 2 콘텐츠 예정 — 복습을 이용하세요");return}
   FX.resume();if(S.set.bgm)FX.bgmStart();
   L={steps:buildDaily(),i:0,ok:0,no:0,combo:0,best:0,xp:0,redoDone:{},review:false};
   S.today={date:todayStr(),ans:0,total:L.steps.filter(s=>s.k!=="gram").length,comp:S.today.date===todayStr()?S.today.comp:false};
@@ -904,7 +902,7 @@ function startLesson(){
 }
 function startReview(){
   const due=shuffle(dueIds());
-  if(!due.length){toast("现在没有可复习的卡片");return}
+  if(!due.length){toast("지금은 복습할 카드가 없어요");return}
   FX.resume();if(S.set.bgm)FX.bgmStart();
   const steps=[];let prev="";
   due.slice(0,15).forEach(id=>{const tp=rot(ladder(id),prev);prev=tp;steps.push({k:"q",tp:tp==="listen"&&!canListen()?"mean":tp,id,srs:1})});
@@ -935,17 +933,17 @@ function sheetCheck(label,enabled){
 function chkEnable(){const b=$("#chk");if(b)b.disabled=false}
 function sheetFeedback(ok,en,ko,extra){
   const s=$("#sheet");s.style.display="block";s.className="sheet "+(ok?"ok":"no");
-  s.innerHTML='<div class="fb-t">'+(ok?comboMsg():"差一点!正确答案是:")+'</div>'
+  s.innerHTML='<div class="fb-t">'+(ok?comboMsg():"아쉬워요! 정답은:")+'</div>'
     +(en?'<div class="fb-s"><span class="en">'+escH(en)+'</span>'+(ko?' — '+escH(ko):'')+'</div>':'<div style="height:6px"></div>')
     +(extra||"")
-    +'<button class="btn-chk" onclick="next()">继续</button>';
+    +'<button class="btn-chk" onclick="next()">계속</button>';
 }
 function hideSheet(){const s=$("#sheet");s.style.display="none";s.innerHTML=""}
 function comboMsg(){
-  if(L.combo>=10)return"完美!连续 ×"+L.combo+"!";
-  if(L.combo>=5)return"太厉害了!连续 ×"+L.combo+"!";
-  if(L.combo>=3)return"真不错!连续 ×"+L.combo+"!";
-  return["答对了!","正确!","真棒!"][Math.floor(Math.random()*3)];
+  if(L.combo>=10)return"완벽해요! ×"+L.combo+" 연속!";
+  if(L.combo>=5)return"대단해요! ×"+L.combo+" 연속!";
+  if(L.combo>=3)return"좋아요! ×"+L.combo+" 연속!";
+  return["정답이에요!","맞았어요!","잘했어요!"][Math.floor(Math.random()*3)];
 }
 /* 채점 공통 */
 function grade(ok,st,en,ko){
@@ -974,16 +972,16 @@ function qHead(tp){return '<div class="qtype">'+TYPE_LB[tp]+'</div>'}
 function rFlip(st){
   const p=EXP(st.id);
   $("#q-area").innerHTML=qHead("flip")
-   +'<div class="qask">点卡片查看意思</div>'
+   +'<div class="qask">카드를 탭해서 뜻을 확인하세요</div>'
    +'<div class="flip" id="fc"><div class="flip-in">'
-   +'<div class="face"><div class="qen">'+escH(p[0])+'</div><button class="spk sm" onclick="event.stopPropagation();speak(CUR.en,this)">'+SPK_SVG+'</button><div class="hint">点击翻面</div></div>'
-   +'<div class="face back"><div class="qko">'+escH(p[1])+'</div><div class="nu">'+escH(p[2])+'</div><div class="hint">再点回到英文</div></div>'
+   +'<div class="face"><div class="qen">'+escH(p[0])+'</div><button class="spk sm" onclick="event.stopPropagation();speak(CUR.en,this)">'+SPK_SVG+'</button><div class="hint">탭하여 뒤집기</div></div>'
+   +'<div class="face back"><div class="qko">'+escH(p[1])+'</div><div class="nu">'+escH(p[2])+'</div><div class="hint">다시 탭하면 영어</div></div>'
    +'</div></div>';
   CUR={en:p[0]};
   $("#fc").onclick=()=>{FX.flip();$("#fc").classList.toggle("f")};
   speak(p[0]);
   const s=$("#sheet");s.style.display="block";s.className="sheet";
-  s.innerHTML='<button class="btn-chk" onclick="next()">下一个</button>';
+  s.innerHTML='<button class="btn-chk" onclick="next()">다음</button>';
 }
 
 /* ②③ 선택형 (뜻 고르기 / 듣고 고르기) + ④⑤⑦은 아래 */
@@ -1007,20 +1005,20 @@ function rMean(st,p){
   const wrong=shuffle(ALL_IDS.filter(id=>id!==st.id)).slice(0,3).map(id=>EXP(id)[1]);
   const opts=shuffle([p[1],...wrong]);
   CUR={st,p,opts,ans:opts.indexOf(p[1]),sel:-1,mode:"opt"};
-  $("#q-area").innerHTML=qHead("mean")+'<div class="qask">选出正确的意思</div>'
+  $("#q-area").innerHTML=qHead("mean")+'<div class="qask">알맞은 뜻을 고르세요</div>'
    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><button class="spk sm" onclick="speak(CUR.p[0],this)">'+SPK_SVG+'</button><div class="qen" style="margin:0">'+escH(p[0])+'</div></div>'
    +optHTML(opts,false);
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
 }
 function rListen(st,p){
   const pool=shuffle(ALL_IDS.filter(id=>id!==st.id&&Math.abs(EXP(id)[0].length-p[0].length)<14)).slice(0,3).map(id=>EXP(id)[0]);
   while(pool.length<3)pool.push(EXP(shuffle(ALL_IDS.filter(id=>id!==st.id))[0])[0]);
   const opts=shuffle([p[0],...pool.slice(0,3)]);
   CUR={st,p,opts,ans:opts.indexOf(p[0]),sel:-1,mode:"opt"};
-  $("#q-area").innerHTML=qHead("listen")+'<div class="qask">听录音,选出你听到的句子</div>'
+  $("#q-area").innerHTML=qHead("listen")+'<div class="qask">잘 듣고 들린 문장을 고르세요</div>'
    +'<div style="text-align:center"><button class="spk" onclick="speak(CUR.p[0],this)">'+SPK_SVG+'</button></div>'
    +optHTML(opts,true);
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
   setTimeout(()=>speak(p[0]),250);
 }
 /* ④ 빈칸 */
@@ -1033,10 +1031,10 @@ function rBlank(st,p){
   const clean=kw.word.replace(/[.!?,]/g,"");
   const bank=shuffle([clean,...distract]);
   CUR={st,p,ans:clean,sel:"",mode:"blank"};
-  $("#q-area").innerHTML=qHead("blank")+'<div class="qask">选择填入空格的单词 <span style="color:var(--tx3)">— '+escH(p[1])+'</span></div>'
+  $("#q-area").innerHTML=qHead("blank")+'<div class="qask">빈칸에 들어갈 단어를 고르세요 <span style="color:var(--tx3)">— '+escH(p[1])+'</span></div>'
    +'<div class="gapline">'+line+'</div>'
    +'<div class="bank">'+bank.map(w=>'<button class="chip" onclick="fillGap(this)">'+escH(w)+'</button>').join("")+'</div>';
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
 }
 function fillGap(el){
   FX.tap();
@@ -1050,11 +1048,11 @@ function fillGap(el){
 function rArr(st,p){
   const ws=p[0].replace(/[.!?]$/,"").split(" ");
   CUR={st,p,ws,picked:[],mode:"arr"};
-  $("#q-area").innerHTML=qHead("arrange")+'<div class="qask">按顺序点单词,组成句子</div>'
+  $("#q-area").innerHTML=qHead("arrange")+'<div class="qask">단어를 순서대로 탭해 문장을 만드세요</div>'
    +'<div class="qko" style="margin-bottom:16px">'+escH(p[1])+'</div>'
    +'<div class="ans-row" id="arow"></div>'
    +'<div class="bank" id="abank">'+shuffle(ws.map((w,i)=>({w,i}))).map(o=>'<button class="chip" data-i="'+o.i+'" onclick="tileTap(this)">'+escH(o.w)+'</button>').join("")+'</div>';
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
 }
 function tileTap(el){
   FX.tap();
@@ -1077,14 +1075,14 @@ function tileBack(c){
 /* ⑦ 한→영 쓰기 */
 function rType(st,p){
   CUR={st,p,mode:"type",hint:0};
-  $("#q-area").innerHTML=qHead("type")+'<div class="qask">看中文写出英文</div>'
+  $("#q-area").innerHTML=qHead("type")+'<div class="qask">한국어를 보고 영어로 쓰세요</div>'
    +'<div class="qko" style="margin-bottom:16px">'+escH(p[1])+'</div>'
-   +'<input class="tinput en" id="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="输入英文...">'
-   +'<button class="hintbtn" onclick="typeHint()">看提示</button><span id="thint" style="font-size:13px;color:var(--tx3)"></span>';
+   +'<input class="tinput en" id="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="영어로 입력...">'
+   +'<button class="hintbtn" onclick="typeHint()">힌트 보기</button><span id="thint" style="font-size:13px;color:var(--tx3)"></span>';
   const inp=$("#tin");
   inp.oninput=()=>{const b=$("#chk");if(b)b.disabled=inp.value.trim().length===0};
   inp.onkeydown=e=>{if(e.key==="Enter"&&inp.value.trim())doCheck()};
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
   setTimeout(()=>inp.focus(),150);
 }
 function typeHint(){
@@ -1092,7 +1090,7 @@ function typeHint(){
   $("#thint").textContent="  "+ws.slice(0,CUR.hint).join(" ")+" ...";
 }
 function norm(s){return s.toLowerCase().replace(/[.!?,']/g,"").replace(/\s+/g," ").trim()}
-function normLoose(s){
+function normLoose(s){ // 축약형 풀기 + 구두점 제거
   const M={"im":"i am","dont":"do not","doesnt":"does not","didnt":"did not","cant":"cannot","isnt":"is not","arent":"are not","havent":"have not","hasnt":"has not","couldnt":"could not","wouldnt":"would not","youre":"you are","theyre":"they are","thats":"that is","whats":"what is","lets":"let us","i'm":"i am","it's":"it is","that's":"that is","there's":"there is","i'd":"i would","i'll":"i will","i've":"i have","you're":"you are","don't":"do not","doesn't":"does not","didn't":"did not","can't":"cannot","won't":"will not","let's":"let us","what's":"what is","how's":"how is","he's":"he is","she's":"she is","we're":"we are","they're":"they are","isn't":"is not","aren't":"are not","haven't":"have not","hasn't":"has not","couldn't":"could not","wouldn't":"would not","you'd":"you would","you'll":"you will","we'll":"we will"};
   return s.toLowerCase().replace(/[.!?,]/g," ").split(/\s+/).filter(Boolean).map(w=>M[w]||w).join(" ");
 }
@@ -1112,10 +1110,10 @@ function typeOK(ans,target){
   const st=w=>!["a","an","the","please"].includes(w);
   return wordsOK(A.filter(st),T.filter(st));
 }
-async function aiCheck(v,c){
+async function aiCheck(v,c){ // 예시와 달라도 문법·의미 맞으면 AI가 정답 처리
   const u=srvUrl();
   if(u){
-    const b=$("#chk");if(b){b.disabled=true;b.textContent="AI 判定中...";}
+    const b=$("#chk");if(b){b.disabled=true;b.textContent="AI 판정 중...";}
     try{
       const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),7000);
       const r=await fetch(u+"/api/check",{method:"POST",headers:{"Content-Type":"application/json"},
@@ -1130,7 +1128,7 @@ async function aiCheck(v,c){
       }
     }catch(e){}
   }
-  grade(false,c.st,c.p[0],c.p[1]);
+  grade(false,c.st,c.p[0],c.p[1]); // 서버·AI 없으면 예시 기준
 }
 function lev(a,b){
   const m=Array.from({length:a.length+1},(_,i)=>[i,...Array(b.length).fill(0)]);
@@ -1145,7 +1143,7 @@ function rMatch(st){
   CUR={st,pairs,selE:null,selK:null,left:pairs.length,mode:"match"};
   const ens=shuffle(pairs.map((p,i)=>({t:p.en,i})));
   const kos=shuffle(pairs.map((p,i)=>({t:p.ko,i})));
-  let html=qHead("match")+'<div class="qask">把英文和意思配对</div><div class="match">';
+  let html=qHead("match")+'<div class="qask">영어와 뜻을 짝지으세요</div><div class="match">';
   for(let r=0;r<pairs.length;r++){
     html+='<button class="mbtn en" data-side="e" data-i="'+ens[r].i+'" onclick="mTap(this)">'+escH(ens[r].t)+'</button>';
     html+='<button class="mbtn" data-side="k" data-i="'+kos[r].i+'" onclick="mTap(this)">'+escH(kos[r].t)+'</button>';
@@ -1193,7 +1191,7 @@ function doCheck(){
   }else if(c.mode==="type"){
     const v=$("#tin").value;
     if(typeOK(v,c.p[0])){grade(true,c.st,c.p[0],c.p[1]);speak(c.p[0]);}
-    else aiCheck(v,c);
+    else aiCheck(v,c); // 다른 문장이어도 문법 OK면 정답
   }else if(c.mode==="gq"){
     const ok=c.sel===c.ans;
     document.querySelectorAll(".opt").forEach((o,i)=>{if(i===c.ans)o.classList.add("ok");else if(i===c.sel&&!ok)o.classList.add("no")});
@@ -1207,16 +1205,16 @@ function rGram(){
    +'<div class="card"><div class="gram"><div class="gram-t">'+escH(g.t)+'</div><div class="gram-e">'+escH(g.e)+'</div></div>'
    +'<div class="gram-ex">'+g.x.map((x,i)=>'<div class="gex"><div><div class="e">'+escH(x[0])+'</div><div class="k">'+escH(x[1])+'</div></div><button class="spk sm" onclick="speak(DATA['+(Math.min(S.day,DATA.length)-1)+'].g.x['+i+'][0],this)">'+SPK_SVG+'</button></div>').join("")+'</div></div>';
   const s=$("#sheet");s.style.display="block";s.className="sheet";
-  s.innerHTML='<button class="btn-chk" onclick="next()">做一道小测题</button>';
+  s.innerHTML='<button class="btn-chk" onclick="next()">확인 문제 풀기</button>';
 }
 function rGQ(){
   const g=DATA[Math.min(S.day,DATA.length)-1].g;
   const opts=shuffle(g.q.o.slice());
   CUR={mode:"gq",g,opts,ans:opts.indexOf(g.q.a),sel:-1};
-  $("#q-area").innerHTML=qHead("gq")+'<div class="qask">空格里应该填哪个?</div>'
+  $("#q-area").innerHTML=qHead("gq")+'<div class="qask">빈칸에 알맞은 것은?</div>'
    +'<div class="gapline en">'+escH(g.q.s).replace("___",'<span class="gap fill">___</span>')+'</div>'
    +optHTML(opts,true);
-  sheetCheck("检查",false);
+  sheetCheck("확인",false);
 }
 function gradeG(ok){
   S.today.ans++;
@@ -1240,10 +1238,10 @@ function finishLesson(){
     if(S.lastDone!==t){
       const y=addDays(-1);
       if(S.lastDone===y){S.streak++}
-      else if(S.lastDone&&S.freeze>0){S.freeze--;S.streak++;streakMsg="用掉1张冻结卡 — 连续记录保住了!"}
+      else if(S.lastDone&&S.freeze>0){S.freeze--;S.streak++;streakMsg="프리즈 1개 사용 — 스트릭 유지!"}
       else S.streak=1;
       S.lastDone=t;
-      if(S.streak>0&&S.streak%7===0){S.freeze++;streakMsg="达成7天!冻结卡 +1"}
+      if(S.streak>0&&S.streak%7===0){S.freeze++;streakMsg="7일 달성! 프리즈 +1"}
     }
     if(!S.done.includes(S.day))S.done.push(S.day);
     // 새 표현 SRS 등록
@@ -1254,17 +1252,17 @@ function finishLesson(){
   save();syncUp(true);
   $("#q-area").innerHTML='<div class="doneWrap">'
    +'<div class="ring"><svg width="168" height="168" viewBox="0 0 168 168"><circle class="track" cx="84" cy="84" r="74"></circle><circle class="bar" id="dring" cx="84" cy="84" r="74" stroke-dasharray="465" stroke-dashoffset="465" style="stroke:var(--green)"></circle></svg>'
-   +'<div class="ring-c"><div class="ring-pct" style="color:var(--green-tx)">100%</div><div class="ring-lb">'+(wasReview?"复习完成":"今天完成")+'</div></div></div>'
-   +'<div class="done-t">'+(wasReview?"复习完成!":"今天的学习完成了!")+'</div>'
-   +'<div class="done-s">'+(streakMsg||(wasReview?"薄弱的卡片又变牢固了":"明天这个时间再见"))+'</div>'
+   +'<div class="ring-c"><div class="ring-pct" style="color:var(--green-tx)">100%</div><div class="ring-lb">'+(wasReview?"복습 완료":"오늘 완료")+'</div></div></div>'
+   +'<div class="done-t">'+(wasReview?"복습 완료!":"오늘 학습 완료!")+'</div>'
+   +'<div class="done-s">'+(streakMsg||(wasReview?"약한 카드가 다시 단단해졌어요":"내일 이 시간에 또 만나요"))+'</div>'
    +'<div class="dstats">'
    +'<div class="dstat"><div class="v">+'+L.xp+'</div><div class="l">XP</div></div>'
-   +'<div class="dstat"><div class="v">'+acc+'%</div><div class="l">正确率</div></div>'
-   +'<div class="dstat"><div class="v">×'+L.best+'</div><div class="l">最高连击</div></div>'
+   +'<div class="dstat"><div class="v">'+acc+'%</div><div class="l">정답률</div></div>'
+   +'<div class="dstat"><div class="v">×'+L.best+'</div><div class="l">최고 콤보</div></div>'
    +'</div>'
-   +'<button class="btn-main" style="margin-top:24px" onclick="quitLesson()">回到首页</button></div>';
+   +'<button class="btn-main" style="margin-top:24px" onclick="quitLesson()">홈으로</button></div>';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=$("#dring");if(r)r.style.strokeDashoffset="0"}));
-  if(streakMsg&&streakMsg.includes("7天")){FX.streak();setTimeout(()=>FX.fanfare(),500)}else FX.fanfare();
+  if(streakMsg&&streakMsg.includes("7일")){FX.streak();setTimeout(()=>FX.fanfare(),500)}else FX.fanfare();
   vib([30,50,30,50,80]);
   confetti();
   cheerFinish();
@@ -1273,7 +1271,7 @@ function finishLesson(){
 function confetti(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
   const w=document.createElement("div");w.className="confetti";
-  const cols=["#EC4899","#F472B6","#8B5CF6","#FBBF24","#34D399"];
+  const cols=["#2563EB","#60A5FA","#16A34A","#FBBF24","#F472B6"];
   for(let i=0;i<44;i++){
     const c=document.createElement("div");c.className="cf";
     c.style.left=Math.random()*100+"%";
@@ -1309,28 +1307,28 @@ function renderHome(){
   const day=DATA[Math.min(S.day,DATA.length)-1];
   const doneToday=S.today.comp&&isToday;
   $("#theme-card").innerHTML=fin
-   ?'<div class="tt-name">第1~4周全部完成!</div><div class="tt-sub">第5~12周内容将在Phase 2加入。这段时间用复习保持状态吧。</div>'
-   :'<div class="tt-top"><span class="tt-day">DAY '+day.d+' / 20</span><span class="tt-week">第'+day.w+'周</span></div>'
+   ?'<div class="tt-name">1~4주차 완주!</div><div class="tt-sub">5~12주차 콘텐츠는 Phase 2에서 추가돼요. 그동안 복습으로 유지하세요.</div>'
+   :'<div class="tt-top"><span class="tt-day">DAY '+day.d+' / 20</span><span class="tt-week">'+day.w+'주차</span></div>'
     +'<div class="tt-name">'+escH(day.t)+'</div>'
-    +'<div class="tt-sub">新表达10个 · 语法「'+escH(day.g.t)+'」'+(S.freeze?' · 冻结卡 '+S.freeze+'张':'')+'</div>';
+    +'<div class="tt-sub">새 표현 10개 · 문법 「'+escH(day.g.t)+'」'+(S.freeze?' · 프리즈 '+S.freeze+'개 보유':'')+'</div>';
   const b=$("#btn-start");
-  if(fin){b.textContent="开始复习";b.className="btn-main";b.onclick=startReview}
-  else if(doneToday){b.textContent="今天完成 — 再来一次?";b.className="btn-main done";b.onclick=startLesson}
-  else{b.textContent="开始今天 (10分钟)";b.className="btn-main";b.onclick=startLesson}
+  if(fin){b.textContent="복습 시작";b.className="btn-main";b.onclick=startReview}
+  else if(doneToday){b.textContent="오늘 완료 — 한 번 더?";b.className="btn-main done";b.onclick=startLesson}
+  else{b.textContent="오늘 시작 (10분)";b.className="btn-main";b.onclick=startLesson}
   $("#btn-quickrev").style.display=dueIds().length?"block":"none";
 }
 function renderReview(){
   const due=dueIds();
-  $("#rev-head").textContent="要复习的卡片 "+due.length+" 张";
-  $("#rev-sub").textContent=due.length?"间隔重复挑出的、现在该再看一遍的表达":"现在没有待复习的卡片,明天再来看看";
+  $("#rev-head").textContent="복습할 카드 "+due.length+"장";
+  $("#rev-sub").textContent=due.length?"간격 반복이 고른, 지금 다시 봐야 할 표현들이에요":"지금은 밀린 복습이 없어요. 내일 다시 확인하세요";
   const weak=Object.entries(S.cards).filter(([,c])=>c.w>=2&&c.b<=2)
     .sort((a,b)=>b[1].w-a[1].w).slice(0,8);
   $("#weak-list").innerHTML=weak.length
-   ?weak.map(([id,c])=>{const p=EXP(id);return '<div class="weak"><div><div class="e">'+escH(p[0])+'</div><div class="k">'+escH(p[1])+'</div></div><span class="tag">'+c.w+'次错</span></div>'}).join("")
-   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">还没有薄弱表达</div>';
+   ?weak.map(([id,c])=>{const p=EXP(id);return '<div class="weak"><div><div class="e">'+escH(p[0])+'</div><div class="k">'+escH(p[1])+'</div></div><span class="tag">'+c.w+'회 틀림</span></div>'}).join("")
+   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">아직 약한 표현이 없어요</div>';
 }
 function renderMe(){
-  $("#st-streak").innerHTML=S.streak+"<small>天</small>";
+  $("#st-streak").innerHTML=S.streak+"<small>일</small>";
   $("#st-xp").textContent=S.xp;
   $("#st-days").innerHTML=S.done.length+"<small>/20</small>";
   const tot=S.revC+S.revW;
@@ -1342,32 +1340,32 @@ function renderMe(){
   const seen=DATA.filter(d=>S.done.includes(d.d));
   $("#gram-list").innerHTML=seen.length
    ?seen.map(d=>'<div class="gitem" onclick="this.classList.toggle(\'open\')"><div class="h">'+escH(d.g.t)+'<span>DAY '+d.d+'</span></div><div class="b">'+escH(d.g.e)+'</div></div>').join("")
-   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">完成学习后会积累在这里</div>';
+   :'<div style="font-size:14px;color:var(--tx3);padding:8px 0">학습을 완료하면 여기에 쌓여요</div>';
   renderSettings();
 }
 function renderSettings(){
   const s=S.set;
   const row=(k,name,desc)=>'<div class="setrow"><div>'+name+(desc?'<div class="d">'+desc+'</div>':'')+'</div><button class="sw'+(s[k]?" on":"")+'" role="switch" aria-checked="'+(!!s[k])+'" onclick="togSet(\''+k+'\')"></button></div>';
   $("#settings").innerHTML=
-    row("sfx","音效","答对·连击·完成的声音")
-   +row("bgm","背景音乐","Lo-fi风循环(默认关闭)")
-   +row("vib","震动","答对·答错的触感反馈")
-   +row("compact","5分钟精简模式","减少题量,更简短")
-   +row("cheer","啦啦队","每次答题女儿们都会加油打气")
-   +row("toon","照片漫画风转换","默认用原图合成。更改后请重新选择照片")
+    row("sfx","효과음","정답·콤보·완료 사운드")
+   +row("bgm","배경 음악","로파이풍 루프 (기본 꺼짐)")
+   +row("vib","진동","정답·오답 햅틱")
+   +row("compact","5분 압축 모드","문항 수를 줄여 짧게")
+   +row("cheer","응원단","정답·오답마다 딸들이 응원해요")
+   +row("toon","사진 만화풍 변환","기본은 원본 합성. 바꾼 뒤엔 사진 다시 선택")
    +girlRow(0)+girlRow(1)
-   +'<div class="setrow"><div>语速<div class="d">当前 '+s.rate.toFixed(2)+' 倍速</div></div><button class="pill" onclick="cycleRate()">更改</button></div>'
-   +'<div class="setrow"><div>同步服务器<div class="d">家里电脑地址 (例: http://192.168.x.x:8379)</div></div><input class="sinput" id="srv-in" value="'+escH(s.srv)+'" placeholder="自动" onchange="S.set.srv=this.value.trim();save()"></div>'
-   +'<button class="btn-line" onclick="syncUp()">保存到服务器(上传)</button>'
-   +'<button class="btn-line" onclick="syncDown()">从服务器读取</button>'
-   +'<button class="btn-line warn" onclick="resetAll()">全部重置</button>';
+   +'<div class="setrow"><div>발음 속도<div class="d">현재 '+s.rate.toFixed(2)+'배속</div></div><button class="pill" onclick="cycleRate()">변경</button></div>'
+   +'<div class="setrow"><div>동기화 서버<div class="d">집 PC 주소 (예: http://192.168.x.x:8378)</div></div><input class="sinput" id="srv-in" value="'+escH(s.srv)+'" placeholder="자동" onchange="S.set.srv=this.value.trim();save()"></div>'
+   +'<button class="btn-line" onclick="syncUp()">서버로 저장 (업로드)</button>'
+   +'<button class="btn-line" onclick="syncDown()">서버에서 불러오기</button>'
+   +'<button class="btn-line warn" onclick="resetAll()">전체 초기화</button>';
 }
 function girlRow(i){
   const g=S.girls[i];
   return '<div class="setrow"><div style="display:flex;align-items:center;gap:10px"><div class="ch-face" style="width:44px;height:44px;border-width:2px">'+faceHTML(i)
-   +'</div><input class="sinput" style="width:86px;text-align:left" value="'+escH(g.n)+'" onchange="S.girls['+i+'].n=this.value.trim()||(\''+(i?'小女儿':'大女儿')+'\');save();renderSettings()"></div>'
-   +'<div style="display:flex;gap:6px"><button class="pill" onclick="document.getElementById(\'ph'+i+'\').click()">照片</button>'
-   +(g.img?'<button class="pill" onclick="delPhoto('+i+')">删除</button>':'')
+   +'</div><input class="sinput" style="width:86px;text-align:left" value="'+escH(g.n)+'" onchange="S.girls['+i+'].n=this.value.trim()||(\''+(i?'작은딸':'큰딸')+'\');save();renderSettings()"></div>'
+   +'<div style="display:flex;gap:6px"><button class="pill" onclick="document.getElementById(\'ph'+i+'\').click()">사진</button>'
+   +(g.img?'<button class="pill" onclick="delPhoto('+i+')">삭제</button>':'')
    +'</div></div><input type="file" id="ph'+i+'" accept="image/*" style="display:none" onchange="onPhoto('+i+',this)">';
 }
 function togSet(k){
@@ -1381,8 +1379,8 @@ function cycleRate(){
   S.set.rate=r[(i+1)%r.length];save();renderSettings();speak("How much is this?");
 }
 function resetAll(){
-  if(!confirm("要删除所有进度和设置吗?"))return;
-  localStorage.removeItem("wonshw");S=load();go("home");toast("重置完成");
+  if(!confirm("모든 진행·설정을 삭제할까요?"))return;
+  localStorage.removeItem("dailytalk");S=load();go("home");toast("초기화 완료");
 }
 
 
@@ -1390,10 +1388,10 @@ function resetAll(){
 const DEF_FACE=[
 '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#FFE9F0"/><circle cx="50" cy="56" r="34" fill="#FFE3CE"/><path d="M14 58 Q12 16 50 14 Q88 16 86 58 Q86 40 74 32 Q60 24 40 27 Q22 31 14 58Z" fill="#4A382E"/><circle cx="38" cy="56" r="4.4" fill="#2b2b2b"/><circle cx="62" cy="56" r="4.4" fill="#2b2b2b"/><path d="M43 69 Q50 75 57 69" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="28" cy="64" r="5" fill="#FFB9CB" opacity=".75"/><circle cx="72" cy="64" r="5" fill="#FFB9CB" opacity=".75"/></svg>',
 '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#EAF2FF"/><circle cx="17" cy="42" r="10" fill="#3B2C24"/><circle cx="83" cy="42" r="10" fill="#3B2C24"/><circle cx="50" cy="56" r="34" fill="#FFE3CE"/><path d="M16 54 Q16 18 50 16 Q84 18 84 54 Q80 36 66 30 Q52 25 38 29 Q24 34 16 54Z" fill="#3B2C24"/><circle cx="38" cy="56" r="4.4" fill="#2b2b2b"/><circle cx="62" cy="56" r="4.4" fill="#2b2b2b"/><path d="M42 68 Q50 76 58 68" stroke="#2b2b2b" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="28" cy="64" r="5" fill="#FFB9CB" opacity=".75"/><circle cx="72" cy="64" r="5" fill="#FFB9CB" opacity=".75"/></svg>'];
-const PRAISE=["妈妈真棒!","爱你哦妈妈 ♥","我们妈妈最厉害!","哇,妈妈有两下子!","不愧是我妈!","太棒了!","啪啪啪,鼓掌!","妈妈是天才吧?","妈妈好帅!","都可以当老师了!","妈妈状态爆棚!","今天手感真好!","发音肯定也很棒!","这水平快赶上母语了!","厉害厉害!","为妈妈骄傲!","一点都没错!","偷偷用功了吧?","哇,一下就答对了!","妈妈真了不起!","要跟爸爸炫耀一下!","实力在进步哦!","比昨天更厉害了!","这题都能答对!","掌声送给妈妈~!","妈妈最棒最棒!","简直完美!","可以去美国了!","是不是比我还厉害?","今天也在成长!"];
-const CHEERUP=["没关系妈妈,再来!","可惜~再试一次!","加油妈妈!","错了也没关系!","哎呀~就差一点!","集中集中!","妈妈加油!","慢慢再读一遍~","错了才会进步~","下次一定能对!","妈妈打起精神~!","哎哟,失手了!","这题有点难吧?","深呼吸一下!","没事没事!","谁都会出错!","别放弃妈妈!","啊~就差一步!","一点点差距而已!","再看一遍就懂了!","难吧?我也觉得难~","好好看提示哦!","稳住妈妈!","错题也是学习!","刚才是不是混了?","被陷阱骗到啦~","冷静再来一次!","妈妈一定可以!","这个没见过吧~?","坚持到最后!"];
-const COMBOP=["厉害了妈妈!连续答对!","妈妈今天状态爆棚!","势不可挡!","连对停不下来!","开挂了吧妈妈!","谁来拦一下~!"];
-const DONEP=["今天也完成啦,妈妈!","明天也一起学吧!","我们最为妈妈骄傲!","今天的学习结束~辛苦啦!","坚持就是最棒的!","爱你妈妈,明天见!"];
+const PRAISE=["아빠 잘했어!","사랑해 아빠 ♥","우리 아빠 최고!","오~ 좀 하는데?","역시 우리 아빠!","완전 잘했어!","짝짝짝! 박수!","아빠 천재 아니야?","아빠 멋져!","이러다 유학 가겠어!","아빠 물올랐네!","오늘 컨디션 좋은데?","발음도 좋았을 듯!","이 정도면 원어민이지!","대박 대박!","아빠 자랑스러워!","하나도 안 틀렸어!","공부 좀 했는데?","우와 바로 맞히네!","아빠 진짜 대단해!","엄마한테 자랑해야지!","실력이 늘고 있어!","어제보다 잘하는데?","이 문제를 맞히다니!","박수 갈채~!","아빠 최고야 최고!","완벽 그 자체!","미국 가도 되겠어!","나보다 잘하는 거 아냐?","오늘도 성장 중!"];
+const CHEERUP=["잘 좀 해봐 아빠~","아쉽네~ 한 번 더!","힘내 아빠!","괜찮아, 다시 하면 돼!","에이~ 아깝다!","집중집중!","아빠 파이팅!","천천히 다시 읽어봐~","틀려야 늘어요~","다음엔 맞힐 수 있어!","아빠 정신 차려~!","어이쿠 삐끗했네!","이건 좀 어려웠지?","심호흡 한 번 하고!","괜찮아 괜찮아!","실수는 누구나 해!","포기하지 마 아빠!","앗~ 거의 다 왔는데!","한 끗 차이야!","다시 보면 보일 거야!","어렵지? 나도 어려워~","힌트 잘 봐봐!","흔들리지 마 아빠!","오답도 공부야!","지금 헷갈린 거지?","낚였네 낚였어~","침착하게 다시!","아빠라면 할 수 있어!","요건 몰랐지~?","끝까지 가보자!"];
+const COMBOP=["미쳤다 아빠! 연속 정답!","아빠 오늘 물올랐네!","막을 수가 없어!","연속 정답 행진 중!","폭주 기관차네!","누가 좀 말려봐~!"];
+const DONEP=["오늘도 해냈다 아빠!","내일도 같이 하자!","아빠가 제일 자랑스러워!","오늘 공부 끝~ 수고했어!","꾸준함이 최고야!","아빠 사랑해, 내일 봐!"];
 let CHT=0,LAST_R="";
 function faceHTML(i){const g=S.girls[i];return g.img?'<img src="'+g.img+'" alt="">':DEF_FACE[i]}
 const R_HAPPY=["r-jump","r-spin","r-flash","r-dance","r-pop","r-clap","r-run"];
@@ -1412,7 +1410,7 @@ function fxHTML(r){
   return "";
 }
 function charSVG(i,cls){ // 파츠(팔·다리·머리) 분리형 캐릭터 + 얼굴 사진 합성
-  const g=S.girls[i],shirt=i?"#F472B6":"#8B5CF6",dark=i?"#DB2777":"#7C3AED",skin="#FFD9B8",oc="#2b2b2b";
+  const g=S.girls[i],shirt=i?"#F472B6":"#3B82F6",dark=i?"#DB2777":"#1D4ED8",skin="#FFD9B8",oc="#2b2b2b";
   const arm=(x1,y1,x2,y2,cx,cy)=>'<path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+oc+'" stroke-width="15" stroke-linecap="round"/><path d="M'+x1+' '+y1+' Q'+cx+' '+cy+' '+x2+' '+y2+'" fill="none" stroke="'+skin+'" stroke-width="10.5" stroke-linecap="round"/>';
   const leg=x=>'<path d="M'+x+' 112 L'+x+' 141" stroke="'+oc+'" stroke-width="17" stroke-linecap="round"/><path d="M'+x+' 112 L'+x+' 141" stroke="'+dark+'" stroke-width="12" stroke-linecap="round"/>';
   let head;
@@ -1519,7 +1517,7 @@ function onPhoto(i,inp){
       const ctx=c.getContext("2d");
       ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,220,220);
       if(S.set.toon)try{toonify(ctx,220,220)}catch(e){}
-      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast(S.set.toon?"照片设置完成 — 已转为漫画风!":"照片设置完成!");
+      S.girls[i].img=c.toDataURL("image/jpeg",0.88);save();renderSettings();toast(S.set.toon?"사진 등록 완료 — 만화풍 변환!":"사진 등록 완료!");
     };
     img.src=r.result;};
   r.readAsDataURL(f);inp.value="";
@@ -1534,35 +1532,35 @@ function srvUrl(){
   return "";
 }
 async function syncUp(silent){
-  const u=srvUrl();if(!u){if(!silent)toast("请先输入服务器地址");return}
+  const u=srvUrl();if(!u){if(!silent)toast("서버 주소를 먼저 입력하세요");return}
   try{
     await fetch(u+"/api/progress",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(S)});
-    if(!silent)toast("已保存到服务器");
-  }catch(e){if(!silent)toast("无法连接服务器")}
+    if(!silent)toast("서버에 저장했어요");
+  }catch(e){if(!silent)toast("서버에 연결할 수 없어요")}
 }
 async function syncDown(){
-  const u=srvUrl();if(!u){toast("请先输入服务器地址");return}
+  const u=srvUrl();if(!u){toast("서버 주소를 먼저 입력하세요");return}
   try{
     const r=await fetch(u+"/api/progress");const j=await r.json();
     if(j&&j.saved){
-      if(j.saved<S.saved&&!confirm("服务器数据比本机旧,仍要读取吗?"))return;
-      localStorage.setItem("wonshw",JSON.stringify(j));S=load();go("home");toast("已读取服务器数据");
-    }else toast("服务器上没有保存的数据");
-  }catch(e){toast("无法连接服务器")}
+      if(j.saved<S.saved&&!confirm("서버 데이터가 이 기기보다 오래됐어요. 그래도 불러올까요?"))return;
+      localStorage.setItem("dailytalk",JSON.stringify(j));S=load();go("home");toast("서버 데이터를 불러왔어요");
+    }else toast("서버에 저장된 데이터가 없어요");
+  }catch(e){toast("서버에 연결할 수 없어요")}
 }
 async function autoSync(){
   const u=srvUrl();if(!u||!location.protocol.startsWith("http"))return;
   try{
     const r=await fetch(u+"/api/progress");const j=await r.json();
-    if(j&&j.saved&&j.saved>S.saved){localStorage.setItem("wonshw",JSON.stringify(j));S=load();renderHome();toast("已与电脑进度同步")}
+    if(j&&j.saved&&j.saved>S.saved){localStorage.setItem("dailytalk",JSON.stringify(j));S=load();renderHome();toast("PC 진행 상황과 동기화됨")}
   }catch(e){}
 }
 
 /* ───────── PWA ───────── */
-const ICON="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#g)"/><text x="50" y="67" font-size="44" font-family="sans-serif" font-weight="800" fill="#fff" text-anchor="middle">W</text></svg>');
+const ICON="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#2563EB"/><text x="50" y="66" font-size="46" font-family="Arial" font-weight="800" fill="#fff" text-anchor="middle">W</text></svg>');
 $("#mf").href="data:application/manifest+json,"+encodeURIComponent(JSON.stringify({
-  name:"WON-GLISH — 每天10分钟英语",short_name:"WON-GLISH",start_url:".",display:"standalone",
-  background_color:"#FFFFFF",theme_color:"#DB2777",orientation:"portrait",
+  name:"WON-GLISH — 매일 10분 영어회화",short_name:"WON-GLISH",start_url:".",display:"standalone",
+  background_color:"#FFFFFF",theme_color:"#2563EB",orientation:"portrait",
   icons:[{src:ICON,sizes:"192x192",type:"image/svg+xml"},{src:ICON,sizes:"512x512",type:"image/svg+xml"}]
 }));
 if("serviceWorker" in navigator&&location.protocol.startsWith("http")){
